@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Do It</title>
   </head>
-  <body data-theme="1" class="bg-theme-1-third">
-    <main class="grid grid-cols-12">
+  <body data-theme="1" class="bg-theme-1-main">
+    <main class="grid grid-cols-12 grid-flow-col">
       <!-- Nav bar start -->
-      <nav class="bg-theme-1-main col-span-12 flex flex-col p-9 h-screen gap-6">
+      <nav
+        class="bg-theme-1-main col-span-6 flex flex-col p-9 gap-6 relative transition-transform -translate-x-full"
+        data-move="true"
+      >
         <section class="grid gap-8">
           <h1 class="text-6xl font-second text-theme-1-fifth">
+            Do It
             <i class="fa-solid fa-dragon"></i>
-            ToDo
           </h1>
           <div class="flex justify-between">
             <div
@@ -42,23 +45,56 @@
         </section>
         <!-- Inbox, Today, Upcoming ... -->
         <section
-          class="text-theme-1-forth text-1xl flex flex-col gap-3 text-2xl"
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
         >
-          <h2><i class="fa-solid fa-inbox text-blue-600"></i> Inbox</h2>
-          <h2><i class="fa-solid fa-star text-amber-500"></i> Today</h2>
-          <h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-inbox text-blue-600"></i> Inbox
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-star text-amber-500"></i> Today
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
             <i class="fa-solid fa-calendar-days text-red-500"></i> Upcoming
           </h2>
-          <h2><i class="fa-solid fa-layer-group text-lime-500"></i> Anytime</h2>
-          <h2><i class="fa-solid fa-clock text-purple-500"></i> Someday</h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-layer-group text-lime-500"></i> Anytime
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-clock text-purple-500"></i> Someday
+          </h2>
         </section>
         <!-- Stand alone projects -->
-        <section></section>
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-6"
+        >
+          <!-- Project -->
+          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+            <i class="fa-solid fa-code text-theme-1-third"></i> Project
+          </h2>
+        </section>
         <!-- Environment -->
-        <section></section>
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6"
+        >
+          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+        </section>
+        <!-- Add button -->
+        <div
+          class="rounded-full w-16 h-16 grid place-content-center bg-theme-1-fifth text-5xl text-theme-1-forth fixed bottom-7 left-7"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </div>
       </nav>
       <!-- -------- Nav bar end -------- -->
+      <!-- Mobile todo -->
+      <section
+        class="bg-theme-1-second flex flex-col p-9 gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0"
+      ></section>
     </main>
+
     <script src="./bundle.js"></script>
   </body>
 </html>
