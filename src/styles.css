@@ -6,3 +6,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+main {
+  background: url('./assets/stars.webp');
+}
