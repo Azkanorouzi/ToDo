@@ -37,6 +37,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "tailwindcss-gradient": "^1.0.1",
+    "tailwindcss-gradients": "^3.0.0",
     "uuid": "^9.0.0"
   }
 }

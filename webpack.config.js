@@ -47,6 +47,6 @@ module.exports = {
   ],
   devServer: {
     static: './dist',
-    hot: true,
+    hot: false,
   },
 }
