@@ -9,14 +9,14 @@
     <main class="grid grid-cols-12 grid-flow-col">
       <!-- Nav bar start -->
       <nav
-        class="bg-theme-1-main col-span-6 flex flex-col p-9 gap-6 relative transition-transform -translate-x-full"
+        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-20 min-h-screen -translate-x-full"
         data-move="true"
       >
         <section class="grid gap-8">
           <h1 class="text-6xl font-second text-theme-1-fifth">
-            Do It
-            <i class="fa-solid fa-dragon"></i>
+            <i class="fa-solid fa-dragon"></i> Do It
           </h1>
+
           <div class="flex justify-between">
             <div
               class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second"
@@ -89,10 +89,80 @@
         </div>
       </nav>
       <!-- -------- Nav bar end -------- -->
-      <!-- Mobile todo -->
+      <!-- -------- Display project panel start -------- -->
       <section
-        class="bg-theme-1-second flex flex-col p-9 gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0"
-      ></section>
+        class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0"
+      >
+        <!-- Nav  -->
+        <nav class="bg-theme-1-main p-6 flex justify-between">
+          <!-- back button -->
+          <div class="text-2xl text-theme-1-fifth">
+            <i class="fa-solid fa-arrow-left"></i>
+          </div>
+          <!-- Name of the project -->
+          <h1 class="text-2xl font-second text-theme-1-fifth">
+            <i class="fa-solid fa-code text-theme-1-third"></i>
+            Name of the project
+          </h1>
+        </nav>
+        <!-- Todos container -->
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5"
+        >
+          <!-- sample todo list -->
+          <div
+            class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main"
+          >
+            <div
+              class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
+            >
+              <i class="fa-solid fa-check text-theme-1-fifth hidden"></i>
+            </div>
+            <!-- Todo title -->
+            <span class=""> Title </span>
+            <!-- Importance button -->
+            <div class="rounded-full w-8 h-8 bg-red-600"></div>
+            <!-- Todo icons -->
+            <div
+              class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-20 right-0 transition-all"
+            >
+              <i class="fa-solid fa-edit text-yellow-500"></i>
+              <i class="fa-solid fa-share text-blue-500"></i>
+              <i class="fa-solid fa-times text-red-400"></i>
+            </div>
+          </div>
+
+          <div
+            class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main"
+          >
+            <div
+              class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
+            >
+              <i class="fa-solid fa-check text-theme-1-fifth"></i>
+            </div>
+            <!-- Todo title -->
+            <span class=""> Title </span>
+            <!-- Importance button -->
+            <div class="rounded-full w-8 h-8 bg-red-600"></div>
+            <!-- Todo icons -->
+            <div
+              class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-20 right-0 transition-all hidden"
+            >
+              <i class="fa-solid fa-edit text-yellow-500 cursor-pointer"></i>
+              <i class="fa-solid fa-share text-blue-500 cursor-pointer"></i>
+              <i class="fa-solid fa-times text-red-400 cursor-pointer"></i>
+            </div>
+          </div>
+        </section>
+        <!-- Plus button -->
+        <div
+          class="rounded-full w-16 h-16 grid place-content-center bg-theme-1-main text-5xl text-theme-1-forth fixed bottom-7 left-7"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <!-- Add module -->
+      </section>
+      <!-- -------- Display todo panel end -------- -->
     </main>
 
     <script src="./bundle.js"></script>
