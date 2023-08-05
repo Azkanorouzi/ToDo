@@ -160,7 +160,65 @@
         >
           <i class="fa-solid fa-plus"></i>
         </div>
-        <!-- Add module -->
+      </section>
+      <!-- Add module -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-30 p-4"
+      >
+        <div class="w-full h-full relative">
+          <div
+            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between"
+          >
+            <i class="fa-solid fa-times text-5xl text-red-600 ml-auto"></i>
+            <!-- Title -->
+            <label for="todo-title">
+              <input
+                type="text"
+                id="todo-title"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Title"
+              />
+            </label>
+            <!-- Details -->
+            <label for="details">
+              <textarea
+                type="text"
+                id="details"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Details"
+              ></textarea>
+            </label>
+            <!-- Date -->
+            <label for="details">
+              <input
+                type="date"
+                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Date"
+              />
+            </label>
+            <!-- Importance -->
+            <div class="flex">
+              <div class="rounded-full w-10 h-10 bg-red-600"></div>
+              <p class="importance-text ml-3">Important!</p>
+            </div>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Add
+              </button>
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
       <!-- -------- Display todo panel end -------- -->
     </main>
