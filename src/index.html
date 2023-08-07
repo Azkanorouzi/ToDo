@@ -3,17 +3,360 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- Icon -->
+    <link rel="icon" href="./assets/dragon-solid.png" />
+    <title>DOIT</title>
   </head>
-  <body class="bg-emerald-500">
-    <p class="text-red-200 text-blue-500">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero saepe
-      obcaecati ducimus molestiae eius nostrum in aliquid! Dolore, neque totam
-      nemo tempore, labore autem quod voluptas, voluptatibus nesciunt quae
-      facere nihil cum! Praesentium at sapiente, temporibus, ullam ex nobis
-      exercitationem corrupti aliquam aut obcaecati, harum reprehenderit illum.
-      Rem, corrupti eligendi.
-    </p>
-    <script src="./script.js"></script>
+  <body data-theme="1" class="bg-theme-1-main">
+    <main class="grid grid-cols-12 grid-flow-col">
+      <!-- Nav bar start -->
+      <nav
+        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-20 min-h-screen -translate-x-full"
+        data-move="true"
+      >
+        <section class="grid gap-8">
+          <h1 class="text-6xl font-second text-theme-1-fifth">
+            <i class="fa-solid fa-dragon"></i> Do It
+          </h1>
+
+          <div class="flex justify-between">
+            <div
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second"
+              data-selected-theme="1"
+            ></div>
+            <div
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-2-third to-theme-2-main"
+              data-selected-theme="2"
+            ></div>
+            <div
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-3-main to-theme-3-third"
+              data-selected-theme="3"
+            ></div>
+            <div
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-4-main to-theme-4-second"
+              data-selected-theme="4"
+            ></div>
+            <div
+              class="rounded-full w-7 h-7 bg-gradient-to-r bg-black flex justify-center items-center text-white"
+              data-stars="off"
+            >
+              <!-- <i class="fa-solid fa-star"></i> -->
+              <i class="fa-regular fa-star"></i>
+            </div>
+          </div>
+        </section>
+        <!-- Inbox, Today, Upcoming ... -->
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
+        >
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-inbox text-blue-600"></i> Inbox
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-star text-amber-500"></i> Today
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-calendar-days text-red-500"></i> Upcoming
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-layer-group text-lime-500"></i> Anytime
+          </h2>
+          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+            <i class="fa-solid fa-clock text-purple-500"></i> Someday
+          </h2>
+        </section>
+        <!-- Stand alone projects -->
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-6"
+        >
+          <!-- Project -->
+          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+            <i class="fa-solid fa-code text-theme-1-third"></i> Project
+          </h2>
+        </section>
+        <!-- Environment -->
+        <section
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6"
+        >
+          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+        </section>
+        <!-- Add button -->
+        <div
+          class="rounded-full w-16 h-16 grid place-content-center bg-theme-1-fifth text-5xl text-theme-1-forth fixed bottom-7 left-7 z-30"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </div>
+      </nav>
+      <!-- -------- Nav bar end -------- -->
+      <!-- -------- Display project panel start -------- -->
+      <!-- Display container -->
+      <div class="display-container">
+        <section
+          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0"
+        >
+          <!-- Nav  -->
+          <nav
+            class="bg-theme-1-main p-6 flex justify-between fixed top-0 left-0 right-0 bg-opacity-50 backdrop-blur-xl"
+          >
+            <!-- back button -->
+            <div class="text-2xl text-theme-1-fifth cursor-pointer">
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+            <!-- Name of the project -->
+            <h1 class="text-2xl font-second text-theme-1-fifth">
+              <i class="fa-solid fa-code text-theme-1-third"></i>
+              Name of the project
+            </h1>
+          </nav>
+          <!-- Todos container -->
+          <section
+            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32"
+          >
+            <!-- sample todo list -->
+            <div
+              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer"
+            >
+              <div
+                class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
+              >
+                <i class="fa-solid fa-check text-theme-1-fifth hidden"></i>
+              </div>
+              <!-- Todo title -->
+              <span> Title </span>
+              <!-- Button container -->
+              <div class="flex justify-between">
+                <!-- Menu -->
+                <i
+                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer"
+                ></i>
+                <!-- Time clock -->
+                <i
+                  class="text-green-300 w-8 h-8 fa-solid fa-clock mr-2 cursor-pointer"
+                ></i>
+                <!-- Importance button -->
+                <div
+                  class="rounded-full w-8 h-8 bg-red-600 cursor-pointer"
+                ></div>
+              </div>
+              <!-- Todo icons -->
+              <div
+                class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-20 right-0 transition-all"
+              >
+                <i class="fa-solid fa-edit text-yellow-500"></i>
+                <i class="fa-solid fa-share text-blue-500"></i>
+                <i class="fa-solid fa-times text-red-400"></i>
+              </div>
+            </div>
+          </section>
+          <!-- Plus button -->
+          <div
+            class="rounded-full w-16 h-16 grid place-content-center bg-theme-1-main text-5xl text-theme-1-forth fixed bottom-7 left-7 z-30"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </section>
+        <!-- -------- Display todo panel end -------- -->
+        <!-- -------- Display Area panel -------- -->
+        <section
+          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 hidden"
+        >
+          <!-- Nav  -->
+          <nav
+            class="bg-theme-1-main p-6 flex justify-between fixed top-0 left-0 right-0 bg-opacity-30 backdrop-blur-xl"
+          >
+            <!-- back button -->
+            <div class="text-2xl text-theme-1-fifth">
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+            <!-- Name of the Area -->
+            <h1 class="text-2xl font-second text-theme-1-fifth">
+              <i class="fa-solid fa-dragon text-theme-1-third"></i>
+              Name of the area
+            </h1>
+          </nav>
+          <!-- Project container -->
+          <section
+            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32"
+          >
+            <!-- sample project list -->
+            <div
+              class="hover:bg-theme-1-forth rounded-md p-4 todo flex items-center justify-between text-3xl relative shadow-md shadow-theme-1-main border-x-4 border-y-4 border-theme-1-fifth"
+            >
+              <div class="absolute left-0 h-full w-3/6 bg-theme-1-third"></div>
+              <i class="fa-solid fa-dragon text-theme-1-fifth z-10"></i>
+              <!-- Project name -->
+              <span class="z-10"> Project name </span>
+              <div class="flex justify-between">
+                <!-- Menu -->
+                <i
+                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer"
+                ></i>
+                <!-- Time clock -->
+                <i
+                  class="text-green-300 w-8 h-8 fa-solid fa-clock mr-2 cursor-pointer"
+                ></i>
+                <!-- Importance button -->
+                <div
+                  class="rounded-full w-8 h-8 bg-red-600 cursor-pointer"
+                ></div>
+              </div>
+            </div>
+          </section>
+          <!-- Plus button -->
+          <div
+            class="rounded-full w-16 h-16 grid place-content-center bg-theme-1-main text-5xl text-theme-1-forth fixed bottom-7 left-7 z-30 cursor-pointer"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </section>
+        <!-- -------- Display Area panel end-------- -->
+      </div>
+      <!-- Add module -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-30 p-4 hidden"
+      >
+        <div class="w-full h-full relative">
+          <div
+            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between"
+          >
+            <i class="fa-solid fa-times text-5xl text-red-600 ml-auto"></i>
+            <!-- Title -->
+            <label for="todo-title">
+              <input
+                type="text"
+                id="todo-title"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Title"
+              />
+            </label>
+            <!-- Details -->
+            <label for="details">
+              <textarea
+                type="text"
+                id="details"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Details"
+              ></textarea>
+            </label>
+            <!-- Date -->
+            <label for="details">
+              <input
+                type="date"
+                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Date"
+              />
+            </label>
+            <!-- Importance -->
+            <div class="flex">
+              <div class="rounded-full w-10 h-10 bg-red-600"></div>
+              <p class="importance-text ml-3">Important!</p>
+            </div>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Add
+              </button>
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Warning module -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-30 p-4 hidden"
+      >
+        <div class="w-full h-full relative">
+          <div
+            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between"
+          >
+            <i
+              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
+            ></i>
+            <!-- Title -->
+            <h2 class="text-5xl text-theme-1-fifth">Are you sure?</h2>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Reiciendis ex esse at fugit modi tempora
+            </p>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Ok
+              </button>
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Details module -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-30 hidden"
+      >
+        <div class="w-full min-h-full relative">
+          <div
+            class="bg-theme-1-second absolute top-0 min-h-full w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between border-x-8 border-y-8 border-theme-1-main"
+          >
+            <i class="fa-solid fa-times text-5xl text-red-600 ml-auto"></i>
+            <!-- Title,Icon -->
+            <div>
+              <h2 class="text-5xl">
+                <i class="fa-solid fa-dragon"></i>
+                Todo/Project title
+              </h2>
+            </div>
+            <!-- Details -->
+            <p class="text-theme-1-fifth">
+              consectetur adipisicing elit. Dolorum ducimus tenetur placeat modi
+              quae at impedit, mollitia esse maiores veritatis neque voluptates
+              dolores quis in et, illum deserunt molestias
+            </p>
+            <!-- Date -->
+            <div>
+              <p class="text-theme-1-forth">Due to: 12/10/2023</p>
+              <!-- State -->
+              <p class="text-theme-1-main">It's already too late!</p>
+            </div>
+            <!-- Importance -->
+            <div class="flex">
+              <div class="rounded-full w-10 h-10 bg-red-600"></div>
+              <p class="importance-text ml-3">Important!</p>
+            </div>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./bundle.js"></script>
   </body>
 </html>

@@ -1,3 +1,11 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Roboto:wght@300;500&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.css';
+/* Tailwind */
 @import 'tailwindcss/base';
-@import 'tailwindcss/utilities';
 @import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+main {
+  background: url('./assets/stars.webp');
+}
