@@ -23,3 +23,14 @@ main {
     grid-column: span 11 / span 11 !important;
   }
 }
+/* Changes dragon color when project is being hovered */
+.project {
+  transition: 0.3s;
+}
+.project:hover > .project-dragon-icon {
+  color: currentColor !important;
+}
+.project:hover > .project-fill {
+  transition: 0.3s;
+  background-color: currentColor;
+}
