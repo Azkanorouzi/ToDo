@@ -17,12 +17,12 @@
         <section
           class="grid gap-8 lg:sticky lg:-top-9 lg:bg-theme-1-main lg:left-0 lg:right-0 lg:py-4 lg:bg-opacity-50 lg:backdrop-blur-sm"
         >
-          <h1 class="text-5xl font-second text-theme-1-fifth">
+          <h1 class="text-5xl font-second text-theme-1-fifth fade-in-left">
             <i class="fa-solid fa-dragon"></i> Do It
           </h1>
 
           <div
-            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full"
+            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full fade-in-left animation-delay-1"
           >
             <div
               class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second cursor-pointer hover:scale-125 transition-transform"
@@ -54,27 +54,27 @@
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
         >
           <h2
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-2"
           >
             <i class="fa-solid fa-inbox text-blue-600"></i> Inbox
           </h2>
           <h2
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-3"
           >
             <i class="fa-solid fa-star text-amber-500"></i> Today
           </h2>
           <h2
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-4"
           >
             <i class="fa-solid fa-calendar-days text-red-500"></i> Upcoming
           </h2>
           <h2
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-5"
           >
             <i class="fa-solid fa-layer-group text-lime-500"></i> Anytime
           </h2>
           <h2
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-6"
           >
             <i class="fa-solid fa-clock text-purple-500"></i> Someday
           </h2>
@@ -113,14 +113,6 @@
       <div
         class="display-container min-h-screen lg:col-span-9 lg:relative 2xl:col-span-10"
       >
-        <!-- loading module  -->
-        <section
-          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-module bg"
-        >
-          <i
-            class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
-          ></i>
-        </section>
         <!-- -------- Display project panel start -------- -->
         <section
           class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
@@ -145,7 +137,7 @@
           >
             <!-- sample todo list -->
             <div
-              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer transition-colors"
+              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer transition-colors fade-in-left"
             >
               <div
                 class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
@@ -424,13 +416,13 @@
       </section>
     </main>
     <!-- Loading module -->
-    <!-- <section
-      class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main"
-    >
-      <i
-        class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
-      ></i>
-    </section> -->
+    <!--   <section
+          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-module bg fade-out animation-delay-7"
+        >
+          <i
+            class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
+          ></i>
+        </section> -->
     <script src="./bundle.js"></script>
   </body>
 </html>
