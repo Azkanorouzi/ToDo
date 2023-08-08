@@ -6,7 +6,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 /* Animista */
-@import 'animista';
+@import './assets/animista.css';
 main {
   background: url('./assets/stars.webp');
 }
