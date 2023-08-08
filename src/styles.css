@@ -9,3 +9,17 @@
 main {
   background: url('./assets/stars.webp');
 }
+/* Handles very large devices for fitting todo items in better forms */
+@media screen and (min-width: 1536px) {
+  .items-container {
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)) !important;
+  }
+}
+@media screen and (min-width: 3200px) {
+  .navbar {
+    grid-column: span 1 / span 1 !important;
+  }
+  .display-container {
+    grid-column: span 11 / span 11 !important;
+  }
+}
