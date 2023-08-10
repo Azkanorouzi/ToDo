@@ -12,16 +12,17 @@
       <!-- Nav bar start -->
       <!-- -translate-x-full -->
       <nav
-        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-20 min-h-screen pb-12 -translate-x-full lg:translate-x-0 lg:col-span-3"
-        data-move="true"
+        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-40 min-h-screen pb-12 lg:translate-x-0 lg:col-span-3 2xl:col-span-2 max-h-screen overflow-scroll navbar -translate-x-full"
       >
-        <section class="grid gap-8">
-          <h1 class="text-5xl font-second text-theme-1-fifth">
+        <section
+          class="grid gap-8 lg:sticky lg:-top-9 lg:bg-theme-1-main lg:left-0 lg:right-0 lg:py-4 lg:bg-opacity-50 lg:backdrop-blur-sm"
+        >
+          <h1 class="text-5xl font-second text-theme-1-fifth fade-in-left">
             <i class="fa-solid fa-dragon"></i> Do It
           </h1>
 
           <div
-            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full"
+            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full fade-in-left animation-delay-1"
           >
             <div
               class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second cursor-pointer hover:scale-125 transition-transform"
@@ -52,19 +53,29 @@
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
         >
-          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-2"
+          >
             <i class="fa-solid fa-inbox text-blue-600"></i> Inbox
           </h2>
-          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-3"
+          >
             <i class="fa-solid fa-star text-amber-500"></i> Today
           </h2>
-          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-4"
+          >
             <i class="fa-solid fa-calendar-days text-red-500"></i> Upcoming
           </h2>
-          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-5"
+          >
             <i class="fa-solid fa-layer-group text-lime-500"></i> Anytime
           </h2>
-          <h2 class="hover:bg-theme-1-third rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-6"
+          >
             <i class="fa-solid fa-clock text-purple-500"></i> Someday
           </h2>
         </section>
@@ -73,7 +84,9 @@
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-6"
         >
           <!-- Project -->
-          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
             <i class="fa-solid fa-code text-theme-1-third"></i> Project
           </h2>
         </section>
@@ -81,26 +94,28 @@
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6"
         >
-          <h2 class="hover:bg-theme-1-fifth rounded-md p-2">
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
             <i class="fa-solid fa-dragon text-theme-1-third"></i>
             Environment
           </h2>
         </section>
         <!-- Plus button -->
         <div
-          class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-fifth text-3xl text-theme-1-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform"
+          class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-fifth text-3xl text-theme-1-forth fixed bottom-7 left-7 lg:sticky lg:-bottom-5 lg:left-0 z-30 cursor-pointer hover:rotate-180 transition-transform py-4"
         >
           <i class="fa-solid fa-plus"></i>
         </div>
       </nav>
       <!-- -------- Nav bar end -------- -->
-      <!-- -------- Display project panel start -------- -->
       <!-- Display container -->
       <div
-        class="display-container min-h-screen lg:col-span-9 lg:relative bg-black"
+        class="display-container min-h-screen lg:col-span-9 lg:relative 2xl:col-span-10"
       >
+        <!-- -------- Display project panel start -------- -->
         <section
-          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 overflow-scroll"
+          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
         >
           <!-- Nav  -->
           <nav
@@ -118,41 +133,50 @@
           </nav>
           <!-- Todos container -->
           <section
-            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32 lg:pt-0"
+            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32 lg:pt-0 2xl:grid xl:grid-cols-2 items-container"
           >
             <!-- sample todo list -->
             <div
-              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer"
+              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer transition-colors fade-in-left"
             >
               <div
                 class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
               >
-                <i class="fa-solid fa-check text-theme-1-fifth hidden"></i>
+                <!-- When user checks the todo list -->
+                <!-- <i class="fa-solid fa-check text-theme-1-fifth "></i> -->
               </div>
               <!-- Todo title -->
               <span> Title </span>
-              <!-- Button container -->
-              <div class="flex justify-between">
+              <!-- Todo icons container -->
+              <div
+                class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
+              >
                 <!-- Menu -->
                 <i
-                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer"
+                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
                 ></i>
                 <!-- Time clock -->
                 <i
-                  class="text-green-300 w-8 h-8 fa-solid fa-clock mr-2 cursor-pointer"
+                  class="text-green-300 fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
                 ></i>
                 <!-- Importance button -->
-                <div
-                  class="rounded-full w-8 h-8 bg-red-600 cursor-pointer"
-                ></div>
+                <i
+                  class="fa-solid fa-circle text-red-600 cursor-pointer hover:scale-110 transition-transform"
+                ></i>
               </div>
-              <!-- Todo icons -->
+              <!-- Todo icons more -->
               <div
-                class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-20 right-0 transition-all"
+                class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-4 transition-all"
               >
-                <i class="fa-solid fa-edit text-yellow-500"></i>
-                <i class="fa-solid fa-share text-blue-500"></i>
-                <i class="fa-solid fa-times text-red-400"></i>
+                <i
+                  class="fa-solid fa-edit text-yellow-500 hover:scale-110 transition-transform"
+                ></i>
+                <i
+                  class="fa-solid fa-share text-blue-500 hover:scale-110 transition-transform"
+                ></i>
+                <i
+                  class="fa-solid fa-times text-red-400 hover:scale-110 transition-transform"
+                ></i>
               </div>
             </div>
           </section>
@@ -166,53 +190,74 @@
         <!-- -------- Display todo panel end -------- -->
         <!-- -------- Display Area panel -------- -->
         <section
-          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 hidden"
+          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 lg:bg-theme-1-second lg:overflow-scroll hidden"
         >
           <!-- Nav  -->
           <nav
-            class="bg-theme-1-main p-6 flex justify-between fixed top-0 left-0 right-0 bg-opacity-30 backdrop-blur-xl"
+            class="bg-theme-1-main p-6 flex justify-between fixed top-0 left-0 right-0 bg-opacity-30 backdrop-blur-xl lg:sticky lg:justify-center"
           >
             <!-- back button -->
-            <div class="text-2xl text-theme-1-fifth">
+            <div class="text-2xl text-theme-1-fifth cursor-pointer lg:hidden">
               <i class="fa-solid fa-arrow-left"></i>
             </div>
             <!-- Name of the Area -->
-            <h1 class="text-2xl font-second text-theme-1-fifth">
+            <h1 class="text-2xl font-second text-theme-1-fifth lg:text-3xl">
               <i class="fa-solid fa-dragon text-theme-1-third"></i>
               Name of the area
             </h1>
           </nav>
           <!-- Project container -->
           <section
-            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32"
+            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32 lg:pt-0 2xl:grid xl:grid-cols-2 items-container"
           >
             <!-- sample project list -->
             <div
-              class="hover:bg-theme-1-forth rounded-md p-4 todo flex items-center justify-between text-3xl relative shadow-md shadow-theme-1-main border-x-4 border-y-4 border-theme-1-fifth"
+              class="hover:border-theme-1-forth rounded-md p-4 todo flex items-center justify-between lg:text-3xl relative shadow-md shadow-theme-1-main border-x-4 border-y-4 border-theme-1-fifth cursor-pointer transition-colors project fade-in-left"
             >
-              <div class="absolute left-0 h-full w-3/6 bg-theme-1-third"></div>
-              <i class="fa-solid fa-dragon text-theme-1-fifth z-10"></i>
+              <div
+                class="absolute left-0 h-full w-3/6 bg-theme-1-third project-fill text-theme-1-fifth"
+              ></div>
+              <i
+                class="fa-solid fa-dragon text-theme-1-fifth z-10 project-dragon-icon"
+              ></i>
               <!-- Project name -->
               <span class="z-10"> Project name </span>
-              <div class="flex justify-between">
+              <!-- Project icons -->
+              <div
+                class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
+              >
                 <!-- Menu -->
                 <i
-                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer"
+                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
                 ></i>
                 <!-- Time clock -->
                 <i
-                  class="text-green-300 w-8 h-8 fa-solid fa-clock mr-2 cursor-pointer"
+                  class="text-green-300 fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
                 ></i>
                 <!-- Importance button -->
-                <div
-                  class="rounded-full w-8 h-8 bg-red-600 cursor-pointer"
-                ></div>
+                <i
+                  class="fa-solid fa-circle text-red-600 cursor-pointer hover:scale-110 transition-transform"
+                ></i>
+              </div>
+              <!-- Project icons more -->
+              <div
+                class="text-3xl absolute bg-theme-1-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-4 transition-all"
+              >
+                <i
+                  class="fa-solid fa-edit text-yellow-500 hover:scale-110 transition-transform"
+                ></i>
+                <i
+                  class="fa-solid fa-share text-blue-500 hover:scale-110 transition-transform"
+                ></i>
+                <i
+                  class="fa-solid fa-times text-red-400 hover:scale-110 transition-transform"
+                ></i>
               </div>
             </div>
           </section>
           <!-- Plus button -->
           <div
-            class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-main text-3xl text-theme-1-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform"
+            class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-main text-3xl text-theme-1-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform lg:sticky lg:py-5"
           >
             <i class="fa-solid fa-plus"></i>
           </div>
@@ -221,13 +266,18 @@
       </div>
       <!-- Add module -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-30 p-4 hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
       >
-        <div class="w-full h-full relative">
+        <div
+          class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
+        >
           <div
-            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between"
+            class="bg-theme-1-third absolute bottom-0 h-3/4 w-full rounded-2xl bg-opacity-100 p-5 text-2xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
           >
-            <i class="fa-solid fa-times text-5xl text-red-600 ml-auto"></i>
+            <i
+              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
+            ></i>
+            <h2 class="absolute text-4xl">what??</h2>
             <!-- Title -->
             <label for="todo-title">
               <input
@@ -280,17 +330,19 @@
       </section>
       <!-- Warning module -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-30 p-4 hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 hidden fade-in-left"
       >
-        <div class="w-full h-full relative">
+        <div
+          class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
+        >
           <div
-            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between"
+            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
           >
             <i
               class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
             ></i>
             <!-- Title -->
-            <h2 class="text-5xl text-theme-1-fifth">Are you sure?</h2>
+            <h2 class="text-5xl text-theme-1-fifth absolute">Are you sure?</h2>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Reiciendis ex esse at fugit modi tempora
@@ -316,11 +368,13 @@
       </section>
       <!-- Details module -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-30 hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm"
       >
-        <div class="w-full min-h-full relative">
+        <div
+          class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl"
+        >
           <div
-            class="bg-theme-1-second absolute top-0 min-h-full w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between border-x-8 border-y-8 border-theme-1-main"
+            class="bg-theme-1-second absolute top-0 min-h-full w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between border-x-8 border-y-8 border-theme-1-main lg:w-7/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:gap-9 lg:text-3xl flip-in-br"
           >
             <i class="fa-solid fa-times text-5xl text-red-600 ml-auto"></i>
             <!-- Title,Icon -->
@@ -361,7 +415,14 @@
         </div>
       </section>
     </main>
-
+    <!-- Loading module -->
+    <!--   <section
+          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-module bg fade-out animation-delay-7"
+        >
+          <i
+            class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
+          ></i>
+        </section> -->
     <script src="./bundle.js"></script>
   </body>
 </html>
