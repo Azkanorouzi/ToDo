@@ -8,6 +8,9 @@ class View {
    */
   render(clear = true) {
     if (clear) this.#clear()
+    // Generating assets
+    this.#generateAssets()
+    // Injection
     this.#parentEl.innerHTML += this.#generateHTML(this.#assets)
   }
   #clear() {
