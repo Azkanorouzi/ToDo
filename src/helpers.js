@@ -47,11 +47,12 @@ const COUNT_DONE_TODOS = (ToDos = []) => {
 const GET_CONSTRUCTOR_NAME = (obj) => {
   return obj.constructor.name
 }
+
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,
   IS_UNIQ,
   IS_ALL_DONE,
   COUNT_DONE_TODOS,
-  FIND_EL_INDEX_WITH_ID,
+  GET_CONSTRUCTOR_NAME,
 }

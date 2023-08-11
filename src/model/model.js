@@ -10,17 +10,9 @@ state = {
 }
 // Task is class parent for both project, environment and todo
 class Task {
-  // Todo
-  delete(id) {
-    const taskIndex = HELPERS.FIND_EL_INDEX_WITH_ID()
-    HELPERS.DELETE_EL_WITH_INDEX(taskIndex)
-  }
   constructor(name, data) {
     // Input data
     this.#data = data
-    // TODO
-    // Early return in case task is provided with valid info
-    if (!this.#isValid()) return
     this.name = name
     this.id = this.#generateUniqueId()
     this.taskType =
@@ -48,22 +40,11 @@ class Task {
     // Calls itself if the id is already given to a task so it generates a new id
     return this.#generateUniqueId()
   }
-  // Checking the task validity
-  #isValid(data) {
-    return data.title && data.details && data.date
-  }
 }
 class Environment extends Task {
   projects = []
-  constructor(name, data) {
-    super(name, data)
-  }
-  #isValid(data) {
-    return data.title && data.details
-  }
 }
 class LimitedTimeTask extends Task {
-  parent = null // project or environment
   constructor(
     name,
     data,
@@ -75,6 +56,15 @@ class LimitedTimeTask extends Task {
     super(name, data)
     this.creationDate = creationDate
     this.due = due
+    this.parent = this.#getParent(this.id, state.envs, state.projects)
+  }
+  //  This function will return the task's parent wether it's a project or environment if it's a stand alone project then it would return null
+  #getParent(id, envs, projects) {
+    return (
+      envs.find((env) => env.id === id) &&
+      projects.find((project) => project.id === id) &&
+      null
+    )
   }
   getDaysLeft() {
     return (
@@ -85,6 +75,8 @@ class LimitedTimeTask extends Task {
   }
 }
 class Project extends LimitedTimeTask {
+  // (0, low) (1, medium) (2, high)
+  #importance = '2'
   #done = false
   #childToDos = []
   #progress = this.#getProjectProgress()
@@ -105,7 +97,18 @@ class ToDo extends LimitedTimeTask {
   trigger() {
     this.#done = this.#done ? false : true
   }
-  static findToDo(todo, id) {
-    todo.parent.#childToDos.find((childTodo) => childTodo.id === id) || false
+  #findToDoIndex(id) {
+    return (
+      this.parent.#childToDos.findIndex((childTodo) => childTodo.id === id) ||
+      false
+    )
+  }
+  /**
+   * Deletes a certain todo
+   * @param {*} todo
+   * @param {*} index
+   */
+  static deleteToDo(todo) {
+    todo.parent.#childToDos.splice(this.#findToDoIndex(todo.id), 1)
   }
 }
