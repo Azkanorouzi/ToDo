@@ -4,15 +4,29 @@ import * as HELPERS from '../helpers'
 state = {
   usedIds: [],
   envs: [],
-  standAloneProjects: [],
+  projects: [],
   currentTheme: CONFIG.INITIAL_THEME,
   currentTab: CONFIG.INITIAL_PAGE,
 }
 // Task is class parent for both project, environment and todo
 class Task {
-  constructor(name) {
+  // Todo
+  delete(id) {
+    const taskIndex = HELPERS.FIND_EL_INDEX_WITH_ID()
+    HELPERS.DELETE_EL_WITH_INDEX(taskIndex)
+  }
+  constructor(name, data) {
+    // Input data
+    this.#data = data
+    // TODO
+    // Early return in case task is provided with valid info
+    if (!this.#isValid()) return
     this.name = name
     this.id = this.#generateUniqueId()
+    this.taskType =
+      HELPERS.GET_CONSTRUCTOR_NAME() === 'Function'
+        ? 'Task'
+        : HELPERS.GET_CONSTRUCTOR_NAME()
   }
   // This function will generate a random unique id
   #generateUniqueId() {
@@ -31,27 +45,67 @@ class Task {
       state.usedIds.push(id)
       return id
     }
-    // Calls itself if the id is already given to a task
+    // Calls itself if the id is already given to a task so it generates a new id
     return this.#generateUniqueId()
+  }
+  // Checking the task validity
+  #isValid(data) {
+    return data.title && data.details && data.date
   }
 }
 class Environment extends Task {
   projects = []
-  checkDone() {
-    isAllDone(this.projects)
+  constructor(name, data) {
+    super(name, data)
+  }
+  #isValid(data) {
+    return data.title && data.details
   }
 }
-
-class Project extends Task {
-  #done = true
-  ToDos = []
-  getPercentTaskDone() {
-    isAllDone(this.ToDos)
+class LimitedTimeTask extends Task {
+  parent = null // project or environment
+  constructor(
+    name,
+    data,
+    // TODO
+    creationDate = HELPERS.GET_TIME_TODAY(),
+    // TODO
+    due = HELPERS.GET_TIME_TOMORROW()
+  ) {
+    super(name, data)
+    this.creationDate = creationDate
+    this.due = due
+  }
+  getDaysLeft() {
+    return (
+      // TODO
+      HELPERS.CONVERT_DATE_TO_DAYS(this.date) -
+      HELPERS.CONVERT_DATE_TO_DAYS(this.due)
+    )
   }
 }
-class ToDo extends Task {
+class Project extends LimitedTimeTask {
   #done = false
-  checkDone() {
-    isAllDone(this.projects)
+  #childToDos = []
+  #progress = this.#getProjectProgress()
+  // Returns a how much of the project is done
+  #getProjectProgress() {
+    return `${
+      (100 / this.#childToDos.length) *
+        HELPERS.COUNT_DONE_TODOS(this.#childToDos) || 100
+    }%`
+  }
+  updateProjectProgress() {
+    this.#progress = this.#getProjectProgress()
+    if (this.#progress === '100%') this.#done = true
+  }
+}
+class ToDo extends LimitedTimeTask {
+  #done = false
+  trigger() {
+    this.#done = this.#done ? false : true
+  }
+  static findToDo(todo, id) {
+    todo.parent.#childToDos.find((childTodo) => childTodo.id === id) || false
   }
 }
