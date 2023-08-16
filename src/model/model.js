@@ -105,8 +105,7 @@ class ToDo extends LimitedTimeTask {
   }
   /**
    * Deletes a certain todo
-   * @param {*} todo
-   * @param {*} index
+   * @param {*} todo todo we want to be deleted
    */
   static deleteToDo(todo) {
     todo.parent.#childToDos.splice(this.#findToDoIndex(todo.id), 1)
