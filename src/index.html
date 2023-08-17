@@ -264,7 +264,7 @@
         </section>
         <!-- -------- Display Area panel end-------- -->
       </div>
-      <!-- Add module -->
+      <!-- Add module for projects -->
       <section
         class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
       >
@@ -278,6 +278,85 @@
               class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
             ></i>
             <h2 class="absolute text-4xl">what??</h2>
+            <!-- Title -->
+            <label for="todo-title">
+              <input
+                type="text"
+                id="todo-title"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Title"
+              />
+            </label>
+            <!-- Details -->
+            <label for="details">
+              <textarea
+                type="text"
+                id="details"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Details"
+              ></textarea>
+            </label>
+            <!-- Date -->
+            <label for="details">
+              <input
+                type="date"
+                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Date"
+              />
+            </label>
+            <!-- Importance -->
+            <div class="flex">
+              <div class="rounded-full w-10 h-10 bg-red-600"></div>
+              <p class="importance-text ml-3">Important!</p>
+            </div>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Add
+              </button>
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Add module for env -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left"
+      >
+        <div
+          class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
+        >
+          <div
+            class="bg-theme-1-third absolute bottom-0 h-3/4 w-full rounded-2xl bg-opacity-100 p-5 text-2xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
+          >
+            <i
+              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
+            ></i>
+            <h2 class="absolute text-4xl">Add a new todo/project</h2>
+            <div>
+              <label for="radio-btn" class="mr-5">
+                Todo:
+                <input type="radio" name="type" id="radio-btn" />
+              </label>
+              <label for="radio-btn2">
+                Project:
+                <input
+                  type="radio"
+                  name="type"
+                  id="radio-btn2"
+                  data-task-type="project"
+                />
+              </label>
+            </div>
             <!-- Title -->
             <label for="todo-title">
               <input
@@ -404,7 +483,7 @@
               <p class="importance-text ml-3">Important!</p>
             </div>
 
-            <!-- Add and close button for add module -->
+            <!-- Add and close button for detail module -->
             <div class="buttons text-center">
               <button
                 class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"

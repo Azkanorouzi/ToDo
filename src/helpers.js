@@ -5,9 +5,6 @@
  */
 // Date fns
 import { format, addDays, range } from 'date-fns'
-// Example usage
-const date = new Date()
-const formattedDate = format(date, 'mm/dd/yyyy', 'en')
 
 const GENERATE_RANDOM_NUMBER = (length = 1) => {
   return Array.from({ length }, () => Math.floor(Math.random() * 10)).join('')
@@ -51,6 +48,7 @@ const COUNT_DONE_TODOS = (ToDos = []) => {
  * @returns {number} number of todos
  */
 const GET_CONSTRUCTOR_NAME = (obj) => {
+  console.log(obj)
   return obj.constructor.name
 }
 /**
@@ -72,9 +70,9 @@ const GET_TIME_TOMORROW = () => {
  * @returns {string} returns a string representing days left until something
  */
 const GET_DATE_RANGE = (startDate, endDate) => {
-  const dateRange = range(startDate, endDate)
-  const start = dateRange.start
-  const end = dateRange.end
+  console.log(startDate, endDate)
+  const start = addDays(new Date(), 0)
+  const end = addDays(new Date(), 0)
   return String(end - start)
 }
 export {
