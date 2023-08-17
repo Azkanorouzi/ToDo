@@ -4,7 +4,7 @@
  * @returns {string} a random number with a certain length
  */
 // Date fns
-import { format, addDays, range } from 'date-fns'
+import { format, addDays } from 'date-fns'
 
 const GENERATE_RANDOM_NUMBER = (length = 1) => {
   return Array.from({ length }, () => Math.floor(Math.random() * 10)).join('')
@@ -55,7 +55,7 @@ const GET_CONSTRUCTOR_NAME = (obj) => {
  *  Returns Today's date
  */
 const GET_TIME_TODAY = () => {
-  return format(new Date(), 'mm/dd/yyyy', 'en')
+  return format(new Date(), 'MM/dd/yyyy', 'en')
 }
 /**
  *  Returns Tomorrow's date

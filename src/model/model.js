@@ -178,8 +178,7 @@ class ToDo extends LimitedTimeTask {
     this._done = this._done ? false : true
   }
 }
-const b = new Project()
-const a = new ToDo()
+
 export { state, Task, Project, ToDo, Environment }
 
 // 1. we must find that project or environment with the currentPageId
