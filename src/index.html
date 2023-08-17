@@ -12,10 +12,10 @@
       <!-- Nav bar start -->
       <!-- -translate-x-full -->
       <nav
-        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-40 min-h-screen pb-12 lg:translate-x-0 lg:col-span-3 2xl:col-span-2 max-h-screen overflow-scroll navbar -translate-x-full"
+        class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-6 relative transition-transform z-40 min-h-screen pb-12 lg:translate-x-0 lg:col-span-3 2xl:col-span-2 overflow-scroll navbar lg:min-h-max -translate-x-full max-h-screen"
       >
         <section
-          class="grid gap-8 lg:sticky lg:-top-9 lg:bg-theme-1-main lg:left-0 lg:right-0 lg:py-4 lg:bg-opacity-50 lg:backdrop-blur-sm"
+          class="grid gap-8 lg:sticky lg:-top-9 lg:bg-theme-1-main lg:left-0 lg:right-0 lg:py-4 lg:bg-opacity-50 lg:backdrop-blur-sm z-50"
         >
           <h1 class="text-5xl font-second text-theme-1-fifth fade-in-left">
             <i class="fa-solid fa-dragon"></i> Do It
@@ -80,8 +80,9 @@
           </h2>
         </section>
         <!-- Stand alone projects -->
+
         <section
-          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-6"
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-16 overflow-scroll"
         >
           <!-- Project -->
           <h2
@@ -94,6 +95,48 @@
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6"
         >
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
+          <h2
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
+          >
+            <i class="fa-solid fa-dragon text-theme-1-third"></i>
+            Environment
+          </h2>
           <h2
             class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer"
           >
@@ -328,6 +371,85 @@
           </div>
         </div>
       </section>
+      <!-- Add module for env -->
+      <section
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0"
+      >
+        <div
+          class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
+        >
+          <div
+            class="bg-theme-1-third absolute bottom-0 h-3/4 w-full rounded-2xl bg-opacity-100 p-5 text-2xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll landscape:lg:min-h-0"
+          >
+            <i
+              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
+            ></i>
+            <h2 class="absolute text-4xl">Add a new todo/project</h2>
+            <div>
+              <label for="radio-btn" class="mr-5">
+                Todo:
+                <input type="radio" name="type" id="radio-btn" />
+              </label>
+              <label for="radio-btn2">
+                Project:
+                <input
+                  type="radio"
+                  name="type"
+                  id="radio-btn2"
+                  data-task-type="project"
+                />
+              </label>
+            </div>
+            <!-- Title -->
+            <label for="todo-title">
+              <input
+                type="text"
+                id="todo-title"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Title"
+              />
+            </label>
+            <!-- Details -->
+            <label for="details">
+              <textarea
+                type="text"
+                id="details"
+                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Details"
+              ></textarea>
+            </label>
+            <!-- Date -->
+            <label for="details">
+              <input
+                type="date"
+                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
+                placeholder="Date"
+              />
+            </label>
+            <!-- Importance -->
+            <div class="flex">
+              <div class="rounded-full w-10 h-10 bg-red-600"></div>
+              <p class="importance-text ml-3">Important!</p>
+            </div>
+
+            <!-- Add and close button for add module -->
+            <div class="buttons text-center">
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Add
+              </button>
+              <button
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- Warning module -->
       <section
         class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 hidden fade-in-left"
@@ -368,7 +490,7 @@
       </section>
       <!-- Details module -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm hidden"
       >
         <div
           class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl"
