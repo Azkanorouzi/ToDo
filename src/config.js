@@ -5,7 +5,6 @@ const INITIAL_THEME = '1'
 // Task ID configs
 const ID_LETTERS_LENGTH = '2'
 const ID_NUMBERS_LENGTH = '10'
-
 // Default data
 const DEFAULT_TASK_NAME = 'Untitled'
 const DEFAULT_TASK_DETAILS = 'No details'
@@ -18,6 +17,10 @@ const API_SETTINGS = {
   TIMEOUT_SEC: 10,
   KEY: '<KEY>',
 }
+// Additional theme defaults (more settings can be found in tailwind config file)
+const SAFE_COLOR = 'text-green-300'
+const WARNING_COLOR = 'text-yellow-300'
+const DANGER_COLOR = 'text-red-300'
 
 export {
   INITIAL_PAGE,
@@ -29,4 +32,7 @@ export {
   DEFAULT_TASK_DETAILS,
   DEFAULT_TASK_DUE,
   DEFAULT_IMPORTANCE,
+  SAFE_COLOR,
+  DANGER_COLOR,
+  WARNING_COLOR,
 }

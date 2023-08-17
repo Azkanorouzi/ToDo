@@ -9,6 +9,7 @@ const state = {
   currentTheme: CONFIG.INITIAL_THEME,
   currentPageId: CONFIG.INITIAL_PAGE,
 }
+// We have seven default env inbox today upcoming anytime someday we must create six default ids
 // Task is class parent for both project, environment and todo
 class Task {
   constructor(data = {}, id = this._generateUniqueId()) {

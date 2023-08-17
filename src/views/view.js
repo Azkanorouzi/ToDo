@@ -22,10 +22,10 @@ class View {
   #generateSpinner() {
     return `
     <section
-    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-module bg fade-out animation-delay-7"
+    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-${this._data.curTheme}-second to-theme-${this._data.curTheme}-main loading-module bg fade-out animation-delay-7"
   >
     <i
-      class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
+      class="fa-solid fa-dragon text-theme-${this._data.curTheme}-fifth text-9xl animate-pulse"
     ></i>
   </section>`
   }
