@@ -1,6 +1,4 @@
 class View {
-  // ParentEl typically would be display container
-  #parentEl = document.querySelector('.display-container')
   /**
    * Renders the view
    * @sideEffect this method renders the display in the parent element of whichever object it was called upon and therefore it modifies the DOM
@@ -10,14 +8,14 @@ class View {
   render(clear = true) {
     if (clear) this.#clear()
     // Injection
-    this.#parentEl.innerHTML += this._generateHTML()
+    this._parentEl.innerHTML += this._generateHTML()
   }
   renderSpinner(clear = true) {
     if (clear) this.#clear()
-    this.#parentEl.innerHTML += this.#generateSpinner()
+    this._parentEl.innerHTML += this.#generateSpinner()
   }
   #clear() {
-    this.#parentEl.innerHTML = ''
+    this._parentEl.innerHTML = ''
   }
   #generateSpinner() {
     return `
