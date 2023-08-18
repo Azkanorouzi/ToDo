@@ -186,10 +186,10 @@
                 class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
               >
                 <!-- When user checks the todo list -->
-                <!-- <i class="fa-solid fa-check text-theme-1-fifth "></i> -->
+                <i class="fa-solid fa-check text-theme-1-fifth hidden"></i>
               </div>
               <!-- Todo title -->
-              <span> Title </span>
+              <span class="line-through"> Title </span>
               <!-- Todo icons container -->
               <div
                 class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
@@ -307,7 +307,7 @@
         </section>
         <!-- -------- Display Area panel end-------- -->
       </div>
-      <!-- Add module -->
+      <!-- Add module for projects -->
       <section
         class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
       >
@@ -526,7 +526,7 @@
               <p class="importance-text ml-3">Important!</p>
             </div>
 
-            <!-- Add and close button for add module -->
+            <!-- Add and close button for detail module -->
             <div class="buttons text-center">
               <button
                 class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
