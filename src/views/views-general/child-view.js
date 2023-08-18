@@ -1,4 +1,4 @@
-import { View } from './view-general'
+import { View } from './view'
 
 class ChildView extends View {
   _parentEl = document.querySelector('.display-container')

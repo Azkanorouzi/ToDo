@@ -1,4 +1,4 @@
-import { View } from './view-general.js'
+import { View } from './view.js'
 
 class ContainerTaskView extends View {
   _parentEl = document.querySelector('.display-container')
