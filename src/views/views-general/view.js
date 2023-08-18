@@ -5,10 +5,11 @@ class View {
    * @param {boolean} clear in case we don't want our parent element to be cleared before injecting our generated html we set this parameter to false (default:true)
    * @param {obj} data data that we get from the add module
    */
-  render(clear = true) {
+  render(clear = true, thisIsAChild = false) {
     if (clear) this.#clear()
     // Injection
     this._parentEl.innerHTML += this._generateHTML()
+    if (thisIsAChild) this._getThisEl(this.assets.taskType)
   }
   renderSpinner(clear = true) {
     if (clear) this.#clear()
@@ -20,7 +21,7 @@ class View {
   #generateSpinner() {
     return `
     <section
-    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-${this._data.curTheme}-second to-theme-${this._data.curTheme}-main loading-module bg fade-out animation-delay-7"
+    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-${this._data.curTheme}-second to-theme-${this.assets.curTheme}-main loading-module bg fade-out animation-delay-7"
   >
     <i
       class="fa-solid fa-dragon text-theme-${this._data.curTheme}-fifth text-9xl animate-pulse"
