@@ -1,8 +1,11 @@
-import { View } from './view'
-import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../config'
+import { ChildView } from '../views-general/child-view'
+import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
 
-class ProjectView extends View {
+class TodoView extends ChildView {
   _parentEl = document.querySelector(
+    `.todo-container[data-id="${this._data.parentId}"]`
+  )
+  _todoEl = document.querySelector(
     `.todo-container[data-id="${this._data.id}"]`
   )
   _assets = {}
@@ -11,17 +14,17 @@ class ProjectView extends View {
     this._data = data
     this._generateAssets()
   }
-  #generateHTML() {
+  _generateHTML() {
     return `<div
     class="hover:bg-theme-${
       this._data.curTheme
-    }-fifth rounded-md p-4 todo bg-theme-${
-      this._data.curTheme
-    }-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-${
+    }-fifth rounded-md p-4 todo bg-theme-${this._data.curTheme}-${
+      this._data.done ? 'fifth' : 'third'
+    } flex items-center justify-between text-3xl relative border-l-4 border-l-theme-${
       this._data.curTheme
     }-fifth shadow-md shadow-theme-${
       this._data.curTheme
-    }-main cursor-pointer transition-colors fade-in-left"
+    }-main cursor-pointer transition-colors fade-in-left todo"
 data-id="${this._data.id}>
     <div
       class="todo-check-button w-9 h-9 rounded-md bg-theme-${
@@ -29,12 +32,14 @@ data-id="${this._data.id}>
       }-forth grid place-content-center"
     >
       <!-- When user checks the todo list -->
-      <!-- <i class="fa-solid fa-check text-theme-${
-        this._data.curTheme
-      }-fifth "></i> -->
+      <i class="fa-solid fa-check text-theme-${this._data.curTheme}-fifth ${
+      this._data.done ? 'hidden' : ''
+    }"></i>
     </div>
     <!-- Todo title -->
-    <span> ${this._data.name} </span>
+    <span class="${this._data.done ? 'line-through' : ''}"> ${
+      this._data.name
+    } </span>
     <!-- Todo icons container -->
     <div
       class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
@@ -85,4 +90,4 @@ data-id="${this._data.id}>
   </div>`
   }
 }
-export { ProjectView }
+export { TodoView }

@@ -160,7 +160,7 @@ class LimitedTimeTask extends Task {
 }
 class Project extends LimitedTimeTask {
   _childToDos = []
-  _progress = this._getProjectProgress()
+  progress = this._getProjectProgress()
   // Returns a how much of the project is done
   _getProjectProgress() {
     return `${
@@ -179,7 +179,8 @@ class ToDo extends LimitedTimeTask {
     this._done = this._done ? false : true
   }
 }
-
+const a = new ToDo()
+console.log(a)
 export { state, Task, Project, ToDo, Environment }
 
 // 1. we must find that project or environment with the currentPageId

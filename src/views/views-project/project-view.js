@@ -1,4 +1,4 @@
-import { ContainerTaskView } from './container-task-view'
+import { ContainerTaskView } from '../views-general/container-task-view'
 class ProjectView extends ContainerTaskView {
   _assets = {}
   constructor(data = null) {
@@ -6,7 +6,6 @@ class ProjectView extends ContainerTaskView {
     this._data = data
     this._generateAssets()
   }
-  _renderChild() {}
   _generateHTML() {
     return `
     <section
