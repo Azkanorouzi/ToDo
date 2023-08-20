@@ -5,12 +5,13 @@ class AddModalView extends ModalView {
   constructor(data = null) {
     super(data)
   }
+
   _generateHTML() {
     return `
     <section
     class="absolute top-0 left-0 right-0 bottom-0 bg-theme-${
       this._assets.curTheme
-    }-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal"
+    }-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal modal"
   >
     <div
       class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
@@ -25,7 +26,7 @@ class AddModalView extends ModalView {
     }-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll landscape:lg:min-h-0"
       >
         <i
-          class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer"
+          class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
         ></i>
         <h2 class="absolute text-4xl">Add a new ${
           this._assets.modalType === 'addDisplay'
@@ -35,17 +36,22 @@ class AddModalView extends ModalView {
         <div>
           <label for="radio-btn" class="mr-5">
           ${this._assets.modalType === 'addDisplay' ? 'Todo: ' : 'Env: '}
-            <input type="radio" name="type" id="radio-btn" value="${
+            <input type="radio" name="type" id="task-btn" value="${
               this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
-            }"/>
+            }" class="radio-button" data-task-type="${
+      this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
+    }"/>
           </label>
-          <label for="radio-btn2">
+          <label for="radio-btn2" data-task-type="project">
             Project:
             <input
               type="radio"
               name="type"
               id="radio-btn2"
               value= "project"
+              class="radio-button" data-radio-type="${
+                this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
+              }
             />
           </label>
         </div>
@@ -56,7 +62,7 @@ class AddModalView extends ModalView {
             id="task-title"
             class="resize-none w-full bg-theme-${
               this._assets.curTheme
-            }-main rounded-lg p-3 focus:border-none focus:outline-none"
+            }-main rounded-lg p-3 focus:border-none focus:outline-none title-input"
             placeholder="Title"
           />
         </label>
@@ -67,7 +73,7 @@ class AddModalView extends ModalView {
             id="details"
             class="resize-none w-full bg-theme-${
               this._assets.curTheme
-            }-main rounded-lg p-3 focus:border-none focus:outline-none"
+            }-main rounded-lg p-3 focus:border-none focus:outline-none details-input"
             placeholder="Details"
           ></textarea>
         </label>
@@ -77,14 +83,30 @@ class AddModalView extends ModalView {
             type="date"
             class="w-full bg-theme-${
               this._assets.curTheme
-            }-main rounded-lg p-3 focus:border-none focus:outline-none"
+            }-main rounded-lg p-3 focus:border-none focus:outline-none date-input"
             placeholder="Date"
           />
         </label>
         <!-- Importance -->
-        <div class="flex" class="add-modal-importance-container">
-          <div class="rounded-full w-10 h-10 ${DANGER_COLOR}"></div>
-          <p class="importance-text ml-3">Important!</p>
+        <div class="flex importance-button importance-input" data-importance="${
+          this._assets.importance
+        }">
+          <div class="rounded-full w-10 h-10 ${
+            this._assets.importance === '1'
+              ? WARNING_COLOR
+              : this._assets.importance === '0'
+              ? SAFE_COLOR
+              : DANGER_COLOR
+          }"></div>
+          <p class="importance-text ml-3">
+          ${
+            this._assets.importance === '1'
+              ? this.importantMessage
+              : this._assets.importance === '0'
+              ? this.shouldMessage
+              : this.mightMessage
+          }
+          </p>
         </div>
 
         <!-- Add and close button for add modal -->
@@ -96,7 +118,11 @@ class AddModalView extends ModalView {
       this._assets.curTheme
     }-forth shadow-2xl border-b-4 border-b-theme-${
       this._assets.curTheme
-    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-nav-modal-button"
+    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-modal-button ${
+      this._assets.modalType === 'addDisplay'
+        ? 'add-nav-modal-button'
+        : 'add-display-modal-button'
+    }"
             type="button"
           >
             Add
@@ -108,7 +134,7 @@ class AddModalView extends ModalView {
       this._assets.curTheme
     }-forth border-b-4 border-b-theme-${
       this._assets.curTheme
-    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 close-modal"
             type="button"
           >
             Cancel

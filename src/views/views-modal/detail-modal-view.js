@@ -2,9 +2,6 @@ import { ModalView } from '../views-general/modal-view'
 import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
 
 class DetailModalView extends ModalView {
-  importantMessage = 'Important!'
-  shouldMessage = 'Relatively important'
-  mightMessage = 'optional'
   todayMessage = 'Today!'
   futureMessage = 'You have time'
   lateMessage = "It's late!"
@@ -16,10 +13,10 @@ class DetailModalView extends ModalView {
     <section
     class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-${
       this._assets.curTheme
-    }-forth backdrop-blur-sm hidden"
+    }-forth backdrop-blur-sm hidden modal"
   >
     <div
-      class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl"
+      class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl close-modal"
     >
       <div
         class="bg-theme-${
@@ -33,7 +30,7 @@ class DetailModalView extends ModalView {
     }-fifth lg:border-8 lg:shadow-2xl lg:gap-9 lg:text-3xl flip-in-br"
       >
         <i
-          class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer"
+          class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
         ></i>
         <!-- Title,Icon -->
         <div>
@@ -86,7 +83,7 @@ class DetailModalView extends ModalView {
       this._assets.curTheme
     }-forth shadow-2xl border-b-4 border-b-theme-${
       this._assets.curTheme
-    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+    }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 close-modal"
             type="button"
           >
             Ok
