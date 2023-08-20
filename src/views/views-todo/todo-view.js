@@ -4,8 +4,7 @@ import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
 class TodoView extends ChildView {
   _assets = {}
   constructor(data = null) {
-    if (!data) throw new Error('data is required')
-    this._assets = data
+    super(data)
     this._generateAssets()
     this._parentEl = document.querySelector(
       `.todo-container[data-id="${this._assets.parentId}"]`

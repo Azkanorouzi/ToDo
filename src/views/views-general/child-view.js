@@ -1,10 +1,14 @@
 import { View } from './view'
 
 class ChildView extends View {
-  assets = {}
+  constructor(data) {
+    if (!data) throw new Error('data is required')
+    this._generateAssets(data)
+  }
   _generateAssets(data) {
     this._assets.name = data.name
     // Todo childTodos name probably should be fixed
+    this._assets.daysLeft = data.daysLeft
     this._assets.id = data.id
     this._assets = data.parentId
     this._assets.taskType = data.taskType.toLower()

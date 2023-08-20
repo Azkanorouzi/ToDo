@@ -54,7 +54,8 @@
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
         >
           <div
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-2 flex items-center justify-between"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-2 flex items-center justify-between environment"
+            data-id="AA1111111111"
           >
             <div><i class="fa-solid fa-inbox text-blue-600"></i> Inbox</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
@@ -64,7 +65,8 @@
             </div>
           </div>
           <div
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-3 flex items-center justify-between"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-3 flex items-center justify-between environment"
+            data-id="BB2222222222"
           >
             <div><i class="fa-solid fa-star text-amber-500"></i> Today</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
@@ -74,7 +76,8 @@
             </div>
           </div>
           <div
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-4 flex items-center justify-between"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-4 flex items-center justify-between environment"
+            data-id="CC3333333333"
           >
             <div>
               <i class="fa-solid fa-calendar-days text-red-500"></i> Upcoming
@@ -86,7 +89,8 @@
             </div>
           </div>
           <div
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-5 flex items-center justify-between"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-5 flex items-center justify-between environment"
+            data-id="DD4444444444"
           >
             <div>
               <i class="fa-solid fa-layer-group text-lime-500"></i> Anytime
@@ -99,7 +103,8 @@
           </div>
 
           <div
-            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-6 flex items-center justify-between"
+            class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-6 flex items-center justify-between environment"
+            data-id="EE5555555555"
           >
             <div><i class="fa-solid fa-clock text-purple-500"></i> Someday</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
@@ -165,10 +170,11 @@
         </section>
         <!-- Environment -->
         <section
-          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6"
+          class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6 environment-container"
         >
           <div
-            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer flex justify-between items-center"
+            class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer flex justify-between items-center environment"
+            data-id="GG7777777777"
           >
             <div>
               <i class="fa-solid fa-dragon text-theme-1-third"></i>
@@ -359,9 +365,9 @@
         </section>
         <!-- -------- Display Area panel end-------- -->
       </div>
-      <!-- Add module for projects -->
+      <!-- Add modal for projects -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left add-modal display-add-modal hidden"
       >
         <div
           class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
@@ -405,10 +411,10 @@
               <p class="importance-text ml-3">Important!</p>
             </div>
 
-            <!-- Add and close button for add module -->
+            <!-- Add and close button for add modal -->
             <div class="buttons text-center">
               <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-display-modal-button"
                 type="button"
               >
                 Add
@@ -423,9 +429,9 @@
           </div>
         </div>
       </section>
-      <!-- Add module for env -->
+      <!-- Add modal for nav -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal hidden"
       >
         <div
           class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
@@ -484,10 +490,10 @@
               <p class="importance-text ml-3">Important!</p>
             </div>
 
-            <!-- Add and close button for add module -->
+            <!-- Add and close button for add modal -->
             <div class="buttons text-center">
               <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
+                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-nav-modal-button"
                 type="button"
               >
                 Add
@@ -502,9 +508,9 @@
           </div>
         </div>
       </section>
-      <!-- Warning module -->
+      <!-- Warning modal -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 hidden fade-in-left"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
       >
         <div
           class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
@@ -522,7 +528,7 @@
               Reiciendis ex esse at fugit modi tempora
             </p>
 
-            <!-- Add and close button for add module -->
+            <!-- Add and close button for add modal -->
             <div class="buttons text-center">
               <button
                 class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
@@ -540,9 +546,9 @@
           </div>
         </div>
       </section>
-      <!-- Details module -->
+      <!-- Details modal -->
       <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm hidden"
+        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm"
       >
         <div
           class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl"
@@ -578,7 +584,7 @@
               <p class="importance-text ml-3">Important!</p>
             </div>
 
-            <!-- Add and close button for detail module -->
+            <!-- Add and close button for detail modal -->
             <div class="buttons text-center">
               <button
                 class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
@@ -591,9 +597,9 @@
         </div>
       </section>
     </main>
-    <!-- Loading module -->
+    <!-- Loading modal -->
     <!--   <section
-          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-module bg fade-out animation-delay-7"
+          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-modal bg fade-out animation-delay-7"
         >
           <i
             class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"

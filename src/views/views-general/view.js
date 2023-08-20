@@ -5,6 +5,7 @@ class View {
    * @param {boolean} clear in case we don't want our parent element to be cleared before injecting our generated html we set this parameter to false (default:true)
    * @param {obj} data data that we get from the add module
    */
+  _assets = {}
   render(clear = true, thisIsAChild = false) {
     if (clear) this.#clear()
     // Injection

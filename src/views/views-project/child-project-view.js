@@ -3,8 +3,7 @@ import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
 
 class ChildProjectView extends ChildView {
   constructor(data = null, standAlone = false) {
-    if (!data) throw new Error('data is required')
-    this._generateAssets(data)
+    super(data)
     // child project have slightly different markup if it's standAlone
     this._standAlone = standAlone
     this._parentEl = document.querySelector(
@@ -12,7 +11,11 @@ class ChildProjectView extends ChildView {
         ? `.stand-alone-projects-container`
         : `.todo-container[data-id="${this._assets.parentId}"]`
     )
-    this._el = document.querySelector(`.project[data-id="${this._assets.id}"]`)
+    this.el = document.querySelector(`.project[data-id="${this._assets.id}"]`)
+    this.children = this._assets.children
+  }
+  get el() {
+    return document.querySelector(`.project[data-id="${this._assets.id}"]`)
   }
   _generateHTML() {
     return this._standAlone
