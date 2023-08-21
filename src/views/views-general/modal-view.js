@@ -21,17 +21,16 @@ class ModalView extends View {
   addHandlers(handlers) {
     document.querySelector('.modal').addEventListener('click', (e) => {
       const clickedEl = e.target
-      if (clickedEl.closest('close-modal')) handlers.addCloseHandler()
+      if (clickedEl.closest('.close-modal')) handlers.handleClose()
       if (clickedEl.closest('.importance-button'))
-        handlers.addImportanceHandler()
+        handlers.handleImportanceBtn()
       if (clickedEl.closest('.add-display-modal-button'))
-        handlers.addDisplayAddHandler(this._getInputsValue('display'))
+        handlers.handleDisplayAdd(this._getInputsValue('display'))
       if (clickedEl.closest('.add-nav-modal-button'))
-        handlers.addNavAddHandler(this._getInputsValue())
-      if (clickedEl.closest('.radio-button'))
-        handlers.addNavRadioTypeButtonHandler()
+        handlers.handleNav(this._getInputsValue())
+      if (clickedEl.closest('.radio-button')) handlers.handleNavRadioBtn()
       if (clickedEl.closest('.warning-modal-cancel'))
-        handlers.addWarningModalCancel()
+        handlers.handleWarningModalCancel()
     })
   }
   _getInputsValue() {

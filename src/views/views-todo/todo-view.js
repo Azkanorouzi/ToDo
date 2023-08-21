@@ -74,10 +74,10 @@ data-id="${this._assets.id}>
       }-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
     >
       <i
-        class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
       ></i>
       <i
-        class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
       ></i>
       <i
         class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer mr-2"

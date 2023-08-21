@@ -27,7 +27,7 @@ class ChildProjectView extends ChildView {
           this._assets.curTheme
         }-main border-x-4 border-y-4 border-theme-${
           this._assets.curTheme
-        }-fifth cursor-pointer transition-colors project fade-in-left"
+        }-fifth cursor-pointer transition-colors project fade-in-left child-task"
         data-id = "${this._assets.id}"
     >
       <div
@@ -48,7 +48,7 @@ class ChildProjectView extends ChildView {
         <i
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
-          }-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
+          }-forth mr-2 cursor-pointer hhover:scale-110 transition-transform child-more-btn"
         ></i>
         <!-- Time clock -->
         <i
@@ -58,7 +58,7 @@ class ChildProjectView extends ChildView {
               : this._assets.daysLeft > 0
               ? SAFE_COLOR
               : DANGER_COLOR
-          } fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
+          } fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform "
         ></i>
         <!-- Importance button -->
         <i
@@ -80,24 +80,25 @@ class ChildProjectView extends ChildView {
         <i
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
-          }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90"
+          }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90 child-less-btn"
         ></i>
         <i
-          class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer edit-btn"
         ></i>
         <i
-          class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-share-btn"
         ></i>
         <i
-          class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer child-delete-btn"
         ></i>
         <i
-          class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-info-btn"
         ></i>
       </div>
     </div>
     `
-      : `            <div
+      : `
+    <div
       class="hover:border-theme--forth rounded-md p-4 todo flex items-center justify-between lg:text-3xl relative shadow-md shadow-theme-${
         this._assets.curTheme
       }-main border-x-4 border-y-4 border-theme-${
@@ -122,7 +123,7 @@ class ChildProjectView extends ChildView {
       >
         <!-- Menu -->
         <i
-          class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
+          class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn"
         ></i>
         <!-- Time clock -->
         <i
@@ -144,10 +145,6 @@ class ChildProjectView extends ChildView {
               : DANGER_COLOR
           } fa-solid fa-circle cursor-pointer hover:scale-110 transition-transform mr-2"
         ></i>
-        <!-- Details button -->
-        <i
-          class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
-        ></i>
       </div>
       <!-- Project icons more -->
       <div
@@ -156,13 +153,22 @@ class ChildProjectView extends ChildView {
         }-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
       >
         <i
-          class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-bars text-theme-${
+          this._assets.curTheme
+        }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90 child-less-btn"
         ></i>
         <i
-          class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
         ></i>
         <i
-          class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer"
+          class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
+        ></i>
+        <i
+          class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer child-delete-btn"
+        ></i>
+        <!-- Details button -->
+        <i
+          class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-info-btn"
         ></i>
       </div>
     </div>`

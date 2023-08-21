@@ -17,7 +17,7 @@ class ProjectView extends ContainerTaskView {
       class="bg-theme-${this._assets.curTheme}-main p-4 flex justify-between fixed top-0 left-0 right-0 bg-opacity-50 backdrop-blur-xl z-40 lg:sticky lg:justify-center"
     >
       <!-- back button -->
-      <div class="text-2xl text-theme-${this._assets.curTheme}-fifth cursor-pointer lg:hidden">
+      <div class="text-2xl text-theme-${this._assets.curTheme}-fifth cursor-pointer lg:hidden back-button back-button">
       <i class="fa-solid fa-arrow-left"></i>
       </div>
       <!-- Name of the project -->
@@ -33,7 +33,7 @@ class ProjectView extends ContainerTaskView {
     </section>
     <!-- Plus button -->
     <div
-      class="rounded-full w-14 h-14 grid place-content-center bg-theme-${this._assets.curTheme}-main text-3xl text-theme-${this._assets.curTheme}-forth fixed bottom-7 left-7 z-30 lg:sticky lg:py-5 cursor-pointer hover:rotate-180 transition-transform"
+      class="rounded-full w-14 h-14 grid place-content-center bg-theme-${this._assets.curTheme}-main text-3xl text-theme-${this._assets.curTheme}-forth fixed bottom-7 left-7 z-30 lg:sticky lg:py-5 cursor-pointer hover:rotate-180 transition-transform display-project-plus-btn"
     >
       <i class="fa-solid fa-plus"></i>
     </div>

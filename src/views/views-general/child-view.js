@@ -5,6 +5,18 @@ class ChildView extends View {
     if (!data) throw new Error('data is required')
     this._generateAssets(data)
   }
+  addHandlers(handlers) {
+    document.querySelector('.childTask').addEventListener('click', (e) => {
+      const clickedEl = e.target
+      if (clickedEl.closest('.child-more-btn')) handlers.handleMenuOpen()
+      if (clickedEl.closest('.child-info-btn')) handlers.handleChildInfoBtn()
+      if (clickedEl.closest('.child-delete-btn'))
+        handlers.handleDeleteTaskBtn(clickedEl)
+      if (clickedEl.closest('.child-less-btn')) handlers.handleMenuClose()
+      if (clickedEl.closest('.child-move-btn')) handlers.handleMoveTaskBtn()
+      if (clickedEl.closest('.child-edit-btn')) handlers.handleEditTaskBtn()
+    })
+  }
   _generateAssets(data) {
     this._assets.name = data.name
     // Todo childTodos name probably should be fixed

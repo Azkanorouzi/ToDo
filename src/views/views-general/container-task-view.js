@@ -8,5 +8,15 @@ class ContainerTaskView extends View {
     this._assets.id = data.id
     this._assets.curTheme = data.curTheme
   }
+  addEventListeners(handlers) {
+    document
+      .querySelector('.display-container')
+      .addEventListener('click', (e) => {
+        const clickedEl = e.target
+        if (clickedEl.closest('.back-button')) handlers.handlerBackBtn()
+        if (clickedEl.closest('.display-project-plus-btn'))
+          handlers.handleDisplayProjectPlus()
+      })
+  }
 }
 export { ContainerTaskView }
