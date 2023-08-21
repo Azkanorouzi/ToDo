@@ -15,6 +15,7 @@ class ChildView extends View {
       if (clickedEl.closest('.child-less-btn')) handlers.handleMenuClose()
       if (clickedEl.closest('.child-move-btn')) handlers.handleMoveTaskBtn()
       if (clickedEl.closest('.child-edit-btn')) handlers.handleEditTaskBtn()
+      if (clickedEl.closest('.child-task')) handlers.handleChildTaskClick()
     })
   }
   _generateAssets(data) {

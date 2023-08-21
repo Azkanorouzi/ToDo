@@ -22,27 +22,27 @@
           </h1>
 
           <div
-            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full fade-in-left animation-delay-1"
+            class="flex justify-between w-10/12 sm:w-6/12 md:w-4/12 lg:w-full fade-in-left animation-delay-1 theme-buttons-container"
           >
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second cursor-pointer hover:scale-125 transition-transform"
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-1-fifth to-theme-1-second cursor-pointer hover:scale-125 transition-transform theme-button"
               data-selected-theme="1"
             ></div>
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-2-third to-theme-2-main cursor-pointer hover:scale-125 transition-transform"
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-2-third to-theme-2-main cursor-pointer hover:scale-125 transition-transform theme-button"
               data-selected-theme="2"
             ></div>
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-3-main to-theme-3-third cursor-pointer hover:scale-125 transition-transform"
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-3-main to-theme-3-third cursor-pointer hover:scale-125 transition-transform theme-button"
               data-selected-theme="3"
             ></div>
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-4-main to-theme-4-second cursor-pointer hover:scale-125 transition-transform"
+              class="rounded-full w-7 h-7 bg-gradient-to-r from-theme-4-main to-theme-4-second cursor-pointer hover:scale-125 transition-transform theme-button"
               data-selected-theme="4"
             ></div>
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r bg-black flex justify-center items-center text-white cursor-pointer hover:scale-125 transition-transform"
-              data-stars="off"
+              class="rounded-full w-7 h-7 bg-gradient-to-r bg-black flex justify-center items-center text-white cursor-pointer hover:scale-125 transition-transform theme-button"
+              data-selected-theme="star-off"
             >
               <!-- <i class="fa-solid fa-star"></i> -->
               <i class="fa-regular fa-star"></i>
@@ -195,7 +195,7 @@
         </section>
         <!-- Plus button -->
         <div
-          class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-fifth text-3xl text-theme-1-forth fixed bottom-7 left-7 lg:sticky lg:-bottom-5 lg:left-0 z-30 cursor-pointer hover:rotate-180 transition-transform py-4"
+          class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-fifth text-3xl text-theme-1-forth fixed bottom-7 left-7 lg:sticky lg:-bottom-5 lg:left-0 z-30 cursor-pointer hover:rotate-180 transition-transform py-4 nav-plus-btn"
         >
           <i class="fa-solid fa-plus"></i>
         </div>
@@ -204,11 +204,11 @@
       <!-- Display container -->
       <!-- hidden lg:block when user toggles-->
       <div
-        class="display-container min-h-screen lg:col-span-9 lg:relative 2xl:col-span-10 hidden lg:block"
+        class="display-container min-h-screen lg:col-span-9 lg:relative 2xl:col-span-10 hidden lg:block hidden"
       >
         <!-- -------- Display project panel start -------- -->
         <section
-          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
+          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll hidden"
         >
           <!-- Nav  -->
           <nav
@@ -287,7 +287,7 @@
         <!-- -------- Display todo panel end -------- -->
         <!-- -------- Display Area panel -------- -->
         <section
-          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 lg:bg-theme-1-second lg:overflow-scroll hidden"
+          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 lg:bg-theme-1-second lg:overflow-scroll"
         >
           <!-- Nav  -->
           <nav

@@ -6,9 +6,7 @@ class TodoView extends ChildView {
   constructor(data = null) {
     super(data)
     this._generateAssets()
-    this._parentEl = document.querySelector(
-      `.todo-container[data-id="${this._assets.parentId}"]`
-    )
+    this._parentEl = document.querySelector(`.items-container`)
   }
   _generateHTML() {
     return `<div
@@ -20,7 +18,7 @@ class TodoView extends ChildView {
       this._assets.curTheme
     }-fifth shadow-md shadow-theme-${
       this._assets.curTheme
-    }-main cursor-pointer transition-colors fade-in-left todo"
+    }-main cursor-pointer transition-colors fade-in-left child-task"
 data-id="${this._assets.id}>
     <div
       class="todo-check-button w-9 h-9 rounded-md bg-theme-${

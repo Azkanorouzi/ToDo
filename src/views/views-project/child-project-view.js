@@ -103,7 +103,7 @@ class ChildProjectView extends ChildView {
         this._assets.curTheme
       }-main border-x-4 border-y-4 border-theme-${
           this._assets.curTheme
-        }-fifth cursor-pointer transition-colors project fade-in-left"
+        }-fifth cursor-pointer transition-colors project fade-in-left child-task"
     >
       <div
         class="absolute left-0 h-full w-3/6 bg-theme-${
