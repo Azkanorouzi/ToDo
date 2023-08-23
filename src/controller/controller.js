@@ -8,6 +8,7 @@ function handleThemeChange(selectedTheme) {
   view.viewHelpers.changeTheme(selectedTheme, model.state.currentTheme)
   model.state.currentTheme = selectedTheme
 }
+function renderDefaultTab() {}
 // This function will pass all subscribers to their publisher
 function init() {
   view.addNavHandlers({ handleThemeChange })
