@@ -1,7 +1,5 @@
 import { GET_TIME_TOMORROW } from './helpers'
-// Page configs
-const INITIAL_PAGE = 'inbox'
-const INITIAL_THEME = '1'
+
 // Task ID configs
 const ID_LETTERS_LENGTH = '2'
 const ID_NUMBERS_LENGTH = '10'
@@ -9,6 +7,10 @@ const ID_NUMBERS_LENGTH = '10'
 const DEFAULT_TASK_NAME = 'Untitled'
 const DEFAULT_TASK_DETAILS = 'No details'
 const DEFAULT_TASK_DUE = GET_TIME_TOMORROW()
+// Initial tab
+const INITIAL_PAGE_NAME = 'Inbox'
+const INITIAL_PAGE_ID = 'AA1111111111'
+const INITIAL_PAGE_THEME = '1'
 // 0 (Might), 1 (Should), 2 (Must!)
 const DEFAULT_IMPORTANCE = '2'
 // API_settings
@@ -23,8 +25,6 @@ const WARNING_COLOR = 'text-yellow-300'
 const DANGER_COLOR = 'text-red-300'
 
 export {
-  INITIAL_PAGE,
-  INITIAL_THEME,
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
   API_SETTINGS,
@@ -35,4 +35,7 @@ export {
   SAFE_COLOR,
   DANGER_COLOR,
   WARNING_COLOR,
+  INITIAL_PAGE_NAME,
+  INITIAL_PAGE_ID,
+  INITIAL_PAGE_THEME,
 }

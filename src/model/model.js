@@ -6,8 +6,8 @@ const state = {
   usedIds: [],
   envs: [],
   projects: [],
-  currentTheme: CONFIG.INITIAL_THEME,
-  currentPageId: CONFIG.INITIAL_PAGE,
+  currentTheme: CONFIG.INITIAL_PAGE_THEME,
+  currentPageId: CONFIG.INITIAL_PAGE_ID,
 }
 // We have seven default env inbox today upcoming anytime someday we must create six default ids
 // Task is class parent for both project, environment and todo
@@ -112,7 +112,7 @@ class Environment extends Task {
   _childProjects = []
   _getData() {
     this.details = this._data.details || CONFIG.DEFAULT_TASK_DETAILS
-    this.name = this._data.title || CONFIG.DEFAULT_TASK_NAME
+    this.name = this._data.name || CONFIG.DEFAULT_TASK_NAME
   }
 }
 class LimitedTimeTask extends Task {
@@ -128,7 +128,7 @@ class LimitedTimeTask extends Task {
     this.importance = this._data?.importance || CONFIG.DEFAULT_IMPORTANCE
     this.due = this._data?.due || HELPERS.GET_TIME_TOMORROW()
     this.details = this._data?.details || CONFIG.DEFAULT_TASK_DETAILS
-    this.name = this._data?.title || CONFIG.DEFAULT_TASK_NAME
+    this.name = this._data?.name || CONFIG.DEFAULT_TASK_NAME
   }
   _getDue(data) {}
   /**
@@ -179,8 +179,7 @@ class ToDo extends LimitedTimeTask {
     this._done = this._done ? false : true
   }
 }
-const a = new ToDo()
-console.log(a)
+
 export { state, Task, Project, ToDo, Environment }
 
 // 1. we must find that project or environment with the currentPageId

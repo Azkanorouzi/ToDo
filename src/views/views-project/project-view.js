@@ -2,14 +2,15 @@ import { ContainerTaskView } from '../views-general/container-task-view'
 class ProjectView extends ContainerTaskView {
   _assets = {}
   constructor(data = null) {
+    super()
     if (!data) throw new Error('data is required')
-    this._generateAssets(data)
+    super._generateAssets(data)
     this.children = this._assets.children
   }
   _generateHTML() {
     return `
     <section
-    class="bg-theme-${this.data.curTheme}-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
+    class="bg-theme-${this._assets.curTheme}-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
     data-theme="true"
   >
     <!-- Nav  -->
