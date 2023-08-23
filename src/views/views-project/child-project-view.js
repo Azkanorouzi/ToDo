@@ -29,16 +29,19 @@ class ChildProjectView extends ChildView {
           this._assets.curTheme
         }-fifth cursor-pointer transition-colors project fade-in-left child-task"
         data-id = "${this._assets.id}"
+        data-theme="true"
     >
       <div
         class="absolute left-0 h-full w-3/6 bg-theme-1-third project-fill text-theme-${
           this._assets.curTheme
         }-fifth"
+        data-theme="true"
       ></div>
       <i
         class="fa-solid fa-code text-theme-${
           this._assets.curTheme
         }-fifth z-10 project-dragon-icon text-2xl"
+        data-theme="true"
       ></i>
       <!-- Project name -->
       <span class="z-10"> ${this._assets.name} </span>
@@ -49,6 +52,7 @@ class ChildProjectView extends ChildView {
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
           }-forth mr-2 cursor-pointer hhover:scale-110 transition-transform child-more-btn"
+          data-theme="true"
         ></i>
         <!-- Time clock -->
         <i
@@ -76,11 +80,13 @@ class ChildProjectView extends ChildView {
         class="text-2xl absolute bg-theme-${
           this._assets.curTheme
         }-second z-10 p-2 transition-all top-0 left-0 right-0 bottom-0 flex justify-center hover:bg-opacity-90 backdrop-blur-sm gap-2"
+        data-theme="true"
       >
         <i
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
           }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90 child-less-btn"
+          data-theme="true"
         ></i>
         <i
           class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer edit-btn"
@@ -104,16 +110,19 @@ class ChildProjectView extends ChildView {
       }-main border-x-4 border-y-4 border-theme-${
           this._assets.curTheme
         }-fifth cursor-pointer transition-colors project fade-in-left child-task"
+        data-theme="true"
     >
       <div
         class="absolute left-0 h-full w-3/6 bg-theme-${
           this._assets.curTheme
         }-third project-fill text-theme-${this._assets.curTheme}-fifth"
+        data-theme="true"
       ></div>
       <i
         class="fa-solid fa-dragon text-theme-${
           this._assets.curTheme
         }-fifth z-10 project-dragon-icon"
+        data-theme="true"
       ></i>
       <!-- Project name -->
       <span class="z-10"> Project name </span>
@@ -123,7 +132,10 @@ class ChildProjectView extends ChildView {
       >
         <!-- Menu -->
         <i
-          class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn"
+          class="fa-solid fa-bars text-theme-${
+            this._assets.curTheme
+          }-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn"
+          data-theme="true"
         ></i>
         <!-- Time clock -->
         <i
@@ -151,11 +163,13 @@ class ChildProjectView extends ChildView {
         class="text-3xl absolute bg-theme-${
           this._assets.curTheme
         }-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
+        data-theme="true"
       >
         <i
         class="fa-solid fa-bars text-theme-${
           this._assets.curTheme
         }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90 child-less-btn"
+        data-theme="true"
         ></i>
         <i
           class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"

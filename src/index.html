@@ -7,17 +7,22 @@
     <link rel="icon" href="./assets/dragon-solid.png" />
     <title>DOIT</title>
   </head>
-  <body data-theme="1" class="bg-theme-1-main">
+  <body class="bg-theme-1-main" data-theme="true">
     <main class="grid grid-cols-12 grid-flow-col relative">
       <!-- Nav bar start -->
       <!-- -translate-x-full -->
       <nav
         class="bg-theme-1-main col-span-12 flex flex-col p-9 gap-4 relative transition-transform z-40 min-h-screen pb-12 lg:translate-x-0 lg:col-span-3 2xl:col-span-2 overflow-scroll navbar lg:min-h-max max-h-screen"
+        data-theme="true"
       >
         <section
           class="grid gap-8 lg:sticky lg:-top-9 lg:bg-theme-1-main lg:left-0 lg:right-0 lg:py-4 lg:bg-opacity-50 lg:backdrop-blur-sm z-50"
+          data-theme="true"
         >
-          <h1 class="text-5xl font-second text-theme-1-fifth fade-in-left">
+          <h1
+            class="text-5xl font-second text-theme-1-fifth fade-in-left"
+            data-theme="true"
+          >
             <i class="fa-solid fa-dragon"></i> Do It
           </h1>
 
@@ -41,8 +46,8 @@
               data-selected-theme="4"
             ></div>
             <div
-              class="rounded-full w-7 h-7 bg-gradient-to-r bg-black flex justify-center items-center text-white cursor-pointer hover:scale-125 transition-transform theme-button"
-              data-selected-theme="star-off"
+              class="rounded-full w-7 h-7 bg-gradient-to-r bg-black flex justify-center items-center text-white cursor-pointer hover:scale-125 transition-transform star-button"
+              data-star="off"
             >
               <!-- <i class="fa-solid fa-star"></i> -->
               <i class="fa-regular fa-star"></i>
@@ -52,31 +57,37 @@
         <!-- Inbox, Today, Upcoming ... -->
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4"
+          data-theme="true"
         >
           <div
             class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-2 flex items-center justify-between environment"
             data-id="AA1111111111"
+            data-theme="true"
           >
             <div><i class="fa-solid fa-inbox text-blue-600"></i> Inbox</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
           <div
             class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-3 flex items-center justify-between environment"
+            data-theme="true"
             data-id="BB2222222222"
           >
             <div><i class="fa-solid fa-star text-amber-500"></i> Today</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
           <div
             class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-4 flex items-center justify-between environment"
+            data-theme="true"
             data-id="CC3333333333"
           >
             <div>
@@ -85,11 +96,13 @@
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
           <div
             class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-5 flex items-center justify-between environment"
+            data-theme="true"
             data-id="DD4444444444"
           >
             <div>
@@ -98,18 +111,21 @@
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
 
           <div
             class="hover:bg-theme-1-third rounded-md p-2 transition-all hover:scale-105 cursor-pointer slide-in-left animation-delay-6 flex items-center justify-between environment"
+            data-theme="true"
             data-id="EE5555555555"
           >
             <div><i class="fa-solid fa-clock text-purple-500"></i> Someday</div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
@@ -118,16 +134,20 @@
 
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-3 text-2xl border-theme-1-fifth border-b-2 rounded-sm pb-4 stand-alone-projects-container"
+          data-theme="true"
         >
           <!-- Project -->
           <div
             class="hover:border-theme-1-forth rounded-md p-1 px-2 todo flex items-center justify-between text-xl relative shadow-md shadow-theme-1-main border-x-4 border-y-4 border-theme-1-fifth cursor-pointer transition-colors project fade-in-left"
+            data-theme="true"
           >
             <div
               class="absolute left-0 h-full w-3/6 bg-theme-1-third project-fill text-theme-1-fifth"
+              data-theme="true"
             ></div>
             <i
               class="fa-solid fa-code text-theme-1-fifth z-10 project-dragon-icon text-2xl"
+              data-theme="true"
             ></i>
             <!-- Project name -->
             <span class="z-10"> Project name </span>
@@ -136,6 +156,7 @@
               <!-- Menu -->
               <i
                 class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
+                data-theme="true"
               ></i>
               <!-- Time clock -->
               <i
@@ -149,9 +170,11 @@
             <!-- Project icons more -->
             <div
               class="text-2xl absolute bg-theme-1-second z-10 p-2 transition-all top-0 left-0 right-0 bottom-0 flex justify-center hover:bg-opacity-90 backdrop-blur-sm gap-2 hidden"
+              data-theme="true"
             >
               <i
                 class="fa-solid fa-bars text-theme-1-fifth mr-2 cursor-pointer hhover:scale-110 transition-transform rotate-90"
+                data-theme="true"
               ></i>
               <i
                 class="fa-solid fa-edit text-yellow-500 hover:scale-110 transition-transform cursor-pointer"
@@ -171,24 +194,32 @@
         <!-- Environment -->
         <section
           class="text-theme-1-forth text-1xl flex flex-col gap-1 text-2xl rounded-sm pb-6 environment-container"
+          data-theme="true"
         >
           <div
             class="hover:bg-theme-1-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer flex justify-between items-center environment"
+            data-theme="true"
             data-id="GG7777777777"
           >
             <div>
-              <i class="fa-solid fa-dragon text-theme-1-third"></i>
+              <i
+                class="fa-solid fa-dragon text-theme-1-third"
+                data-theme="true"
+              ></i>
               Environment
             </div>
             <div class="flex justify-between text-1xl md:text-2xl gap-2">
               <i
                 class="fa-solid fa-edit text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
               <i
                 class="fa-solid fa-times text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
               <i
                 class="fa-solid fa-question text-theme-1-main hover:scale-110 transition-transform cursor-pointer"
+                data-theme="true"
               ></i>
             </div>
           </div>
@@ -196,6 +227,7 @@
         <!-- Plus button -->
         <div
           class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-fifth text-3xl text-theme-1-forth fixed bottom-7 left-7 lg:sticky lg:-bottom-5 lg:left-0 z-30 cursor-pointer hover:rotate-180 transition-transform py-4 nav-plus-btn"
+          data-theme="true"
         >
           <i class="fa-solid fa-plus"></i>
         </div>
@@ -205,406 +237,18 @@
       <!-- hidden lg:block when user toggles-->
       <div
         class="display-container min-h-screen lg:col-span-9 lg:relative 2xl:col-span-10 hidden lg:block hidden"
-      >
-        <!-- -------- Display project panel start -------- -->
-        <section
-          class="bg-theme-1-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll hidden"
-        >
-          <!-- Nav  -->
-          <nav
-            class="bg-theme-1-main p-4 flex justify-between fixed top-0 left-0 right-0 bg-opacity-50 backdrop-blur-xl z-40 lg:sticky lg:justify-center"
-          >
-            <!-- back button -->
-            <div class="text-2xl text-theme-1-fifth cursor-pointer lg:hidden">
-              <i class="fa-solid fa-arrow-left"></i>
-            </div>
-            <!-- Name of the project -->
-            <h1 class="text-2xl font-second text-theme-1-fifth lg:text-3xl">
-              <i class="fa-solid fa-code text-theme-1-third"></i>
-              Name of the project
-            </h1>
-          </nav>
-          <!-- Todos container -->
-          <section
-            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32 lg:pt-0 2xl:grid xl:grid-cols-2 items-container"
-          >
-            <!-- sample todo  -->
-            <div
-              class="hover:bg-theme-1-fifth rounded-md p-4 todo bg-theme-1-third flex items-center justify-between text-3xl relative border-l-4 border-l-theme-1-fifth shadow-md shadow-theme-1-main cursor-pointer transition-colors fade-in-left"
-            >
-              <div
-                class="todo-check-button w-9 h-9 rounded-md bg-theme-1-forth grid place-content-center"
-              >
-                <!-- When user checks the todo -->
-                <i class="fa-solid fa-check text-theme-1-fifth hidden"></i>
-              </div>
-              <!-- Todo title -->
-              <span class=""> Title </span>
-              <!-- Todo icons container -->
-              <div
-                class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
-              >
-                <!-- Menu -->
-                <i
-                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
-                ></i>
-                <!-- Time clock -->
-                <i
-                  class="text-green-300 fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
-                ></i>
-                <!-- Importance button -->
-                <i
-                  class="fa-solid fa-circle text-red-600 cursor-pointer hover:scale-110 transition-transform mr-2"
-                ></i>
-                <!-- Details button -->
-                <i
-                  class="fa-solid fa-question text-blue-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-              </div>
-              <!-- Todo icons more -->
-              <div
-                class="text-3xl absolute bg-theme-1-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
-              >
-                <i
-                  class="fa-solid fa-edit text-yellow-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-                <i
-                  class="fa-solid fa-share text-blue-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-                <i
-                  class="fa-solid fa-times text-red-400 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-              </div>
-            </div>
-          </section>
-          <!-- Plus button -->
-          <div
-            class="rounded-full w-14 h-14 grid place-content-center bg-theme-1-main text-3xl text-theme-1-forth fixed bottom-7 left-7 z-30 lg:sticky lg:py-5 cursor-pointer hover:rotate-180 transition-transform"
-          >
-            <i class="fa-solid fa-plus"></i>
-          </div>
-        </section>
-        <!-- -------- Display todo panel end -------- -->
-        <!-- -------- Display Area panel -------- -->
-        <section
-          class="bg-theme-1-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 lg:bg-theme-1-second lg:overflow-scroll"
-        >
-          <!-- Nav  -->
-          <nav
-            class="bg-theme-1-main p-6 flex justify-between fixed top-0 left-0 right-0 bg-opacity-30 backdrop-blur-xl lg:sticky lg:justify-center"
-          >
-            <!-- back button -->
-            <div class="text-2xl text-theme-1-fifth cursor-pointer lg:hidden">
-              <i class="fa-solid fa-arrow-left"></i>
-            </div>
-            <!-- Name of the Area -->
-            <h1 class="text-2xl font-second text-theme-1-fifth lg:text-3xl">
-              <i class="fa-solid fa-dragon text-theme-1-third"></i>
-              Name of the area
-            </h1>
-          </nav>
-          <!-- Project container -->
-          <section
-            class="text-theme-1-forth text-1xl flex flex-col gap-2 text-2xl rounded-sm p-5 pt-32 lg:pt-0 2xl:grid xl:grid-cols-2 items-container"
-          >
-            <!-- sample project list -->
-            <div
-              class="hover:border-theme-1-forth rounded-md p-4 todo flex items-center justify-between lg:text-3xl relative shadow-md shadow-theme-1-main border-x-4 border-y-4 border-theme-1-fifth cursor-pointer transition-colors project fade-in-left"
-            >
-              <div
-                class="absolute left-0 h-full w-3/6 bg-theme-1-third project-fill text-theme-1-fifth"
-              ></div>
-              <i
-                class="fa-solid fa-dragon text-theme-1-fifth z-10 project-dragon-icon"
-              ></i>
-              <!-- Project name -->
-              <span class="z-10"> Project name </span>
-              <!-- Project icons -->
-              <div
-                class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
-              >
-                <!-- Menu -->
-                <i
-                  class="fa-solid fa-bars text-theme-1-forth mr-2 cursor-pointer hhover:scale-110 transition-transform"
-                ></i>
-                <!-- Time clock -->
-                <i
-                  class="text-green-300 fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
-                ></i>
-                <!-- Importance button -->
-                <i
-                  class="fa-solid fa-circle text-red-600 cursor-pointer hover:scale-110 transition-transform mr-2"
-                ></i>
-                <!-- Details button -->
-                <i
-                  class="fa-solid fa-question text-blue-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-              </div>
-              <!-- Project icons more -->
-              <div
-                class="text-3xl absolute bg-theme-1-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
-              >
-                <i
-                  class="fa-solid fa-edit text-yellow-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-                <i
-                  class="fa-solid fa-share text-blue-500 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-                <i
-                  class="fa-solid fa-times text-red-400 hover:scale-110 transition-transform cursor-pointer"
-                ></i>
-              </div>
-            </div>
-          </section>
-          <!-- Plus button -->
-          <div
-            class="rounded-full w-12 h-12 grid place-content-center bg-theme-1-main text-3xl text-theme-1-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform lg:sticky lg:py-5"
-          >
-            <i class="fa-solid fa-plus"></i>
-          </div>
-        </section>
-        <!-- -------- Display Area panel end-------- -->
-      </div>
-      <!-- Add modal for projects -->
-      <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left add-modal display-add-modal hidden"
-      >
-        <div
-          class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
-        >
-          <div
-            class="bg-theme-1-third absolute bottom-0 h-3/4 w-full rounded-2xl bg-opacity-100 p-5 text-2xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
-          >
-            <i
-              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
-            ></i>
-            <h2 class="absolute text-4xl">what??</h2>
-            <!-- Title -->
-            <label for="todo-title">
-              <input
-                type="text"
-                id="todo-title"
-                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Title"
-              />
-            </label>
-            <!-- Details -->
-            <label for="details">
-              <textarea
-                type="text"
-                id="details"
-                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Details"
-              ></textarea>
-            </label>
-            <!-- Date -->
-            <label for="details">
-              <input
-                type="date"
-                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Date"
-              />
-            </label>
-            <!-- Importance -->
-            <div class="flex">
-              <div class="rounded-full w-10 h-10 bg-red-600"></div>
-              <p class="importance-text ml-3">Important!</p>
-            </div>
-
-            <!-- Add and close button for add modal -->
-            <div class="buttons text-center">
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-display-modal-button"
-                type="button"
-              >
-                Add
-              </button>
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
-                type="button"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Add modal for nav -->
-      <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal hidden"
-      >
-        <div
-          class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
-        >
-          <div
-            class="bg-theme-1-third absolute bottom-0 h-3/4 w-full rounded-2xl bg-opacity-100 p-5 text-2xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll landscape:lg:min-h-0"
-          >
-            <i
-              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
-            ></i>
-            <h2 class="absolute text-4xl">Add a new todo/project</h2>
-            <div>
-              <label for="radio-btn" class="mr-5">
-                Todo:
-                <input type="radio" name="type" id="radio-btn" />
-              </label>
-              <label for="radio-btn2">
-                Project:
-                <input
-                  type="radio"
-                  name="type"
-                  id="radio-btn2"
-                  data-task-type="project"
-                />
-              </label>
-            </div>
-            <!-- Title -->
-            <label for="todo-title">
-              <input
-                type="text"
-                id="todo-title"
-                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Title"
-              />
-            </label>
-            <!-- Details -->
-            <label for="details">
-              <textarea
-                type="text"
-                id="details"
-                class="resize-none w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Details"
-              ></textarea>
-            </label>
-            <!-- Date -->
-            <label for="details">
-              <input
-                type="date"
-                class="w-full bg-theme-1-main rounded-lg p-3 focus:border-none focus:outline-none"
-                placeholder="Date"
-              />
-            </label>
-            <!-- Importance -->
-            <div class="flex">
-              <div class="rounded-full w-10 h-10 bg-red-600"></div>
-              <p class="importance-text ml-3">Important!</p>
-            </div>
-
-            <!-- Add and close button for add modal -->
-            <div class="buttons text-center">
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-nav-modal-button"
-                type="button"
-              >
-                Add
-              </button>
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
-                type="button"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Warning modal -->
-      <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-theme-1-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left hidden"
-      >
-        <div
-          class="w-full h-full relative lg:flex lg:justify-center lg:items-center"
-        >
-          <div
-            class="bg-theme-1-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
-          >
-            <i
-              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
-            ></i>
-            <!-- Title -->
-            <h2 class="text-5xl text-theme-1-fifth absolute">Are you sure?</h2>
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Reiciendis ex esse at fugit modi tempora
-            </p>
-
-            <!-- Add and close button for add modal -->
-            <div class="buttons text-center">
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
-                type="button"
-              >
-                Ok
-              </button>
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
-                type="button"
-              >
-                cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Details modal -->
-      <section
-        class="absolute top-0 left-0 right-0 bottom-0 bg-opacity-5 z-50 fade-in-left bg-theme-1-forth backdrop-blur-sm hidden"
-      >
-        <div
-          class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center lg:bg-opacity-30 lg:backdrop-blur-2xl"
-        >
-          <div
-            class="bg-theme-1-second absolute top-0 min-h-full w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-1-forth flex flex-col justify-between border-x-8 border-y-8 border-theme-1-main lg:w-7/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-1-fifth lg:border-8 lg:shadow-2xl lg:gap-9 lg:text-3xl flip-in-br"
-          >
-            <i
-              class="fa-solid fa-times text-5xl text-red-600 ml-auto cursor-pointer"
-            ></i>
-            <!-- Title,Icon -->
-            <div>
-              <h2 class="text-5xl">
-                <i class="fa-solid fa-dragon"></i>
-                Todo/Project title
-              </h2>
-            </div>
-            <!-- Details -->
-            <p class="text-theme-1-fifth">
-              consectetur adipisicing elit. Dolorum ducimus tenetur placeat modi
-              quae at impedit, mollitia esse maiores veritatis neque voluptates
-              dolores quis in et, illum deserunt molestias
-            </p>
-            <!-- Date -->
-            <div>
-              <p class="text-theme-1-forth">Due to: 12/10/2023</p>
-              <!-- State -->
-              <p class="text-theme-1-main">It's already too late!</p>
-            </div>
-            <!-- Importance -->
-            <div class="flex">
-              <div class="rounded-full w-10 h-10 bg-red-600"></div>
-              <p class="importance-text ml-3">Important!</p>
-            </div>
-
-            <!-- Add and close button for detail modal -->
-            <div class="buttons text-center">
-              <button
-                class="bg-theme-1-fifth px-6 text-xl py-3 rounded-xl text-theme-1-forth shadow-2xl border-b-4 border-b-theme-1-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70"
-                type="button"
-              >
-                Ok
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      ></div>
     </main>
-    <!-- Loading modal -->
-    <!--   <section
-          class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-1-second to-theme-1-main loading-modal bg fade-out animation-delay-7"
-        >
-          <i
-            class="fa-solid fa-dragon text-theme-1-fifth text-9xl animate-pulse"
-          ></i>
-        </section> -->
+    <div
+      class="bg-theme-2-main text-theme-2-main hover:bg-theme-2-main border-theme-2-main bg-theme-2-second text-theme-2-second hover:bg-theme-2-second border-theme-2-second bg-theme-2-third text-theme-2-third hover:bg-theme-2-third border-theme-2-third bg-theme-2-forth text-theme-2-forth hover:bg-theme-2-forth border-theme-2-forth text-theme-2-fifth hover:text-theme-2-fifth hover:bg-theme-2-fifth bg-theme-2-fifth"
+    ></div>
+
+    <div
+      class="bg-theme-3-main text-theme-3-main hover:bg-theme-3-main border-theme-3-main bg-theme-3-second text-theme-3-second hover:bg-theme-3-second border-theme-3-second bg-theme-3-third text-theme-3-third hover:bg-theme-3-third border-theme-3-third bg-theme-3-forth text-theme-3-forth hover:bg-theme-3-forth border-theme-3-forth text-theme-3-fifth hover:text-theme-3-fifth hover:bg-theme-3-fifth bg-theme-3-fifth"
+    ></div>
+    <div
+      class="bg-theme-4-main text-theme-4-main hover:bg-theme-4-main border-theme-4-main bg-theme-4-second text-theme-4-second hover:bg-theme-4-second border-theme-4-second bg-theme-4-third text-theme-4-third hover:bg-theme-4-third border-theme-4-third bg-theme-4-forth text-theme-4-forth hover:bg-theme-4-forth border-theme-4-forth text-theme-4-fifth hover:text-theme-4-fifth hover:bg-theme-4-fifth bg-theme-4-fifth"
+    ></div>
     <script src="./bundle.js"></script>
   </body>
 </html>

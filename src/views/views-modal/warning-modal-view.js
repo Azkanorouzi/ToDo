@@ -23,12 +23,13 @@ class WarningModalView extends ModalView {
     >
       <div
         class="bg-theme-${this._assets.curTheme}-third absolute bottom-0 h-3/5 w-full rounded-2xl bg-opacity-100 p-5 text-3xl text-theme-${this._assets.curTheme}-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-${this._assets.curTheme}-fifth lg:border-8 lg:shadow-2xl lg:h-3/5 lg:text-3xl sm:h-3/5 flip-in-br"
+        data-theme="true"
       >
         <i
           class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
         ></i>
         <!-- Title -->
-        <h2 class="text-5xl text-theme-1-fifth absolute">Are you sure you want to ${this._assets.theme} this task? </h2>
+        <h2 class="text-5xl text-theme-1-fifth absolute">Are you sure you want to proceed?</h2>
         <p>
             ${this._message}
         </p>
@@ -38,12 +39,14 @@ class WarningModalView extends ModalView {
           <button
             class="bg-theme-${this._assets.curTheme}-fifth px-6 text-xl py-3 rounded-xl text-theme-${this._assets.curTheme}-forth shadow-2xl border-b-4 border-b-theme-${this._assets.curTheme}-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 modal-warning-ok"
             type="button"
+            data-theme="true"
           >
             Ok
           </button>
           <button
             class="bg-theme-${this._assets.curTheme}-fifth px-6 text-xl py-3 rounded-xl text-theme-${this._assets.curTheme}-forth border-b-4 border-b-theme-${this._assets.curTheme}-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 warning-modal-cancel"
             type="button"
+            data-theme="true"
           >
             cancel
           </button>

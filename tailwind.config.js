@@ -16,16 +16,19 @@ module.exports = {
         'theme-2-second': '#EA906C',
         'theme-2-third': '#B31312',
         'theme-2-forth': '#2B2A4C',
+        'theme-2-fifth': '#ffffff',
         // Theme three
         'theme-3-main': '#CECE5A',
         'theme-3-second': '#FFE17B',
         'theme-3-third': '#FD8D14',
         'theme-3-forth': '#C51605',
+        'theme-3-fifth': '#ffffff',
         // Theme forth
         'theme-4-main': '#1D5D9B',
         'theme-4-second': '#75C2F6',
         'theme-4-third': '#F4D160',
         'theme-4-forth': '#FBEEAC',
+        'theme-4-fifth': '#ffffff',
         // Star Gazing mode
         'theme-5-main': '#1D5D9B',
       },

@@ -19,16 +19,18 @@ class TodoView extends ChildView {
     }-fifth shadow-md shadow-theme-${
       this._assets.curTheme
     }-main cursor-pointer transition-colors fade-in-left child-task"
-data-id="${this._assets.id}>
+data-id="${this._assets.id}
+data-theme="true">
     <div
       class="todo-check-button w-9 h-9 rounded-md bg-theme-${
         this._assets.curTheme
       }-forth grid place-content-center"
+      data-theme="true"
     >
       <!-- When user checks the todo list -->
       <i class="fa-solid fa-check text-theme-${this._assets.curTheme}-fifth ${
       this._assets.done ? 'hidden' : ''
-    }"></i>
+    }" data-theme="true"></i>
     </div>
     <!-- Todo title -->
     <span class="${this._assets.done ? 'line-through' : ''}"> ${
@@ -43,6 +45,7 @@ data-id="${this._assets.id}>
         class="fa-solid fa-bars text-theme-${
           this._assets.curTheme
         }-forth mr-2 cursor-pointer hover:scale-110 transition-transform"
+        data-theme="true"
       ></i>
       <!-- Time clock -->
       <i
@@ -63,6 +66,7 @@ data-id="${this._assets.id}>
             ? SAFE_COLOR
             : DANGER_COLOR
         } fa-solid fa-circle cursor-pointer hover:scale-110 transition-transform"
+        data-theme="true"
       ></i>
     </div>
     <!-- Todo icons more -->
@@ -70,6 +74,7 @@ data-id="${this._assets.id}>
       class="text-3xl absolute bg-theme-${
         this._assets.curTheme
       }-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
+      data-theme="true"
     >
       <i
         class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"

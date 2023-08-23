@@ -75,6 +75,9 @@ const GET_DATE_RANGE = (startDate, endDate) => {
   const end = addDays(new Date(), 0)
   return String(end - start)
 }
+const GET_ALL_THEME_EL = () => {
+  return document.querySelectorAll('*[data-theme="true"]')
+}
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,
@@ -85,4 +88,5 @@ export {
   GET_TIME_TOMORROW,
   GET_TIME_TODAY,
   GET_DATE_RANGE,
+  GET_ALL_THEME_EL,
 }

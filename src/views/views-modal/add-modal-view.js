@@ -12,6 +12,7 @@ class AddModalView extends ModalView {
     class="absolute top-0 left-0 right-0 bottom-0 bg-theme-${
       this._assets.curTheme
     }-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal modal"
+    data-theme="true"
   >
     <div
       class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
@@ -24,6 +25,7 @@ class AddModalView extends ModalView {
     }-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-${
       this._assets.curTheme
     }-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll landscape:lg:min-h-0"
+    data-theme="true"
       >
         <i
           class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
@@ -64,6 +66,7 @@ class AddModalView extends ModalView {
               this._assets.curTheme
             }-main rounded-lg p-3 focus:border-none focus:outline-none title-input"
             placeholder="Title"
+            data-theme="true"
           />
         </label>
         <!-- Details -->
@@ -75,6 +78,7 @@ class AddModalView extends ModalView {
               this._assets.curTheme
             }-main rounded-lg p-3 focus:border-none focus:outline-none details-input"
             placeholder="Details"
+            data-theme="true"
           ></textarea>
         </label>
         <!-- Date -->
@@ -85,6 +89,7 @@ class AddModalView extends ModalView {
               this._assets.curTheme
             }-main rounded-lg p-3 focus:border-none focus:outline-none date-input"
             placeholder="Date"
+            data-theme="true"
           />
         </label>
         <!-- Importance -->
@@ -123,6 +128,7 @@ class AddModalView extends ModalView {
         ? 'add-nav-modal-button'
         : 'add-display-modal-button'
     }"
+    data-theme="true"
             type="button"
           >
             Add
@@ -136,6 +142,7 @@ class AddModalView extends ModalView {
       this._assets.curTheme
     }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 close-modal"
             type="button"
+            data-theme="true"
           >
             Cancel
           </button>

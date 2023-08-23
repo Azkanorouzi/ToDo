@@ -1,3 +1,15 @@
-// Application logic: logic and code not relevant to the main problem our application is attempting to solve, basic navigation between pages, deciding when and where something should appear on the page, looking at our state and business logic and giving orders to view is what controller does, it's basically the bridge between model and view
 import * as model from '../model/model'
 import * as view from '../views/view'
+
+console.log(model.state)
+// Theme change handler
+function handleThemeChange(selectedTheme) {
+  console.log(selectedTheme)
+  view.viewHelpers.changeTheme(selectedTheme, model.state.currentTheme)
+  model.state.currentTheme = selectedTheme
+}
+// This function will pass all subscribers to their publisher
+function init() {
+  view.addNavHandlers({ handleThemeChange })
+}
+init()
