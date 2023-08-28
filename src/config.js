@@ -7,6 +7,13 @@ const ID_NUMBERS_LENGTH = '10'
 const DEFAULT_TASK_NAME = 'Untitled'
 const DEFAULT_TASK_DETAILS = 'No details'
 const DEFAULT_TASK_DUE = GET_TIME_TOMORROW()
+const DEFAULT_PROJECT_DUE = 'Without time limit!'
+// Details for default projects
+const INBOX_DETAILS =
+  'Inbox is a nice home for random todos, here you can brain storm and put todos that you might want to change their details later :)'
+const TODAY_DETAILS = 'Keep track of your daily tasks :)'
+const UPCOMING_DETAILS = 'details: plan out your future tasks with upcoming :)'
+
 // Initial tab
 const INITIAL_PAGE_NAME = 'Inbox'
 const INITIAL_PAGE_ID = 'AA1111111111'
@@ -32,10 +39,14 @@ export {
   DEFAULT_TASK_DETAILS,
   DEFAULT_TASK_DUE,
   DEFAULT_IMPORTANCE,
+  DEFAULT_PROJECT_DUE,
   SAFE_COLOR,
   DANGER_COLOR,
   WARNING_COLOR,
   INITIAL_PAGE_NAME,
   INITIAL_PAGE_ID,
   INITIAL_PAGE_THEME,
+  INBOX_DETAILS,
+  TODAY_DETAILS,
+  UPCOMING_DETAILS,
 }

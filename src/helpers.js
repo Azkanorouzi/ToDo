@@ -5,6 +5,7 @@
  */
 // Date fns
 import { format, addDays } from 'date-fns'
+import * as CONFIG from './config'
 
 const GENERATE_RANDOM_NUMBER = (length = 1) => {
   return Array.from({ length }, () => Math.floor(Math.random() * 10)).join('')
@@ -48,7 +49,6 @@ const COUNT_DONE_TODOS = (ToDos = []) => {
  * @returns {number} number of todos
  */
 const GET_CONSTRUCTOR_NAME = (obj) => {
-  console.log(obj)
   return obj.constructor.name
 }
 /**
@@ -75,8 +75,75 @@ const GET_DATE_RANGE = (startDate, endDate) => {
   const end = addDays(new Date(), 0)
   return String(end - start)
 }
+/**
+ * this function will simply return all the elements that contain data-theme=true attribute which is an indication of them being themable
+ * @returns {NodeList} returns a Node list consisting of all the themable elements
+ */
 const GET_ALL_THEME_EL = () => {
   return document.querySelectorAll('*[data-theme="true"]')
+}
+/**
+ * This function will generate task calling a task constructor
+ * @param {string} importance Importance of a certain task
+ * @param {string | Date} due  time that we want this to happen
+ * @param {string} details Details of a certain task
+ * @param {string} name Name of the task
+ * @param {string} id task id
+ * @returns newly created task
+ */
+const GENERATE_TASK = (importance, due, details, name, id, constructor) => {
+  return new constructor(
+    {
+      importance,
+      due,
+      details,
+      name,
+    },
+    id
+  )
+}
+const GENERATE_DEFAULT_PROJECTS = (con) => {
+  console.log(con)
+  const defaultProjects = [
+    'Inbox',
+    'Today',
+    'Upcoming',
+    'AnyTime',
+    'Sometime',
+  ].map((defProjectName) =>
+    GENERATE_TASK(
+      CONFIG.DEFAULT_IMPORTANCE,
+      CONFIG.DEFAULT_PROJECT_DUE,
+      CONFIG[`${defProjectName.toUpper}_DETAILS`],
+      defProjectName,
+      CONFIG.INITIAL_PAGE_ID,
+      con
+    )
+  )
+  return defaultProjects
+}
+const GENERATE_VIEW = (data, curTheme, icon) => {
+  return new view.ProjectView({
+    data,
+    curTheme,
+    icon,
+  })
+}
+const GENERATE_DEFAULT_PROJECTS_VIEW = (
+  defProjects,
+  curTheme,
+  icons,
+  PView
+) => {
+  const DEFAULT_PROJECT_VIEWS = defProjects.map(
+    (project, i) =>
+      new PView({
+        ...project.data,
+        curTheme,
+        icon: icons[i],
+      })
+  )
+  return DEFAULT_PROJECT_VIEWS
 }
 export {
   GENERATE_RANDOM_NUMBER,
@@ -89,4 +156,8 @@ export {
   GET_TIME_TODAY,
   GET_DATE_RANGE,
   GET_ALL_THEME_EL,
+  GENERATE_TASK,
+  GENERATE_VIEW,
+  GENERATE_DEFAULT_PROJECTS,
+  GENERATE_DEFAULT_PROJECTS_VIEW,
 }

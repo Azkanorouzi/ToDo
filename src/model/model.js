@@ -14,7 +14,7 @@ const state = {
 class Task {
   constructor(data = {}, id = this._generateUniqueId()) {
     // Input data
-    this._data = data
+    this.data = data
     this._getData()
     // Allowing user to manually add id
     this.id = id
@@ -95,7 +95,7 @@ class Task {
    */
   static editTask(taskId, newData) {
     const task = this._findTaskById(taskId)
-    task._data = newData
+    task.data = newData
   }
   /**
    * finds a task by id by first creating an allTasks that contains all the tasks available on that parent
@@ -111,8 +111,8 @@ class Task {
 class Environment extends Task {
   _childProjects = []
   _getData() {
-    this.details = this._data.details || CONFIG.DEFAULT_TASK_DETAILS
-    this.name = this._data.name || CONFIG.DEFAULT_TASK_NAME
+    this.details = this.data.details || CONFIG.DEFAULT_TASK_DETAILS
+    this.name = this.data.name || CONFIG.DEFAULT_TASK_NAME
   }
 }
 class LimitedTimeTask extends Task {
@@ -125,12 +125,11 @@ class LimitedTimeTask extends Task {
     this._parent = this._getParent(this.id, state.envs, state.projects)
   }
   _getData() {
-    this.importance = this._data?.importance || CONFIG.DEFAULT_IMPORTANCE
-    this.due = this._data?.due || HELPERS.GET_TIME_TOMORROW()
-    this.details = this._data?.details || CONFIG.DEFAULT_TASK_DETAILS
-    this.name = this._data?.name || CONFIG.DEFAULT_TASK_NAME
+    this.importance = this.data?.importance || CONFIG.DEFAULT_IMPORTANCE
+    this.due = this.data?.due || HELPERS.GET_TIME_TOMORROW()
+    this.details = this.data?.details || CONFIG.DEFAULT_TASK_DETAILS
+    this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME
   }
-  _getDue(data) {}
   /**
    * this function returns how many days are left
    * @returns {number} days left from creation date and right now

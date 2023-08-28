@@ -7,6 +7,7 @@ class ContainerTaskView extends View {
     // Todo childTodos name probably should be fixed
     this._assets.id = data.id
     this._assets.curTheme = data.curTheme
+    this._assets.icon = data.icon
   }
   addEventListeners(handlers) {
     document
