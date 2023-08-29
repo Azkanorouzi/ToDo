@@ -12,12 +12,22 @@ const DEFAULT_PROJECT_DUE = 'Without time limit!'
 const INBOX_DETAILS =
   'Inbox is a nice home for random todos, here you can brain storm and put todos that you might want to change their details later :)'
 const TODAY_DETAILS = 'Keep track of your daily tasks :)'
-const UPCOMING_DETAILS = 'details: plan out your future tasks with upcoming :)'
-
+const UPCOMING_DETAILS = 'plan out your future tasks with upcoming :)'
+const ANYTIME_DETAILS =
+  'Sometimes you have tasks that you`re not sure as to when you want them to be done, so why not do them at anytime? :)'
+const SOMEDAY_DETAILS =
+  'This is where you want to put things that you want to do in future, it can be things that are totally random and imaginative like building your dream house :)'
 // Initial tab
 const INITIAL_PAGE_NAME = 'Inbox'
 const INITIAL_PAGE_ID = 'AA1111111111'
 const INITIAL_PAGE_THEME = '1'
+const INITIAL_PROJECTS_ID = [
+  'AA1111111111',
+  'BB2222222222',
+  'CC3333333333',
+  'DD4444444444',
+  'EE5555555555',
+]
 // 0 (Might), 1 (Should), 2 (Must!)
 const DEFAULT_IMPORTANCE = '2'
 // API_settings
@@ -44,9 +54,12 @@ export {
   DANGER_COLOR,
   WARNING_COLOR,
   INITIAL_PAGE_NAME,
+  INITIAL_PROJECTS_ID,
   INITIAL_PAGE_ID,
   INITIAL_PAGE_THEME,
   INBOX_DETAILS,
   TODAY_DETAILS,
   UPCOMING_DETAILS,
+  ANYTIME_DETAILS,
+  SOMEDAY_DETAILS,
 }

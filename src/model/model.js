@@ -4,6 +4,8 @@ import * as CONFIG from '../config'
 import * as HELPERS from '../helpers'
 const state = {
   usedIds: [],
+  views: [],
+  todos: [],
   envs: [],
   projects: [],
   currentTheme: CONFIG.INITIAL_PAGE_THEME,
@@ -18,6 +20,7 @@ class Task {
     this._getData()
     // Allowing user to manually add id
     this.id = id
+    if (this.id) this._pushUsedId(id)
     this.taskType =
       HELPERS.GET_CONSTRUCTOR_NAME(this) === 'Function'
         ? 'Task'
@@ -41,19 +44,17 @@ class Task {
     const id = randomLetters + randomDigits
     // Checking if new id is unique (it should be)
     if (HELPERS.IS_UNIQ(id, [...state.usedIds])) {
-      state.usedIds.push(id)
       return id
     }
     // Calls itself if the id is already given to a task so it generates a new id
     return this._generateUniqueId()
   }
-  /**
-   * this function quite simply returns the property name that consists of children of a certain task wether it's an Project or environment since project and environment have different names for this property
-   * @param {obj} task task we want to
-   * @returns {string} property name if that task
-   */
-  _getChildren(task = this) {
-    return task.taskType === 'Project' ? '_childProjects' : '_childToDos'
+  _pushUsedId(id) {
+    // Checking if new id is unique (it should be)
+    if (HELPERS.IS_UNIQ(id, [...state.usedIds])) {
+      state.usedIds.push(id)
+      return id
+    }
   }
   /**
    * this function returns the index of a task inside the parent children array (the env or project that task take place)
@@ -69,9 +70,10 @@ class Task {
    * @returns {task} returns the deleted task
    */
   static deleteTask(taskId) {
-    const task = this._findTaskById(taskId)
+    const task = this.findTaskById(taskId)
     if (task.taskType === 'Environment' || !task.parent) return false
-    const children = this._getChildren(task)
+    const children =
+      this[task.taskType === 'Project' ? '_childProjects' : '_childToDos']
     task.parent[children].splice(task._findTaskIndex(task.id), 1)
     return task
   }
@@ -82,7 +84,7 @@ class Task {
    * @returns
    */
   static deleteAloneTask(taskId, arr) {
-    const task = this._findTaskById(taskId)
+    const { task } = this.findTaskById(taskId)
     if (task.taskType === 'ToDo' || task.parent) return false
     const index = arr.findIndex((task) => task.id === id)
     arr.splice(index, 1)
@@ -94,7 +96,7 @@ class Task {
    * @param {*} newData edited data
    */
   static editTask(taskId, newData) {
-    const task = this._findTaskById(taskId)
+    const { task } = this.findTaskById(taskId)
     task.data = newData
   }
   /**
@@ -102,13 +104,30 @@ class Task {
    * @param {number} id the id of the target task
    * @returns {obj} target task
    */
-  static _findTaskById(id) {
-    const allTasks = [...state.envs, ...state.projects]
-    allTasks.forEach((task) => allTasks.push(task[_getChildren()]))
-    return allTasks.flat(1000000000000000).find((task) => task.id === id)
+  static findTaskById(id) {
+    alert(JSON.stringify(state.projects))
+    const allTasks = [state.envs, state.projects].flat()
+    const views = [state.views].flat()
+    allTasks.forEach((task) => {
+      console.log([
+        task[task.taskType === 'Project' ? '_childProjects' : '_childToDos'],
+        ,
+      ])
+      allTasks.push(
+        task[task.taskType === 'Project' ? '_childProjects' : '_childToDos']
+      )
+    })
+    return {
+      task: allTasks.flat(Infinity).find((task) => task.id === id),
+      view: views.find((view) => view.id === id),
+    }
   }
 }
 class Environment extends Task {
+  constructor(data = {}, id = this._generateUniqueId()) {
+    super(data, id)
+    state.envs.push(this)
+  }
   _childProjects = []
   _getData() {
     this.details = this.data.details || CONFIG.DEFAULT_TASK_DETAILS
@@ -118,7 +137,7 @@ class Environment extends Task {
 class LimitedTimeTask extends Task {
   _done = false
 
-  constructor(data, id) {
+  constructor(data = {}, id = this._generateUniqueId()) {
     super(data, id)
     // (0, low) (1, necessary) (2, high)
     this._creationDate = HELPERS.GET_TIME_TODAY()
@@ -158,6 +177,10 @@ class LimitedTimeTask extends Task {
   }
 }
 class Project extends LimitedTimeTask {
+  constructor(data = {}, id = this._generateUniqueId(), standAlone = true) {
+    super(data, id)
+    if (standAlone) state.projects.push(this)
+  }
   _childToDos = []
   progress = this._getProjectProgress()
   // Returns a how much of the project is done

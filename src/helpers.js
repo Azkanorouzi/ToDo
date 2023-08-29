@@ -96,6 +96,7 @@ const GENERATE_TASK = (importance, due, details, name, id, constructor) => {
     {
       importance,
       due,
+      id,
       details,
       name,
     },
@@ -109,14 +110,14 @@ const GENERATE_DEFAULT_PROJECTS = (con) => {
     'Today',
     'Upcoming',
     'AnyTime',
-    'Sometime',
-  ].map((defProjectName) =>
+    'Someday',
+  ].map((defProjectName, i) =>
     GENERATE_TASK(
       CONFIG.DEFAULT_IMPORTANCE,
       CONFIG.DEFAULT_PROJECT_DUE,
-      CONFIG[`${defProjectName.toUpper}_DETAILS`],
+      CONFIG[`${defProjectName.toUpperCase()}_DETAILS`],
       defProjectName,
-      CONFIG.INITIAL_PAGE_ID,
+      CONFIG.INITIAL_PROJECTS_ID[i],
       con
     )
   )
@@ -135,16 +136,17 @@ const GENERATE_DEFAULT_PROJECTS_VIEW = (
   icons,
   PView
 ) => {
-  const DEFAULT_PROJECT_VIEWS = defProjects.map(
-    (project, i) =>
-      new PView({
-        ...project.data,
-        curTheme,
-        icon: icons[i],
-      })
-  )
+  const DEFAULT_PROJECT_VIEWS = defProjects.map((project, i) => {
+    console.log(project.data)
+    return new PView({
+      ...project.data,
+      curTheme,
+      icon: icons[i],
+    })
+  })
   return DEFAULT_PROJECT_VIEWS
 }
+
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,

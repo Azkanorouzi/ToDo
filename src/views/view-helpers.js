@@ -15,6 +15,6 @@ export function changeTheme(newTheme, oldTheme) {
     console.log(el.classList)
   })
 }
-export function listenToOnload() {
-  window.addEventListener('load')
+export function addLoadHandler(handler) {
+  window.addEventListener('load', handler)
 }
