@@ -1,42 +1,35 @@
 import * as model from '../model/model'
 import * as view from '../views/view'
-import * as CONFIG from '../config'
-import * as HELPERS from '../helpers'
-console.log(model.state)
+
+import * as taskController from './task-controller'
+
 // Theme change handler
 function handleThemeChange(selectedTheme) {
   view.viewHelpers.changeTheme(selectedTheme, model.state.currentTheme)
   model.state.currentTheme = selectedTheme
 }
+
+// Load event handler
 function handleLoadEvent() {
-  const { view } = model.Task.findTaskById(model.state.currentPageId)
-  // view.render()
+  console.log('loaded')
+  const InitialProject = taskController.findTaskById(
+    model.state.currentPageId,
+    model.state
+  )
 }
-// function renderTask(taskType) {
-//   // generate task
-//   HELPERS.GENERATE_TASK()
-//   // generate view
-//   // push task to state
-//   // push view to state
-// }
+
+function handleStandAloneProjectClick() {}
+
 // This function will pass all subscribers to their publisher
 function init() {
-  generateDefaults(model.state)
   view.addNavHandlers({ handleThemeChange })
   view.viewHelpers.addLoadHandler(handleLoadEvent)
+  // early return if the app is already initialized in that case we don't want to have defaults created again
+  if (model.state.isDefaultsInitialized) return
+  const { defaultProjects, defaultProjectsView } =
+    taskController.generateDefaultProjects(model.state)
+  // Updating the tasks state for the default projects
+  taskController.updateTasksState(model.state, 'project', ...defaultProjects)
+  taskController.updateTasksState(model.state, 'view', ...defaultProjectsView)
 }
 init()
-// These functions need to be inside controller because they need both model and view
-
-function generateDefaults(state) {
-  console.log(view.ProjectView)
-  const defaultProjects = HELPERS.GENERATE_DEFAULT_PROJECTS(model.Project)
-  const defaultProjectsView = HELPERS.GENERATE_DEFAULT_PROJECTS_VIEW(
-    defaultProjects,
-    model.state.currentTheme,
-    ['fa-inbox', 'fa-star', 'fa-calendar-days', 'fa-layer-group', 'fa-clock'],
-    view.ProjectView
-  )
-  console.log(state)
-  if (state.views.length === 0) model.state.views = [...defaultProjectsView]
-}

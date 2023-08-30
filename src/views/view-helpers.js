@@ -1,4 +1,4 @@
-import { GET_ALL_THEME_EL } from '../helpers'
+import { GET_ALL_THEME_EL, LISTEN_TO } from '../helpers'
 // General functions
 /**
  * given the old theme and new theme numbers this function will iterate through an array consisting of all elements that contain theme classes and will change those classes to achieve the desired outcome
@@ -16,5 +16,5 @@ export function changeTheme(newTheme, oldTheme) {
   })
 }
 export function addLoadHandler(handler) {
-  window.addEventListener('load', handler)
+  LISTEN_TO(window, 'load', handler)
 }

@@ -12,6 +12,7 @@ class EnvironmentView extends ContainerTaskView {
     <section
     class="bg-theme-${this._assets.curTheme}-main flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 z-10 lg:bg-theme-${this._assets.curTheme}-second lg:overflow-scroll"
     data-theme="true"
+    data-id="${this._assets.id}"
   >
     <!-- Nav  -->
     <nav

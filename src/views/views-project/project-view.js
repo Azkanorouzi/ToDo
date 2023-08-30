@@ -1,6 +1,5 @@
 import { ContainerTaskView } from '../views-general/container-task-view'
 class ProjectView extends ContainerTaskView {
-  _assets = {}
   constructor(data = null) {
     super()
     if (!data) throw new Error('data is required')
@@ -12,6 +11,7 @@ class ProjectView extends ContainerTaskView {
     <section
     class="bg-theme-${this._assets.curTheme}-second flex flex-col gap-6 transition-transform absolute top-0 left-0 right-0 bottom-0 lg:overflow-scroll"
     data-theme="true"
+    data-id="${this._assets.id}"
   >
     <!-- Nav  -->
     <nav
