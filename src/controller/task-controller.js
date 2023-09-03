@@ -14,7 +14,14 @@ function generateDefaultProjects() {
     ['fa-inbox', 'fa-star', 'fa-calendar-days', 'fa-layer-group', 'fa-clock'],
     view.ChildProjectView
   )
-  return { defaultProjects, defaultProjectsView }
+  const defaultProjectsContainerView = HELPERS.GENERATE_DEFAULT_PROJECTS_VIEW(
+    defaultProjects,
+    model.state.currentTheme,
+    ['fa-inbox', 'fa-star', 'fa-calendar-days', 'fa-layer-group', 'fa-clock'],
+    view.ProjectView,
+    ['Inbox', 'Today', 'Upcoming', 'Anytime', 'Sometime']
+  )
+  return { defaultProjects, defaultProjectsView, defaultProjectsContainerView }
 }
 /**
  * This function's responsibility is to update a certain task it can also update the views
@@ -25,7 +32,7 @@ function generateDefaultProjects() {
 function updateTasksState(state, taskType, ...tasks) {
   state[`${taskType.toLowerCase()}s`].push(...tasks)
   // we don't need to add view ids to used ids because their counterpart task id is already in usedId array
-  if (taskType === 'view') return
+  if (taskType === 'view' || taskType === 'containerView') return
   state.usedIds.push(...HELPERS.GET_TASKS_ID_ARRAY(tasks))
 }
 /**
@@ -37,9 +44,11 @@ function findTaskById(id, state) {
   const allTasks = state.projects.concat(state.envs)
   // making a copy of view
   const views = state.views.concat()
+  const containerViews = state.containerviews.concat()
   return {
     task: allTasks.find((task) => task.id === id),
     view: views.find((view) => view._assets.id === id),
+    containerView: containerViews.find((view) => view._assets.id === id),
   }
 }
 /**

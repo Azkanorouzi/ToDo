@@ -157,15 +157,18 @@ const GENERATE_DEFAULT_PROJECTS_VIEW = (
   defProjects,
   curTheme,
   icons,
-  PView
+  PView,
+  name
 ) => {
   const DEFAULT_PROJECT_VIEWS = defProjects.map((project, i) => {
-    return new PView({
+    const projectView = new PView({
       ...project.data,
       curTheme,
       icon: icons[i],
       taskType: 'project',
     })
+    if (name) projectView.name = typeof name === 'string' ? name : name[i]
+    return projectView
   })
   return DEFAULT_PROJECT_VIEWS
 }
@@ -184,6 +187,7 @@ const GET_TASKS_ID_ARRAY = (tasks) => {
  * @returns {Promise} a promise representing the event
  */
 const LISTEN_TO = (element, eventName, handler) => {
+  console.log(element)
   return new Promise((resolve, reject) => {
     element.addEventListener(eventName, (event) => {
       // Resolve the Promise with the event object
@@ -192,6 +196,7 @@ const LISTEN_TO = (element, eventName, handler) => {
     })
   })
 }
+
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,

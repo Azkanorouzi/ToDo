@@ -1,9 +1,15 @@
 import { ModalView } from '../views-general/modal-view'
-import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
+import {
+  SAFE_COLOR_BG,
+  DANGER_COLOR_BG,
+  WARNING_COLOR_BG,
+  DANGER_COLOR,
+} from '../../config'
 
 class AddModalView extends ModalView {
   constructor(data = null) {
     super(data)
+    super._generateAssets(data)
   }
 
   _generateHTML() {
@@ -15,7 +21,7 @@ class AddModalView extends ModalView {
     data-theme="true"
   >
     <div
-      class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center"
+      class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center close-modal"
     >
       <div
         class="bg-theme-${
@@ -24,24 +30,24 @@ class AddModalView extends ModalView {
       this._assets.curTheme
     }-forth flex flex-col justify-between lg:w-5/12 lg:mx-auto lg:my-auto lg:static lg:border-theme-${
       this._assets.curTheme
-    }-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll landscape:lg:min-h-0"
+    }-fifth lg:border-8 lg:shadow-2xl gap-5 lg:text-3xl sm:h-3/5 flip-in-br landscape:min-h-screen landscape landscape:overflow-scroll  landscape:lg:min-h-0 modal-card "
     data-theme="true"
       >
         <i
           class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
         ></i>
         <h2 class="absolute text-4xl">Add a new ${
-          this._assets.modalType === 'addDisplay'
+          this._assets.modalType === 'adddisplay'
             ? 'Todo/Project'
             : 'Env/Project'
         }</h2>
-        <div>
+        <div class="flex gap-3 flex-col">
           <label for="radio-btn" class="mr-5">
-          ${this._assets.modalType === 'addDisplay' ? 'Todo: ' : 'Env: '}
+          ${this._assets.modalType === 'adddisplay' ? 'Todo: ' : 'Env: '}
             <input type="radio" name="type" id="task-btn" value="${
-              this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
+              this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
             }" class="radio-button" data-task-type="${
-      this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
+      this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
     }"/>
           </label>
           <label for="radio-btn2" data-task-type="project">
@@ -52,7 +58,7 @@ class AddModalView extends ModalView {
               id="radio-btn2"
               value= "project"
               class="radio-button" data-radio-type="${
-                this._assets.modalType === 'addDisplay' ? 'todo' : 'env'
+                this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
               }
             />
           </label>
@@ -98,10 +104,10 @@ class AddModalView extends ModalView {
         }">
           <div class="rounded-full w-10 h-10 ${
             this._assets.importance === '1'
-              ? WARNING_COLOR
+              ? WARNING_COLOR_BG
               : this._assets.importance === '0'
-              ? SAFE_COLOR
-              : DANGER_COLOR
+              ? SAFE_COLOR_BG
+              : DANGER_COLOR_BG
           }"></div>
           <p class="importance-text ml-3">
           ${
@@ -124,7 +130,7 @@ class AddModalView extends ModalView {
     }-forth shadow-2xl border-b-4 border-b-theme-${
       this._assets.curTheme
     }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-modal-button ${
-      this._assets.modalType === 'addDisplay'
+      this._assets.modalType === 'adddisplay'
         ? 'add-nav-modal-button'
         : 'add-display-modal-button'
     }"

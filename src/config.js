@@ -40,7 +40,9 @@ const API_SETTINGS = {
 const SAFE_COLOR = 'text-green-300'
 const WARNING_COLOR = 'text-yellow-300'
 const DANGER_COLOR = 'text-red-300'
-
+const SAFE_COLOR_BG = 'bg-green-300'
+const WARNING_COLOR_BG = 'bg-yellow-300'
+const DANGER_COLOR_BG = 'bg-red-300'
 export {
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
@@ -62,4 +64,7 @@ export {
   UPCOMING_DETAILS,
   ANYTIME_DETAILS,
   SOMEDAY_DETAILS,
+  SAFE_COLOR_BG,
+  WARNING_COLOR_BG,
+  DANGER_COLOR_BG,
 }

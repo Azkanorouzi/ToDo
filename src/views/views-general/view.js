@@ -6,11 +6,11 @@ class View {
    * @param {obj} data data that we get from the add module
    */
   _assets = {}
-  render(clear = true, thisIsAChild = false) {
+  render(clear = true, showLoading = true, thisIsAChild = false) {
     if (clear) this.#clear()
-    this.renderSpinner()
-
+    if (showLoading) this.renderSpinner()
     // Injection
+    console.log(this._parentEl)
     this._parentEl.innerHTML += this._generateHTML()
     if (thisIsAChild) this._getThisEl(this.assets.taskType)
   }

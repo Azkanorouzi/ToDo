@@ -13,12 +13,11 @@ class ChildProjectView extends ChildView {
         ? `.stand-alone-projects-container`
         : `.todo-container[data-id="${this._assets.parentId}"]`
     )
-    // this.el = document.querySelector(`.project[data-id="${this._assets.id}"]`)
     this.children = this._assets.children
   }
-  // get el() {
-  //   return document.querySelector(`.project[data-id="${this._assets.id}"]`)
-  // }
+  getEl = function () {
+    return document.querySelector(`.project[data-id="${this._assets.id}"]`)
+  }
   _generateHTML() {
     return this._standAlone
       ? `

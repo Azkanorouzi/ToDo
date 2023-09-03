@@ -5,6 +5,7 @@ import * as HELPERS from '../helpers'
 const state = {
   isDefaultsInitialized: false,
   usedIds: [],
+  containerviews: [],
   views: [],
   todos: [],
   envs: [],
