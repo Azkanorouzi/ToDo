@@ -44,8 +44,8 @@ class ModalView extends View {
         handlers.handleNavRadioBtn()
         return
       }
-      if (clickedEl.closest('.warning-modal-cancel')) {
-        handlers.handleWarningModalCancel()
+      if (clickedEl.closest('.warning-modal-ok')) {
+        handlers.handleWarningDeleteOk()
         return
       }
     })

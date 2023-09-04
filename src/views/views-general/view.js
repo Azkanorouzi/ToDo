@@ -1,3 +1,5 @@
+import { LISTEN_TO } from '../../helpers'
+
 class View {
   /**
    * Renders the view
@@ -9,8 +11,8 @@ class View {
   render(clear = true, showLoading = true, thisIsAChild = false) {
     if (clear) this.#clear()
     if (showLoading) this.renderSpinner()
+
     // Injection
-    console.log(this._parentEl)
     this._parentEl.innerHTML += this._generateHTML()
     if (thisIsAChild) this._getThisEl(this.assets.taskType)
   }
@@ -24,7 +26,7 @@ class View {
   #generateSpinner() {
     return `
     <section
-    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-${this._assets.curTheme}-second to-theme-${this._assets.curTheme}-main loading-module bg animation-delay-7 fade-out"
+    class="absolute left-0 top-0 right-0 bottom-0 z-50 grid place-content-center bg-gradient-to-l from-theme-${this._assets.curTheme}-second to-theme-${this._assets.curTheme}-main loading-module bg animation-delay-7 fade-out-2"
   >
     <i
       class="fa-solid fa-dragon text-theme-${this._assets.curTheme}-fifth text-9xl animate-pulse"

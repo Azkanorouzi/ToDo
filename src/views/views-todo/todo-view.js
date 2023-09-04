@@ -5,7 +5,7 @@ class TodoView extends ChildView {
   _assets = {}
   constructor(data = null) {
     super(data)
-    this._generateAssets()
+    this._generateAssets(data)
     this._parentEl = document.querySelector(`.items-container`)
   }
   _generateHTML() {

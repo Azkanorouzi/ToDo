@@ -46,6 +46,11 @@ main {
   -webkit-animation: fade-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: fade-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+.scale-in-from-left {
+  -webkit-animation: scale-in-from-left 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: scale-in-from-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
 .fade-out {
   -webkit-animation: fade-out 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: fade-out 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -1732,6 +1737,10 @@ main {
 .fade-out {
   -webkit-animation: fade-out 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: fade-out 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.fade-out-2 {
+  -webkit-animation: fade-out-2 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-out-2 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .flip-in-br {
   -webkit-animation: flip-in-diag-2-br 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)

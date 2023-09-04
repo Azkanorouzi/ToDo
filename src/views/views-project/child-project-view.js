@@ -8,8 +8,9 @@ class ChildProjectView extends ChildView {
     super._generateAssets(data)
     // child project have slightly different markup if it's standAlone
     this._standAlone = standAlone
+
     this._parentEl = document.querySelector(
-      this.standAlone
+      this._standAlone
         ? `.stand-alone-projects-container`
         : `.todo-container[data-id="${this._assets.parentId}"]`
     )
@@ -33,9 +34,10 @@ class ChildProjectView extends ChildView {
         data-theme="true"
     >
       <div
-        class="absolute left-0 h-full w-3/6 bg-theme-1-third project-fill text-theme-${
+        class="absolute left-0 h-full bg-theme-1-third project-fill text-theme-${
           this._assets.curTheme
-        }-fifth"
+        }-fifth project-progress"
+        style="width:${this._assets.progress}"
         data-theme="true"
       ></div>
       <i
@@ -47,18 +49,18 @@ class ChildProjectView extends ChildView {
       <!-- Project name -->
       <span class="z-10"> ${this._assets.name} </span>
       <!-- Project icons -->
-      <div class="flex justify-between text-xl md:text-1xl 2xl:text-2xl">
+      <div class="flex justify-between text-xl md:text-1xl 2xl:text-2xl z-10">
         <!-- Menu -->
         <i
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
-          }-forth mr-2 cursor-pointer hhover:scale-110 transition-transform child-more-btn"
+          }-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn"
           data-theme="true"
         ></i>
         <!-- Time clock -->
         <i
           class="${
-            this._assets.daysLeft === 0
+            this._assets.daysLeft == 0
               ? WARNING_COLOR
               : this._assets.daysLeft > 0
               ? SAFE_COLOR
@@ -80,7 +82,7 @@ class ChildProjectView extends ChildView {
       <div
         class="text-2xl absolute bg-theme-${
           this._assets.curTheme
-        }-second z-10 p-2 transition-all top-0 left-0 right-0 bottom-0 flex justify-center hover:bg-opacity-90 backdrop-blur-sm gap-2"
+        }-second z-10 p-2 transition-all top-0 left-0 right-0 bottom-0 flex justify-center hover:bg-opacity-90 backdrop-blur-sm gap-2 hidden scale-in-from-left more"
         data-theme="true"
       >
         <i
@@ -114,9 +116,10 @@ class ChildProjectView extends ChildView {
         data-theme="true"
     >
       <div
-        class="absolute left-0 h-full w-3/6 bg-theme-${
+        class="absolute left-0 h-full bg-theme-${
           this._assets.curTheme
         }-third project-fill text-theme-${this._assets.curTheme}-fifth"
+        style="width:${this._assets.progress}"
         data-theme="true"
       ></div>
       <i
@@ -163,7 +166,7 @@ class ChildProjectView extends ChildView {
       <div
         class="text-3xl absolute bg-theme-${
           this._assets.curTheme
-        }-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
+        }-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all hidden more"
         data-theme="true"
       >
         <i

@@ -16,12 +16,12 @@ const state = {
 // We have seven default env inbox today upcoming anytime someday we must create six default ids
 // Task is class parent for both project, environment and todo
 class Task {
-  constructor(data = {}, id = this._generateUniqueId()) {
+  constructor(data = {}, id) {
     // Input data
     this.data = data
     this._getData()
     // Allowing user to manually add id
-    this.id = id
+    this.id = id ?? this._generateUniqueId()
     this.taskType =
       HELPERS.GET_CONSTRUCTOR_NAME(this) === 'Function'
         ? 'Task'
@@ -59,9 +59,9 @@ class Environment extends Task {
   }
 }
 class LimitedTimeTask extends Task {
-  _done = false
+  done = false
 
-  constructor(data = {}, id = this._generateUniqueId()) {
+  constructor(data = {}, id) {
     super(data, id)
     // (0, low) (1, necessary) (2, high)
     this._creationDate = HELPERS.GET_TIME_TODAY()
@@ -100,7 +100,7 @@ class LimitedTimeTask extends Task {
   // }
 }
 class Project extends LimitedTimeTask {
-  constructor(data = {}, id = this._generateUniqueId(), standAlone = true) {
+  constructor(data = {}, id, standAlone = true) {
     super(data, id)
     this.standAlone = standAlone
     this.parentId = standAlone ? null : state.currentPageId
@@ -109,27 +109,29 @@ class Project extends LimitedTimeTask {
   progress = this._getProjectProgress()
   // Returns a how much of the project is done
   _getProjectProgress() {
-    return `${
+    const progress = `${
       (100 / this.children.length) * HELPERS.COUNT_DONE_TODOS(this.children) ||
       100
     }%`
+    if (progress === '100%') this.done = true
+    return progress
   }
   updateProjectProgress() {
     this._progress = this._getProjectProgress()
-    if (this._progress === '100%') this._done = true
+    if (this._progress === '100%') this.done = true
   }
 }
 class ToDo extends LimitedTimeTask {
-  constructor(data = {}, id = this._generateUniqueId) {
+  constructor(data = {}, id) {
     super(data, id)
-    updateParentId()
+    this.updateParentId()
   }
   updateParentId() {
     this.parentId = state.currentPageId
   }
-  _done = false
+  done = false
   trigger() {
-    this._done = this._done ? false : true
+    this.done = this.done ? false : true
   }
 }
 

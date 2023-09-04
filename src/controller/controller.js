@@ -23,9 +23,10 @@ function handleLoadEvent() {
 }
 // Handles child task click
 function handleChildTaskClick(id) {
+  if (id === model.state.currentPageId) return
   const project = taskController.findTaskById(id, model.state)
-  console.log(project.containerView)
   project.containerView.render()
+  model.state.currentPageId = id
 }
 // Handles task info click
 function handleTaskInfoClick(id) {
@@ -36,13 +37,47 @@ function handleTaskInfoClick(id) {
     'details',
     model.state.currentTheme
   )
-  console.log(taskModalInfo)
   taskModalInfo.render(false, false)
   view.ModalView.addHandlers({ handleClose })
 }
+// Handles child more icon click
+function handleChildMoreClick(moreIconsContainer) {
+  console.log(moreIconsContainer)
+  view.viewHelpers.openMoreChildTaskIcons(moreIconsContainer)
+}
+// Handles child more icon click
+function handleChildLessClick(moreIconsContainer) {
+  moreIconsContainer.classList.remove('fade-in-left')
+  view.viewHelpers.closeMoreChildTaskIcons(moreIconsContainer)
+}
+// Handles delete task click
+function handleDeleteTaskClick(taskId) {
+  const warningModal = view.viewHelpers.generateModal(
+    view.WarningModalView,
+    '',
+    model.state.currentTheme
+  )
+  const task = taskController.findTaskById(taskId, model.state).task
+  warningModal.render(false, false)
+  console.log(task.taskType)
+  view.ModalView.addHandlers({
+    handleClose,
+    handleWarningDeleteOk: handleWarningDeleteOk.bind(
+      '',
+      taskId,
+      task.taskType.toLowerCase()
+    ),
+  })
+}
+// HandleClose for modals
+function handleWarningDeleteOk(taskId, taskType) {
+  taskController.deleteTask(taskId, taskType, model.state)
+  view.viewHelpers.removeTaskFromDom(taskId)
+  view.viewHelpers.closeModal()
+}
 // Handler for nav plus button
 function handlePlusBtn(type) {
-  const addModal = view.viewHelpers.generateAddModal(
+  const addModal = view.viewHelpers.generateModal(
     view.AddModalView,
     type,
     model.state.currentTheme
@@ -56,34 +91,26 @@ function handleClose() {
 }
 // This function will pass all subscribers to their publisher
 async function init() {
-  const a = view.addNavHandlers({
+  view.addNavHandlers({
     handleThemeChange,
     handleNavPlusBtn: handlePlusBtn.bind('', 'addNav'),
   })
   view.viewHelpers.addLoadHandler(handleLoadEvent)
-  view.viewHelpers.addDefaultChildProjectsHandler({
+  view.viewHelpers.addNavTaskHandlers({
     handleChildTaskClick,
     handleTaskInfoClick,
+    handleChildMoreClick,
+    handleChildLessClick,
+    handleDeleteTaskClick,
   })
   view.addDisplayHandlers({
     handleDisplayProjectPlusBtn: handlePlusBtn.bind('', 'addDisplay'),
   })
   // Initializing the defaults
-  InitializeDefaults()
-}
-// this function will initialize the defaults
-function InitializeDefaults() {
   // early return if the app is already initialized in that case we don't want to have defaults created again
   if (model.state.isDefaultsInitialized) return
-  const { defaultProjects, defaultProjectsView, defaultProjectsContainerView } =
-    taskController.generateDefaultProjects(model.state)
-  // Updating the tasks state for the default projects
-  taskController.updateTasksState(model.state, 'project', ...defaultProjects)
-  taskController.updateTasksState(model.state, 'view', ...defaultProjectsView)
-  taskController.updateTasksState(
-    model.state,
-    'containerView',
-    ...defaultProjectsContainerView
-  )
+  taskController.initializeDefaults()
+  // marking the application as initialized so that initializeDefaults don't get called again
+  model.state.isDefaultsInitialized = true
 }
 init()

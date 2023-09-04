@@ -17,6 +17,26 @@ const ANYTIME_DETAILS =
   'Sometimes you have tasks that you`re not sure as to when you want them to be done, so why not do them at anytime? :)'
 const SOMEDAY_DETAILS =
   'This is where you want to put things that you want to do in future, it can be things that are totally random and imaginative like building your dream house :)'
+const INITIAL_PROJECT_DETAILS =
+  'Projects are used to organize your tasks in a more structured manner, say you have to do your homework, you can create a project named homework that contains minor tasks that must be done for you in order to finish your homework, also note that a project can only contain todos you can not nest projects into another :)'
+
+const INITIAL_PROJECT_NAME = 'Get familiar'
+
+const DEFAULT_GET_FAMILIAR_TODOS = {
+  'Open doIt': 'welcome :)',
+  'Get familiar with containers':
+    'You can use container to keep your todos organized for more info you can click on "?" any container go ahead and take a look at "?" on any container in the left hand side:) ',
+  'Create a todo':
+    'click on the plus button, fill out the info and add a new todo :)',
+  'Create a project':
+    'Go ahead create a project by clicking on the navbar plus button :)',
+  'Create a environment':
+    'Go ahead create an environment by clicking on the navbar plus button :)',
+  'Add a new project to your environment':
+    'You can use environments to contain projects click on the right plus button to add a new project to your environment :)',
+  'Delete, move, edit': 'You can delete move edit things anytime you want :)',
+  'DOIT :)': 'Last but not least always remember (to) doit :)',
+}
 // Initial tab
 const INITIAL_PAGE_NAME = 'Inbox'
 const INITIAL_PAGE_ID = 'AA1111111111'
@@ -39,10 +59,10 @@ const API_SETTINGS = {
 // Additional theme defaults (more settings can be found in tailwind config file)
 const SAFE_COLOR = 'text-green-300'
 const WARNING_COLOR = 'text-yellow-300'
-const DANGER_COLOR = 'text-red-300'
+const DANGER_COLOR = 'text-red-600'
 const SAFE_COLOR_BG = 'bg-green-300'
 const WARNING_COLOR_BG = 'bg-yellow-300'
-const DANGER_COLOR_BG = 'bg-red-300'
+const DANGER_COLOR_BG = 'bg-red-600'
 export {
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
@@ -67,4 +87,7 @@ export {
   SAFE_COLOR_BG,
   WARNING_COLOR_BG,
   DANGER_COLOR_BG,
+  INITIAL_PROJECT_DETAILS,
+  INITIAL_PROJECT_NAME,
+  DEFAULT_GET_FAMILIAR_TODOS,
 }

@@ -14,27 +14,39 @@ export function changeTheme(newTheme, oldTheme) {
     el.classList = newClassList.join(' ')
   })
 }
-export function addDefaultChildProjectsHandler(handlers) {
-  const defProjectContainer = document.querySelector(
-    '.default-projects-container'
-  )
-  console.log(defProjectContainer)
-  if (!defProjectContainer) return
-  return LISTEN_TO(defProjectContainer, 'click', (e) => {
+
+export function addNavTaskHandlers(handlers) {
+  const standAloneProjectContainer = document.querySelector('nav')
+  console.log(standAloneProjectContainer)
+  if (!standAloneProjectContainer) return
+  return LISTEN_TO(standAloneProjectContainer, 'click', (e) => {
     const clicked = e.target
     if (clicked.classList.contains('fa-question')) {
       handlers.handleTaskInfoClick(clicked.closest('.child-task').dataset.id)
       return
     }
+    if (clicked.closest('.child-more-btn')) {
+      handlers.handleChildMoreClick(
+        clicked.closest('.child-task').querySelector('.more')
+      )
+      return
+    }
+    if (clicked.closest('.child-less-btn')) {
+      handlers.handleChildLessClick(
+        clicked.closest('.child-task').querySelector('.more')
+      )
+      return
+    }
+    if (clicked.closest('.child-delete-btn')) {
+      handlers.handleDeleteTaskClick(clicked.closest('.child-task').dataset.id)
+    }
     if (clicked.closest('.child-task')) {
-      console.log(clicked, clicked.closest('.child-task'), 'asfd')
       handlers.handleChildTaskClick(clicked.closest('.child-task').dataset.id)
+      return
     }
   })
 }
-
 export function generateModalInfo(task, view, modalType, curTheme) {
-  console.log(task)
   return new view({
     name: task.name,
     details: task.details,
@@ -45,8 +57,7 @@ export function generateModalInfo(task, view, modalType, curTheme) {
     daysLeft: task.getDaysLeft(),
   })
 }
-export function generateAddModal(view, modalType, curTheme) {
-  console.log(curTheme, 'asfd')
+export function generateModal(view, modalType, curTheme) {
   return new view({
     modalType,
     curTheme,
@@ -62,6 +73,28 @@ export function closeModal() {
   })
 }
 
+export function closeMoreChildTaskIcons(moreIconsContainer) {
+  moreIconsContainer.classList.remove('fade-in-left')
+  moreIconsContainer.classList.add('fade-out')
+  LISTEN_TO(moreIconsContainer, 'animationend', () => {
+    moreIconsContainer.classList.add('hidden')
+  })
+}
+export function openMoreChildTaskIcons(moreIconsContainer) {
+  moreIconsContainer.classList.remove('fade-out')
+  moreIconsContainer.classList.remove('hidden')
+  moreIconsContainer.classList.add('fade-in-left')
+  LISTEN_TO(moreIconsContainer, 'animationend', () => {
+    moreIconsContainer.classList.remove('hidden')
+  })
+}
+export function removeTaskFromDom(taskId) {
+  const taskEl = document.querySelector(`[data-id="${taskId}"]`)
+  taskEl.classList.add('fade-out')
+  LISTEN_TO(taskEl, 'animationend', () => {
+    taskEl.remove()
+  })
+}
 export function addLoadHandler(handler) {
   return LISTEN_TO(window, 'load', handler)
 }

@@ -137,14 +137,33 @@ const GENERATE_DEFAULT_PROJECTS = (con) => {
  * @param {string} taskType the task
  * @returns project view
  */
-const GENERATE_PROJECT_VIEW = (con, data, curTheme, icon, taskType) => {
-  return new con({
-    ...data,
-    curTheme,
-    icon,
-    taskType,
-  })
+const GENERATE_PROJECT_VIEW = (
+  con,
+  data,
+  curTheme,
+  icon,
+  taskType,
+  standAlone = false,
+  id,
+  daysLeft,
+  done,
+  progress
+) => {
+  return new con(
+    {
+      ...data,
+      curTheme,
+      icon,
+      taskType,
+      id,
+      daysLeft,
+      done,
+      progress,
+    },
+    standAlone
+  )
 }
+
 /**
  * creates default projects view by calling the GENERATE_VIEW function
  * @param {array} defProjects an array of default projects
@@ -172,6 +191,52 @@ const GENERATE_DEFAULT_PROJECTS_VIEW = (
   })
   return DEFAULT_PROJECT_VIEWS
 }
+const GENERATE_PROJECT_CONTAINER_VIEW = (
+  project,
+  curTheme,
+  PView,
+  name,
+  id
+) => {
+  const projectContainerView = new PView({
+    ...project.data,
+    curTheme,
+    icon: 'fa-code',
+    name,
+    id,
+  })
+  return projectContainerView
+}
+/**
+ * given the consturctor of todos will generate default todos
+ * @param {object} con todo constructor
+ * @returns an array of default todos
+ */
+const GENERATE_DEFAULT_TODOS = (con) => {
+  const defaultTodos = CONFIG.DEFAULT_GET_FAMILIAR_TODOS
+  const res = Object.keys(defaultTodos).map((defTodoTitle, i) => {
+    return GENERATE_TASK(con, {
+      name: defTodoTitle,
+      details: defaultTodos[defTodoTitle],
+      importance: CONFIG.DEFAULT_IMPORTANCE,
+      due: CONFIG.DEFAULT_PROJECT_DUE,
+    })
+  })
+  return res
+}
+const GENERATE_DEFAULT_TODOS_VIEW = (defTodo, curTheme, PView, name) => {
+  const DEFAULT_TODO_VIEWS = defTodo.map((todo, i) => {
+    const projectView = new PView({
+      ...todo.data,
+      curTheme,
+      taskType: 'todo',
+      name: todo,
+      id: todo.id,
+    })
+    return projectView
+  })
+  return DEFAULT_TODO_VIEWS
+}
 /**
  * Given an array of tasks returns an array containing their id
  * @param {array} tasks an array of tasks
@@ -187,7 +252,6 @@ const GET_TASKS_ID_ARRAY = (tasks) => {
  * @returns {Promise} a promise representing the event
  */
 const LISTEN_TO = (element, eventName, handler) => {
-  console.log(element)
   return new Promise((resolve, reject) => {
     element.addEventListener(eventName, (event) => {
       // Resolve the Promise with the event object
@@ -212,6 +276,9 @@ export {
   GENERATE_PROJECT_VIEW,
   GENERATE_DEFAULT_PROJECTS,
   GENERATE_DEFAULT_PROJECTS_VIEW,
+  GENERATE_DEFAULT_TODOS,
+  GENERATE_DEFAULT_TODOS_VIEW,
+  GENERATE_PROJECT_CONTAINER_VIEW,
   GET_TASKS_ID_ARRAY,
   LISTEN_TO,
 }

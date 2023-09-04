@@ -1,6 +1,7 @@
 import * as model from '../model/model'
 import * as HELPERS from '../helpers'
 import * as view from '../views/view'
+import * as CONFIG from '../config'
 // Task controller's an module that has functionalities for deleting tasks, editing them, and updating the state
 /**
  * generates default projects alongside with their views and returns an the default projects and toggles the
@@ -21,7 +22,21 @@ function generateDefaultProjects() {
     view.ProjectView,
     ['Inbox', 'Today', 'Upcoming', 'Anytime', 'Sometime']
   )
+
   return { defaultProjects, defaultProjectsView, defaultProjectsContainerView }
+}
+function generateDefaultToDos() {
+  const defaultTodos = HELPERS.GENERATE_DEFAULT_TODOS(model.ToDo)
+  const defaultTodosView = HELPERS.GENERATE_DEFAULT_TODOS_VIEW(
+    defaultTodos,
+    model.state.currentTheme,
+    view.TodoView
+  )
+
+  return {
+    defaultTodos,
+    defaultTodosView,
+  }
 }
 /**
  * This function's responsibility is to update a certain task it can also update the views
@@ -71,9 +86,14 @@ function deleteTask(taskId, taskType, state) {
   const taskArr = state[`${taskType.toLowerCase()}s`]
   const deletedTask = taskArr.splice(_findTaskIndex(taskId, taskArr), 1)
   const deletedView = state.views.splice(_findViewIndex(taskId, state.views), 1)
+  const deletedContainerView = state.containerviews.splice(
+    _findViewIndex(taskId, state.views),
+    1
+  )
   return {
     deletedTask,
     deletedView,
+    deletedContainerView,
   }
 }
 /**
@@ -86,27 +106,93 @@ function editTask(taskId, newData) {
   task.data = newData
   return task
 }
-function createTask(options) {
-  const { viewConstructor, taskConstructor, data } = options
-  const taskType = taskConstructor.name.toUpperCase()
+/**
+ * this function simply creates a new task
+ * @param {obj} options an object that contains viewConstructor viewContainerConstructor and taskConstructor
+ * @returns {obj} and object containing task, it's view alongside with it's containerView
+ */
+function createTask(options, taskType, standAlone) {
+  const { viewConstructor, viewContainerConstructor, taskConstructor, data } =
+    options
+  taskType = taskType.toUpperCase()
   // generate task
   const newTask = HELPERS.GENERATE_TASK(taskConstructor, data)
-  // generate view
   const newView = HELPERS[`GENERATE_${taskType}_VIEW`](
     viewConstructor,
     data,
-    model.state.currentTheme
+    model.state.currentTheme,
+    '',
+    taskType.toLowerCase(),
+    standAlone,
+    newTask.id,
+    newTask.getDaysLeft(),
+    newTask.done,
+    newTask.progress
   )
+  // generate container view
+  const newContainerView = HELPERS[`GENERATE_${taskType}_CONTAINER_VIEW`](
+    newTask,
+    model.state.currentTheme,
+    viewContainerConstructor,
+    newTask.name,
+    newTask.id
+  )
+
   // updates state
-  taskController.updateTasksState(model.state, taskType, newTask)
-  taskController.updateTasksState(model.state, 'view', newView)
+  updateTasksState(model.state, taskType, newTask)
+  updateTasksState(model.state, 'view', newView)
+  updateTasksState(model.state, 'containerView', newContainerView)
   // returns the task and it's view
   return {
     task: newTask,
     view: newView,
+    containerView: newContainerView,
   }
 }
+// this function will initialize the defaults
+function initializeDefaults() {
+  const { defaultProjects, defaultProjectsView, defaultProjectsContainerView } =
+    generateDefaultProjects(model.state)
+  // Updating the tasks state for the default projects
+  updateTasksState(model.state, 'project', ...defaultProjects)
+  updateTasksState(model.state, 'view', ...defaultProjectsView)
+  updateTasksState(
+    model.state,
+    'containerView',
+    ...defaultProjectsContainerView
+  )
 
+  //{ viewConstructor, viewContainerConstructor, taskConstructor, data }
+  /*     this.importance = this.data?.importance || CONFIG.DEFAULT_IMPORTANCE
+    this.due = this.data?.due || HELPERS.GET_TIME_TOMORROW()
+    this.details = this.data?.details || CONFIG.DEFAULT_TASK_DETAILS
+    this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME */
+  // Creating intiail project
+  const initialProject = createTask(
+    {
+      taskConstructor: model.Project,
+      viewConstructor: view.ChildProjectView,
+      viewContainerConstructor: view.ProjectView,
+      data: {
+        importance: CONFIG.DEFAULT_IMPORTANCE,
+        due: CONFIG.DEFAULT_TASK_DUE,
+        details: CONFIG.INITIAL_PROJECT_DETAILS,
+        name: CONFIG.INITIAL_PROJECT_NAME,
+        standAlone: true,
+      },
+    },
+    'project',
+    true
+  )
+
+  model.state.currentPageId = initialProject.task.id
+  initialProject.view.render(false, false)
+
+  const { defaultTodos, defaultTodosView } = generateDefaultToDos()
+  console.log(defaultTodos, defaultTodosView)
+  updateTasksState(model.state, 'todo', ...defaultTodos)
+  updateTasksState(model.state, 'view', ...defaultTodosView)
+}
 export {
   generateDefaultProjects,
   updateTasksState,
@@ -114,4 +200,5 @@ export {
   editTask,
   deleteTask,
   createTask,
+  initializeDefaults,
 }
