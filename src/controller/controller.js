@@ -14,12 +14,20 @@ function handleThemeChange(selectedTheme) {
 }
 
 // Load event handler
-function handleLoadEvent() {
+function handleLoadEvent(initialProjectChildren) {
   const initialProject = taskController.findTaskById(
     model.state.currentPageId,
     model.state
   )
-  initialProject.containerView.render()
+  const { defaultTodos, defaultTodosView } =
+    taskController.generateDefaultToDos()
+  taskController.updateTasksState(model.state, 'todo', ...defaultTodos)
+  taskController.updateTasksState(model.state, 'view', ...defaultTodosView)
+  initialProject.containerView.render(
+    true,
+    true,
+    taskController.getChildren(model.state)
+  )
 }
 // Handles child task click
 function handleChildTaskClick(id) {
@@ -42,7 +50,6 @@ function handleTaskInfoClick(id) {
 }
 // Handles child more icon click
 function handleChildMoreClick(moreIconsContainer) {
-  console.log(moreIconsContainer)
   view.viewHelpers.openMoreChildTaskIcons(moreIconsContainer)
 }
 // Handles child more icon click
@@ -59,7 +66,7 @@ function handleDeleteTaskClick(taskId) {
   )
   const task = taskController.findTaskById(taskId, model.state).task
   warningModal.render(false, false)
-  console.log(task.taskType)
+
   view.ModalView.addHandlers({
     handleClose,
     handleWarningDeleteOk: handleWarningDeleteOk.bind(
@@ -89,8 +96,9 @@ function handlePlusBtn(type) {
 function handleClose() {
   view.viewHelpers.closeModal()
 }
+
 // This function will pass all subscribers to their publisher
-async function init() {
+function init() {
   view.addNavHandlers({
     handleThemeChange,
     handleNavPlusBtn: handlePlusBtn.bind('', 'addNav'),

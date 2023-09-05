@@ -9,11 +9,11 @@ class ChildProjectView extends ChildView {
     // child project have slightly different markup if it's standAlone
     this._standAlone = standAlone
 
-    this._parentEl = document.querySelector(
+    this._parentEl = document.getElementsByClassName(
       this._standAlone
-        ? `.stand-alone-projects-container`
-        : `.todo-container[data-id="${this._assets.parentId}"]`
-    )
+        ? `stand-alone-projects-container`
+        : `todo-container[data-id="${this._assets.parentId}"]`
+    )[0]
     this.children = this._assets.children
   }
   getEl = function () {

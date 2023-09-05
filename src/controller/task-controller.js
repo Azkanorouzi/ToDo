@@ -30,7 +30,8 @@ function generateDefaultToDos() {
   const defaultTodosView = HELPERS.GENERATE_DEFAULT_TODOS_VIEW(
     defaultTodos,
     model.state.currentTheme,
-    view.TodoView
+    view.TodoView,
+    model.state.currentPageId
   )
 
   return {
@@ -184,14 +185,14 @@ function initializeDefaults() {
     'project',
     true
   )
-
   model.state.currentPageId = initialProject.task.id
-  initialProject.view.render(false, false)
 
-  const { defaultTodos, defaultTodosView } = generateDefaultToDos()
-  console.log(defaultTodos, defaultTodosView)
-  updateTasksState(model.state, 'todo', ...defaultTodos)
-  updateTasksState(model.state, 'view', ...defaultTodosView)
+  initialProject.view.render(false, false)
+}
+function getChildren(state) {
+  return state.views.filter((view) => {
+    return view?._assets.parentId === state.currentPageId
+  })
 }
 export {
   generateDefaultProjects,
@@ -201,4 +202,6 @@ export {
   deleteTask,
   createTask,
   initializeDefaults,
+  getChildren,
+  generateDefaultToDos,
 }

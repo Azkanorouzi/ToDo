@@ -6,10 +6,10 @@ class TodoView extends ChildView {
   constructor(data = null) {
     super(data)
     this._generateAssets(data)
-    this._parentEl = document.querySelector(`.items-container`)
+    this._parentEl = document.getElementById(`${this._assets.parentId}`)
   }
   _generateHTML() {
-    return `<div
+    const markup = `<div
     class="hover:bg-theme-${
       this._assets.curTheme
     }-fifth rounded-md p-4 todo bg-theme-${this._assets.curTheme}-${
@@ -91,6 +91,8 @@ data-theme="true">
       ></i>
     </div>
   </div>`
+    this._parentEl = document.querySelector(`.items-container`)
+    return markup
   }
 }
 export { TodoView }

@@ -8,13 +8,18 @@ class View {
    * @param {obj} data data that we get from the add module
    */
   _assets = {}
-  render(clear = true, showLoading = true, thisIsAChild = false) {
+  render(clear = true, showLoading = true, children = false) {
     if (clear) this.#clear()
     if (showLoading) this.renderSpinner()
-
-    // Injection
     this._parentEl.innerHTML += this._generateHTML()
-    if (thisIsAChild) this._getThisEl(this.assets.taskType)
+    console.log(document.querySelector('.items-container'), children)
+    if (children) this.renderChildren(children)
+  }
+  renderChildren(children) {
+    const childrenMarkup = children
+      .map((child) => child._generateHTML())
+      .join('')
+    document.querySelector('.items-container').innerHTML += childrenMarkup
   }
   renderSpinner(clear = true) {
     if (clear) this.#clear()

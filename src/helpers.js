@@ -224,14 +224,15 @@ const GENERATE_DEFAULT_TODOS = (con) => {
   })
   return res
 }
-const GENERATE_DEFAULT_TODOS_VIEW = (defTodo, curTheme, PView, name) => {
-  const DEFAULT_TODO_VIEWS = defTodo.map((todo, i) => {
+const GENERATE_DEFAULT_TODOS_VIEW = (defTodo, curTheme, PView, parentId) => {
+  const DEFAULT_TODO_VIEWS = defTodo.map((todo) => {
     const projectView = new PView({
       ...todo.data,
       curTheme,
       taskType: 'todo',
       name: todo,
       id: todo.id,
+      parentId: parentId,
     })
     return projectView
   })
@@ -260,7 +261,18 @@ const LISTEN_TO = (element, eventName, handler) => {
     })
   })
 }
-
+// // Function to be called when the elements with the specified class are updated
+// function HANDLE_UPDATE(mutationsList) {
+//   // Check for changes to the elements you are interested in
+//   mutationsList.forEach((mutation) => {
+//     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+//       // Elements with the specified class have been added or updated
+//       // You can access and manipulate these elements here
+//       const updatedElements = document.getElementsByClassName('your-class-name')
+//       // Do something with updatedElements
+//     }
+//   })
+// }
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,
