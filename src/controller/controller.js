@@ -14,7 +14,7 @@ function handleThemeChange(selectedTheme) {
 }
 
 // Load event handler
-function handleLoadEvent(initialProjectChildren) {
+function handleLoadEvent() {
   const initialProject = taskController.findTaskById(
     model.state.currentPageId,
     model.state
@@ -31,10 +31,7 @@ function handleLoadEvent(initialProjectChildren) {
 }
 // Handles child task click
 function handleChildTaskClick(id) {
-  if (id === model.state.currentPageId) return
-  const project = taskController.findTaskById(id, model.state)
-  project.containerView.render()
-  model.state.currentPageId = id
+  taskController.changeCurrentPage(id)
 }
 // Handles task info click
 function handleTaskInfoClick(id) {
@@ -81,6 +78,7 @@ function handleWarningDeleteOk(taskId, taskType) {
   taskController.deleteTask(taskId, taskType, model.state)
   view.viewHelpers.removeTaskFromDom(taskId)
   view.viewHelpers.closeModal()
+  handleChildTaskClick(model.state.prePageId)
 }
 // Handler for nav plus button
 function handlePlusBtn(type) {
@@ -112,7 +110,8 @@ function init() {
     handleDeleteTaskClick,
   })
   view.addDisplayHandlers({
-    handleDisplayProjectPlusBtn: handlePlusBtn.bind('', 'addDisplay'),
+    handleDisplayProjectPlusBtn: handlePlusBtn.bind('', 'addTodoDisplay'),
+    handleDisplayEnvPlusBtn: handlePlusBtn.bind('', 'addDisplay'),
   })
   // Initializing the defaults
   // early return if the app is already initialized in that case we don't want to have defaults created again

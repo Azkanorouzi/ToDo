@@ -19,8 +19,9 @@ class TodoView extends ChildView {
     }-fifth shadow-md shadow-theme-${
       this._assets.curTheme
     }-main cursor-pointer transition-colors fade-in-left child-task"
-data-id="${this._assets.id}
-data-theme="true">
+    data-theme="true"
+data-id="${this._assets.id}"
+>
     <div
       class="todo-check-button w-9 h-9 rounded-md bg-theme-${
         this._assets.curTheme
@@ -50,7 +51,7 @@ data-theme="true">
       <!-- Time clock -->
       <i
         class="${
-          this._assets.daysLeft === 0
+          this._assets.daysLeft == 0
             ? WARNING_COLOR
             : this._assets.daysLeft > 0
             ? SAFE_COLOR
@@ -60,9 +61,9 @@ data-theme="true">
       <!-- Importance button -->
       <i
         class="${
-          this._assets.importance === '1'
+          this._assets.importance == '1'
             ? WARNING_COLOR
-            : this._assets.importance === '0'
+            : this._assets.importance == '0'
             ? SAFE_COLOR
             : DANGER_COLOR
         } fa-solid fa-circle cursor-pointer hover:scale-110 transition-transform"

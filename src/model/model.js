@@ -12,6 +12,7 @@ const state = {
   projects: [],
   currentTheme: CONFIG.INITIAL_PAGE_THEME,
   currentPageId: CONFIG.INITIAL_PAGE_ID,
+  prePageId: CONFIG.INITIAL_PAGE_ID,
 }
 // We have seven default env inbox today upcoming anytime someday we must create six default ids
 // Task is class parent for both project, environment and todo

@@ -25,6 +25,22 @@ function generateDefaultProjects() {
 
   return { defaultProjects, defaultProjectsView, defaultProjectsContainerView }
 }
+function generateDefaultEnv() {
+  const defaultEnv = HELPERS.GENERATE_DEFAULT_ENV(model.Environment)
+  const defaultEnvView = HELPERS.GENERATE_DEFAULT_ENV_VIEW(
+    defaultEnv,
+    model.state.currentTheme,
+    view.ChildEnvView,
+    CONFIG.DEFAULT_ENV_NAME
+  )
+  const defaultEnvContainerView = HELPERS.GENERATE_DEFAULT_ENV_VIEW(
+    defaultEnv,
+    model.state.currentTheme,
+    view.EnvironmentView,
+    CONFIG.DEFAULT_ENV_NAME
+  )
+  return { defaultEnv, defaultEnvView, defaultEnvContainerView }
+}
 function generateDefaultToDos() {
   const defaultTodos = HELPERS.GENERATE_DEFAULT_TODOS(model.ToDo)
   const defaultTodosView = HELPERS.GENERATE_DEFAULT_TODOS_VIEW(
@@ -162,6 +178,12 @@ function initializeDefaults() {
     'containerView',
     ...defaultProjectsContainerView
   )
+  // Default env
+  const { defaultEnv, defaultEnvView, defaultEnvContainerView } =
+    generateDefaultEnv(model.state)
+  updateTasksState(model.state, 'env', defaultEnv)
+  updateTasksState(model.state, 'view', defaultEnvView)
+  updateTasksState(model.state, 'containerView', defaultEnvContainerView)
 
   //{ viewConstructor, viewContainerConstructor, taskConstructor, data }
   /*     this.importance = this.data?.importance || CONFIG.DEFAULT_IMPORTANCE
@@ -194,6 +216,14 @@ function getChildren(state) {
     return view?._assets.parentId === state.currentPageId
   })
 }
+function changeCurrentPage(id) {
+  if (id === model.state.currentPageId) return
+  const taskContainer = findTaskById(id, model.state)
+
+  model.state.prePageId = model.state.currentPageId
+  model.state.currentPageId = id
+  taskContainer.containerView.render(true, true, getChildren(model.state))
+}
 export {
   generateDefaultProjects,
   updateTasksState,
@@ -204,4 +234,5 @@ export {
   initializeDefaults,
   getChildren,
   generateDefaultToDos,
+  changeCurrentPage,
 }

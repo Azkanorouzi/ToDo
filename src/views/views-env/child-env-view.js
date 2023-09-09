@@ -3,6 +3,7 @@ import { ChildView } from '../views-general/child-view'
 class ChildEnvView extends ChildView {
   constructor(data = null) {
     super(data)
+    super._generateAssets(data)
     this._parentEl = document.querySelector(`environment-container`)
     this._el = document.querySelector(
       `.environment[data-id="${this._assets.id}"]`

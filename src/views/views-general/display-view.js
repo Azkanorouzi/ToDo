@@ -8,6 +8,10 @@ function addDisplayHandlers(handlers) {
       handlers.handleDisplayProjectPlusBtn()
       return
     }
+    if (clicked.closest('.display-env-plus-btn')) {
+      handlers.handleDisplayEnvPlusBtn()
+      return
+    }
   })
 }
 

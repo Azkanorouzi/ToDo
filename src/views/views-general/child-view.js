@@ -23,7 +23,7 @@ class ChildView extends View {
       daysLeft: data.daysLeft,
       id: data.id,
       parentId: data.parentId,
-      taskType: data.taskType.toLowerCase(),
+      taskType: data.taskType?.toLowerCase(),
       curTheme: data.curTheme,
       progress: data.progress,
     }

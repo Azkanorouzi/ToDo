@@ -12,7 +12,6 @@ class View {
     if (clear) this.#clear()
     if (showLoading) this.renderSpinner()
     this._parentEl.innerHTML += this._generateHTML()
-    console.log(document.querySelector('.items-container'), children)
     if (children) this.renderChildren(children)
   }
   renderChildren(children) {

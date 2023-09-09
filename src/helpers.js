@@ -128,6 +128,18 @@ const GENERATE_DEFAULT_PROJECTS = (con) => {
   )
   return defaultProjects
 }
+const GENERATE_DEFAULT_ENV = (con) => {
+  return GENERATE_TASK(
+    con,
+    {
+      name: CONFIG.DEFAULT_ENV_NAME,
+      details: CONFIG.DEFAULT_ENV_DETAILS,
+      standAlone: true,
+    },
+    CONFIG.DEFAULT_ENV_ID
+  )
+}
+
 /**
  * creates project view
  * @param {obj} con the project view constructor
@@ -191,6 +203,15 @@ const GENERATE_DEFAULT_PROJECTS_VIEW = (
   })
   return DEFAULT_PROJECT_VIEWS
 }
+const GENERATE_DEFAULT_ENV_VIEW = (defEnv, curTheme, PView, name) => {
+  const DEFAULT_ENV_VIEW = new PView({
+    ...defEnv.data,
+    curTheme,
+    name,
+  })
+
+  return DEFAULT_ENV_VIEW
+}
 const GENERATE_PROJECT_CONTAINER_VIEW = (
   project,
   curTheme,
@@ -224,15 +245,22 @@ const GENERATE_DEFAULT_TODOS = (con) => {
   })
   return res
 }
-const GENERATE_DEFAULT_TODOS_VIEW = (defTodo, curTheme, PView, parentId) => {
+const GENERATE_DEFAULT_TODOS_VIEW = (
+  defTodo,
+  curTheme,
+  PView,
+  parentId,
+  daysLeft
+) => {
   const DEFAULT_TODO_VIEWS = defTodo.map((todo) => {
     const projectView = new PView({
       ...todo.data,
       curTheme,
       taskType: 'todo',
-      name: todo,
+      name: todo.name,
       id: todo.id,
       parentId: parentId,
+      daysLeft: todo.getDaysLeft(),
     })
     return projectView
   })
@@ -293,4 +321,6 @@ export {
   GENERATE_PROJECT_CONTAINER_VIEW,
   GET_TASKS_ID_ARRAY,
   LISTEN_TO,
+  GENERATE_DEFAULT_ENV,
+  GENERATE_DEFAULT_ENV_VIEW,
 }

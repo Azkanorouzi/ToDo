@@ -3,8 +3,8 @@ import { ContainerTaskView } from '../views-general/container-task-view'
 class EnvironmentView extends ContainerTaskView {
   _assets = {}
   constructor(data = null) {
-    if (!data) throw new Error('data is required')
-    this._generateAssets(data)
+    super(data)
+    super._generateAssets(data)
     this.children = this._assets.children
   }
   _generateHTML() {
@@ -37,7 +37,7 @@ class EnvironmentView extends ContainerTaskView {
     </section>
     <!-- Plus button -->
     <div
-      class="rounded-full w-12 h-12 grid place-content-center bg-theme--main text-3xl text-theme-${this._assets.curTheme}-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform lg:sticky lg:py-5 display-env-plus-btn"
+      class="rounded-full w-12 h-12 grid place-content-center bg-theme-${this._assets.curTheme}-main text-3xl text-theme-${this._assets.curTheme}-forth fixed bottom-7 left-7 z-30 cursor-pointer hover:rotate-180 transition-transform lg:sticky lg:py-5 display-env-plus-btn"
       data-theme="true"
     >
       <i class="fa-solid fa-plus"></i>

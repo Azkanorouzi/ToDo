@@ -8,6 +8,11 @@ const DEFAULT_TASK_NAME = 'Untitled'
 const DEFAULT_TASK_DETAILS = 'No details'
 const DEFAULT_TASK_DUE = GET_TIME_TOMORROW()
 const DEFAULT_PROJECT_DUE = 'Without time limit!'
+// Default envs
+const DEFAULT_ENV_NAME = 'Environment'
+const DEFAULT_ENV_DETAILS =
+  'Environments are used to organize your projects and tasks into more manageable categories. :)'
+const DEFAULT_ENV_ID = 'GG7777777777'
 // Details for default projects
 const INBOX_DETAILS =
   'Inbox is a nice home for random todos, here you can brain storm and put todos that you might want to change their details later :)'
@@ -48,6 +53,7 @@ const INITIAL_PROJECTS_ID = [
   'DD4444444444',
   'EE5555555555',
 ]
+
 // 0 (Might), 1 (Should), 2 (Must!)
 const DEFAULT_IMPORTANCE = '2'
 // API_settings
@@ -90,4 +96,7 @@ export {
   INITIAL_PROJECT_DETAILS,
   INITIAL_PROJECT_NAME,
   DEFAULT_GET_FAMILIAR_TODOS,
+  DEFAULT_ENV_NAME,
+  DEFAULT_ENV_DETAILS,
+  DEFAULT_ENV_ID,
 }

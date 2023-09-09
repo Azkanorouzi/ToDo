@@ -17,7 +17,6 @@ export function changeTheme(newTheme, oldTheme) {
 
 export function addNavTaskHandlers(handlers) {
   const standAloneProjectContainer = document.querySelector('nav')
-  console.log(standAloneProjectContainer)
   if (!standAloneProjectContainer) return
   return LISTEN_TO(standAloneProjectContainer, 'click', (e) => {
     const clicked = e.target
@@ -43,6 +42,9 @@ export function addNavTaskHandlers(handlers) {
     if (clicked.closest('.child-task')) {
       handlers.handleChildTaskClick(clicked.closest('.child-task').dataset.id)
       return
+    }
+    if (clicked.closest('.environment')) {
+      handlers.handleChildTaskClick(clicked.closest('.environment').dataset.id)
     }
   })
 }

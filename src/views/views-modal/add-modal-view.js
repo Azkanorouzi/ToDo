@@ -39,9 +39,14 @@ class AddModalView extends ModalView {
         <h2 class="absolute text-4xl">Add a new ${
           this._assets.modalType === 'adddisplay'
             ? 'Todo/Project'
+            : this._assets.modalType === 'addtododisplay'
+            ? 'Todo'
             : 'Env/Project'
         }</h2>
-        <div class="flex gap-3 flex-col">
+        <div class="flex gap-3 flex-col ">
+        <div class="flex ${
+          this._assets.modalType === 'addtododisplay' ? 'hidden' : ''
+        }">
           <label for="radio-btn" class="mr-5">
           ${this._assets.modalType === 'adddisplay' ? 'Todo: ' : 'Env: '}
             <input type="radio" name="type" id="task-btn" value="${
@@ -59,10 +64,9 @@ class AddModalView extends ModalView {
               value= "project"
               class="radio-button" data-radio-type="${
                 this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
-              }
-            />
+              }" checked/>
           </label>
-        </div>
+          </div>
         <!-- Title -->
         <label for="task-title">
           <input
