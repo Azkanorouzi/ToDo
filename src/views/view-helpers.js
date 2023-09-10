@@ -1,3 +1,4 @@
+import { DANGER_COLOR_BG, SAFE_COLOR_BG, WARNING_COLOR_BG } from '../config'
 import { GET_ALL_THEME_EL, LISTEN_TO } from '../helpers'
 // General functions
 /**
@@ -20,8 +21,13 @@ export function addNavTaskHandlers(handlers) {
   if (!standAloneProjectContainer) return
   return LISTEN_TO(standAloneProjectContainer, 'click', (e) => {
     const clicked = e.target
+
     if (clicked.classList.contains('fa-question')) {
-      handlers.handleTaskInfoClick(clicked.closest('.child-task').dataset.id)
+      handlers.handleTaskInfoClick(
+        clicked.closest('.child-task')?.dataset.id ??
+          clicked.closest('.environment')?.dataset.id,
+        (() => (clicked.closest('.project') ? 'project details' : 'details'))()
+      )
       return
     }
     if (clicked.closest('.child-more-btn')) {
@@ -37,7 +43,10 @@ export function addNavTaskHandlers(handlers) {
       return
     }
     if (clicked.closest('.child-delete-btn')) {
-      handlers.handleDeleteTaskClick(clicked.closest('.child-task').dataset.id)
+      handlers.handleDeleteTaskClick(
+        clicked.closest('.child-task')?.dataset.id ??
+          clicked.closest('.environment')?.dataset.id
+      )
     }
     if (clicked.closest('.child-task')) {
       handlers.handleChildTaskClick(clicked.closest('.child-task').dataset.id)
@@ -56,7 +65,9 @@ export function generateModalInfo(task, view, modalType, curTheme) {
     modalType: modalType,
     curTheme: curTheme,
     due: task.due,
-    daysLeft: task.getDaysLeft(),
+    ...(() => {
+      if (task?.getDaysLeft) return [task.getDaysLeft()]
+    })(),
   })
 }
 export function generateModal(view, modalType, curTheme) {
@@ -99,4 +110,17 @@ export function removeTaskFromDom(taskId) {
 }
 export function addLoadHandler(handler) {
   return LISTEN_TO(window, 'load', handler)
+}
+export function hideElements(elements) {
+  elements.forEach((el) => el.classList.add('hidden'))
+}
+export function showElements(elements) {
+  elements.forEach((el) => el.classList.remove('hidden'))
+}
+export function removeImportanceColor(importanceButton) {
+  importanceButton.classList.remove(
+    SAFE_COLOR_BG,
+    WARNING_COLOR_BG,
+    DANGER_COLOR_BG
+  )
 }

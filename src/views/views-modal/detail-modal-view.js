@@ -4,6 +4,9 @@ import {
   DANGER_COLOR_BG,
   WARNING_COLOR_BG,
   DANGER_COLOR,
+  SHOULD_MESSAGE,
+  IMPORTANT_MESSAGE,
+  MIGHT_MESSAGE,
 } from '../../config'
 
 class DetailModalView extends ModalView {
@@ -54,7 +57,7 @@ class DetailModalView extends ModalView {
         <!-- Date -->
         <div>
           <p class="text-theme-${this._assets.curTheme}-forth">${
-      this._assets.due
+      this._assets.due ?? ''
     }</p>
     ${
       this._assets.modalType === 'details'
@@ -79,10 +82,10 @@ class DetailModalView extends ModalView {
         } "></div>
         <p class="importance-text ml-3">${
           this._assets.importance === '1'
-            ? this.importantMessage
+            ? SHOULD_MESSAGE
             : this._assets.importance === '0'
-            ? this.shouldMessage
-            : this.mightMessage
+            ? MIGHT_MESSAGE
+            : IMPORTANT_MESSAGE
         }</p>
       </div>`
     }

@@ -4,6 +4,9 @@ import {
   DANGER_COLOR_BG,
   WARNING_COLOR_BG,
   DANGER_COLOR,
+  SHOULD_MESSAGE,
+  IMPORTANT_MESSAGE,
+  MIGHT_MESSAGE,
 } from '../../config'
 
 class AddModalView extends ModalView {
@@ -92,7 +95,7 @@ class AddModalView extends ModalView {
           ></textarea>
         </label>
         <!-- Date -->
-        <label for="details" class="add-modal-date-container">
+        <label for="details" class="add-modal-date-container env-hidden">
           <input
             type="date"
             class="w-full bg-theme-${
@@ -103,23 +106,23 @@ class AddModalView extends ModalView {
           />
         </label>
         <!-- Importance -->
-        <div class="flex importance-button importance-input" data-importance="${
-          this._assets.importance
-        }">
+        <div class="flex importance-input env-hidden ">
           <div class="rounded-full w-10 h-10 ${
             this._assets.importance === '1'
               ? WARNING_COLOR_BG
               : this._assets.importance === '0'
               ? SAFE_COLOR_BG
               : DANGER_COLOR_BG
-          }"></div>
+          } cursor-pointer importance-button transition-colors" data-importance="${
+      this._assets.importance ?? 2
+    }"></div>
           <p class="importance-text ml-3">
           ${
             this._assets.importance === '1'
-              ? this.importantMessage
+              ? SHOULD_MESSAGE
               : this._assets.importance === '0'
-              ? this.shouldMessage
-              : this.mightMessage
+              ? MIGHT_MESSAGE
+              : IMPORTANT_MESSAGE
           }
           </p>
         </div>

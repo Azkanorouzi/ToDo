@@ -74,6 +74,7 @@ function updateTasksState(state, taskType, ...tasks) {
  */
 function findTaskById(id, state) {
   const allTasks = state.projects.concat(state.envs)
+
   // making a copy of view
   const views = state.views.concat()
   const containerViews = state.containerviews.concat()
@@ -100,13 +101,16 @@ function _findViewIndex(id = model.state.currentPageId, arr = []) {
  * @returns {obj} an object containing deleted task alongside with it's view
  */
 function deleteTask(taskId, taskType, state) {
-  const taskArr = state[`${taskType.toLowerCase()}s`]
+  const taskArr = state[`${taskType.toLowerCase()}s`] ?? state.envs
+
   const deletedTask = taskArr.splice(_findTaskIndex(taskId, taskArr), 1)
   const deletedView = state.views.splice(_findViewIndex(taskId, state.views), 1)
   const deletedContainerView = state.containerviews.splice(
-    _findViewIndex(taskId, state.views),
+    _findViewIndex(taskId, state.containerviews),
     1
   )
+  state.usedIds.splice(state.usedIds.indexOf(taskId), 1)
+
   return {
     deletedTask,
     deletedView,
@@ -219,7 +223,6 @@ function getChildren(state) {
 function changeCurrentPage(id) {
   if (id === model.state.currentPageId) return
   const taskContainer = findTaskById(id, model.state)
-
   model.state.prePageId = model.state.currentPageId
   model.state.currentPageId = id
   taskContainer.containerView.render(true, true, getChildren(model.state))

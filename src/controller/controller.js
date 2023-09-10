@@ -1,3 +1,4 @@
+import { IMPORTANT_MESSAGE, MIGHT_MESSAGE, SHOULD_MESSAGE } from '../config'
 import * as model from '../model/model'
 import * as view from '../views/view'
 import * as taskController from './task-controller'
@@ -34,17 +35,18 @@ function handleChildTaskClick(id) {
   taskController.changeCurrentPage(id)
 }
 // Handles task info click
-function handleTaskInfoClick(id) {
+function handleTaskInfoClick(id, modalInfoType) {
   const { task } = taskController.findTaskById(id, model.state)
   const taskModalInfo = view.viewHelpers.generateModalInfo(
     task,
     view.DetailModalView,
-    'details',
+    modalInfoType,
     model.state.currentTheme
   )
   taskModalInfo.render(false, false)
   view.ModalView.addHandlers({ handleClose })
 }
+
 // Handles child more icon click
 function handleChildMoreClick(moreIconsContainer) {
   view.viewHelpers.openMoreChildTaskIcons(moreIconsContainer)
@@ -88,13 +90,43 @@ function handlePlusBtn(type) {
     model.state.currentTheme
   )
   addModal.render(false, false)
-  view.ModalView.addHandlers({ handleClose })
+  view.ModalView.addHandlers({
+    handleClose,
+    handleNavRadioBtn,
+    handleImportanceBtn,
+  })
 }
 // HandleClose for modals
 function handleClose() {
   view.viewHelpers.closeModal()
 }
-
+// handle radio buttons
+function handleNavRadioBtn(selectedRadio, limitedTaskInputs) {
+  // Hiding limited task inputs because env is not a limited task and therefore importance and date should be removed from the form
+  if (selectedRadio === 'env') {
+    view.viewHelpers.hideElements(limitedTaskInputs)
+    return
+  }
+  view.viewHelpers.showElements(limitedTaskInputs)
+}
+// Handling modal importance click button
+function handleImportanceBtn(
+  curImportance,
+  importanceBtnEl,
+  colors,
+  importanceText
+) {
+  curImportance += curImportance === 2 ? -2 : 1
+  importanceBtnEl.dataset.importance = curImportance
+  view.viewHelpers.removeImportanceColor(importanceBtnEl)
+  console.log(colors, importanceBtnEl.dataset.importance, curImportance)
+  importanceBtnEl.classList.add(colors[+importanceBtnEl.dataset.importance])
+  importanceText.textContent = [
+    MIGHT_MESSAGE,
+    SHOULD_MESSAGE,
+    IMPORTANT_MESSAGE,
+  ][curImportance]
+}
 // This function will pass all subscribers to their publisher
 function init() {
   view.addNavHandlers({

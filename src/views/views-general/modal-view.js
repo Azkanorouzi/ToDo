@@ -1,10 +1,7 @@
 import { LISTEN_TO } from '../../helpers'
 import { View } from './view'
-
+import { SAFE_COLOR_BG, WARNING_COLOR_BG, DANGER_COLOR_BG } from '../../config'
 class ModalView extends View {
-  importantMessage = 'Important!'
-  shouldMessage = 'Relatively important'
-  mightMessage = 'optional'
   _importanceMessage = ['Important!', 'Relatively important', 'optional']
   constructor(data) {
     super()
@@ -29,7 +26,13 @@ class ModalView extends View {
         return
       }
       if (clickedEl.closest('.importance-button')) {
-        handlers.handleImportanceBtn()
+        console.log(clickedEl.dataset)
+        handlers.handleImportanceBtn(
+          +clickedEl.dataset.importance,
+          clickedEl,
+          [SAFE_COLOR_BG, WARNING_COLOR_BG, DANGER_COLOR_BG],
+          document.querySelector('.importance-text')
+        )
         return
       }
       if (clickedEl.closest('.add-display-modal-button')) {
@@ -40,8 +43,11 @@ class ModalView extends View {
         handlers.handleNav(this._getInputsValue())
         return
       }
-      if (clickedEl.closest('.radio-button')) {
-        handlers.handleNavRadioBtn()
+      if (clickedEl.closest('[type="radio"]')) {
+        handlers.handleNavRadioBtn(
+          clickedEl.value,
+          document.querySelectorAll('.env-hidden')
+        )
         return
       }
       if (clickedEl.closest('.warning-modal-ok')) {

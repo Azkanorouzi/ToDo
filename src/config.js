@@ -69,6 +69,10 @@ const DANGER_COLOR = 'text-red-600'
 const SAFE_COLOR_BG = 'bg-green-300'
 const WARNING_COLOR_BG = 'bg-yellow-300'
 const DANGER_COLOR_BG = 'bg-red-600'
+// Messages
+const IMPORTANT_MESSAGE = 'Important!'
+const SHOULD_MESSAGE = 'Relatively important'
+const MIGHT_MESSAGE = 'optional'
 export {
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
@@ -99,4 +103,7 @@ export {
   DEFAULT_ENV_NAME,
   DEFAULT_ENV_DETAILS,
   DEFAULT_ENV_ID,
+  IMPORTANT_MESSAGE,
+  SHOULD_MESSAGE,
+  MIGHT_MESSAGE,
 }
