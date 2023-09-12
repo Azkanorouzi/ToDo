@@ -10,9 +10,7 @@ class ChildProjectView extends ChildView {
     this._standAlone = standAlone
 
     this._parentEl = document.getElementsByClassName(
-      this._standAlone
-        ? `stand-alone-projects-container`
-        : `todo-container[data-id="${this._assets.parentId}"]`
+      this._standAlone ? `stand-alone-projects-container` : `items-container`
     )[0]
     this.children = this._assets.children
   }
@@ -37,7 +35,7 @@ class ChildProjectView extends ChildView {
         class="absolute left-0 h-full bg-theme-1-third project-fill text-theme-${
           this._assets.curTheme
         }-fifth project-progress"
-        style="width:${this._assets.progress}"
+        style="width:${this._assets.progress}; transition: .5s width;"
         data-theme="true"
       ></div>
       <i
@@ -119,7 +117,7 @@ class ChildProjectView extends ChildView {
         class="absolute left-0 h-full bg-theme-${
           this._assets.curTheme
         }-third project-fill text-theme-${this._assets.curTheme}-fifth"
-        style="width:${this._assets.progress}"
+        style="width:${this._assets.progress}; transition: .5s width"
         data-theme="true"
       ></div>
       <i
@@ -132,7 +130,7 @@ class ChildProjectView extends ChildView {
       <span class="z-10"> Project name </span>
       <!-- Project icons -->
       <div
-        class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
+        class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl  z-10"
       >
         <!-- Menu -->
         <i
@@ -144,7 +142,7 @@ class ChildProjectView extends ChildView {
         <!-- Time clock -->
         <i
           class="${
-            this._assets.daysLeft === 0
+            this._assets.daysLeft == 0
               ? WARNING_COLOR
               : this._assets.daysLeft > 0
               ? SAFE_COLOR
@@ -190,6 +188,9 @@ class ChildProjectView extends ChildView {
         ></i>
       </div>
     </div>`
+  }
+  updateParentEL() {
+    this._parentEl = document.querySelector('.items-container')
   }
 }
 export { ChildProjectView }

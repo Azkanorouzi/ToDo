@@ -43,6 +43,7 @@ function generateDefaultEnv() {
 }
 function generateDefaultToDos() {
   const defaultTodos = HELPERS.GENERATE_DEFAULT_TODOS(model.ToDo)
+
   const defaultTodosView = HELPERS.GENERATE_DEFAULT_TODOS_VIEW(
     defaultTodos,
     model.state.currentTheme,
@@ -54,6 +55,26 @@ function generateDefaultToDos() {
     defaultTodos,
     defaultTodosView,
   }
+}
+function generateDefaultEnvProject() {
+  const initialEnvProject = createTask(
+    {
+      taskConstructor: model.Project,
+      viewConstructor: view.ChildProjectView,
+      viewContainerConstructor: view.ProjectView,
+      data: {
+        importance: CONFIG.DEFAULT_IMPORTANCE,
+        due: CONFIG.DEFAULT_TASK_DUE,
+        details: CONFIG.INITIAL_ENV_PROJECT_DETAILS,
+        name: CONFIG.INITIAL_ENV_PROJECT_NAME,
+        standAlone: false,
+        parentId: 'GG7777777777',
+      },
+    },
+    'project',
+    false
+  )
+  initialEnvProject.view.updateParentEL()
 }
 /**
  * This function's responsibility is to update a certain task it can also update the views
@@ -73,7 +94,7 @@ function updateTasksState(state, taskType, ...tasks) {
  * @returns {obj} target task
  */
 function findTaskById(id, state) {
-  const allTasks = state.projects.concat(state.envs)
+  const allTasks = state.projects.concat(state.envs).concat(state.todos)
 
   // making a copy of view
   const views = state.views.concat()
@@ -84,6 +105,7 @@ function findTaskById(id, state) {
     containerView: containerViews.find((view) => view._assets.id === id),
   }
 }
+
 /**
  * this function returns the index of a task inside the parent children array (the env or project that task take place)
  * @param {string} id the id of the target task
@@ -212,12 +234,17 @@ function initializeDefaults() {
     true
   )
   model.state.currentPageId = initialProject.task.id
-
+  generateDefaultEnvProject()
   initialProject.view.render(false, false)
 }
-function getChildren(state) {
+function getChildrenViews(state) {
   return state.views.filter((view) => {
     return view?._assets.parentId === state.currentPageId
+  })
+}
+function getChildrenTodos(state) {
+  return state.todos.filter((todo) => {
+    return todo?.parentId === state.currentPageId
   })
 }
 function changeCurrentPage(id) {
@@ -225,7 +252,13 @@ function changeCurrentPage(id) {
   const taskContainer = findTaskById(id, model.state)
   model.state.prePageId = model.state.currentPageId
   model.state.currentPageId = id
-  taskContainer.containerView.render(true, true, getChildren(model.state))
+  taskContainer.containerView.render(true, true, getChildrenViews(model.state))
+}
+function updateProgress(project) {
+  project.children.push(...getChildrenTodos(model.state))
+  project.updateProjectProgress()
+
+  view.viewHelpers.updateViewProgress(project.id, project.progress)
 }
 export {
   generateDefaultProjects,
@@ -235,7 +268,9 @@ export {
   deleteTask,
   createTask,
   initializeDefaults,
-  getChildren,
+  getChildrenViews,
   generateDefaultToDos,
   changeCurrentPage,
+  getChildrenTodos,
+  updateProgress,
 }

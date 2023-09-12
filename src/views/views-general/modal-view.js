@@ -26,7 +26,6 @@ class ModalView extends View {
         return
       }
       if (clickedEl.closest('.importance-button')) {
-        console.log(clickedEl.dataset)
         handlers.handleImportanceBtn(
           +clickedEl.dataset.importance,
           clickedEl,

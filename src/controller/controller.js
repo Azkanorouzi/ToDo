@@ -27,8 +27,9 @@ function handleLoadEvent() {
   initialProject.containerView.render(
     true,
     true,
-    taskController.getChildren(model.state)
+    taskController.getChildrenViews(model.state)
   )
+  taskController.updateProgress(initialProject.task)
 }
 // Handles child task click
 function handleChildTaskClick(id) {
@@ -37,6 +38,7 @@ function handleChildTaskClick(id) {
 // Handles task info click
 function handleTaskInfoClick(id, modalInfoType) {
   const { task } = taskController.findTaskById(id, model.state)
+
   const taskModalInfo = view.viewHelpers.generateModalInfo(
     task,
     view.DetailModalView,
@@ -71,15 +73,16 @@ function handleDeleteTaskClick(taskId) {
     handleWarningDeleteOk: handleWarningDeleteOk.bind(
       '',
       taskId,
-      task.taskType.toLowerCase()
+      task?.taskType?.toLowerCase() ?? 'todo'
     ),
   })
 }
 // HandleClose for modals
 function handleWarningDeleteOk(taskId, taskType) {
   taskController.deleteTask(taskId, taskType, model.state)
-  view.viewHelpers.removeTaskFromDom(taskId)
+  view.viewHelpers.removeTaskFromDom(taskId, taskType)
   view.viewHelpers.closeModal()
+  if (taskType === 'todo') return
   handleChildTaskClick(model.state.prePageId)
 }
 // Handler for nav plus button
@@ -119,13 +122,19 @@ function handleImportanceBtn(
   curImportance += curImportance === 2 ? -2 : 1
   importanceBtnEl.dataset.importance = curImportance
   view.viewHelpers.removeImportanceColor(importanceBtnEl)
-  console.log(colors, importanceBtnEl.dataset.importance, curImportance)
+
   importanceBtnEl.classList.add(colors[+importanceBtnEl.dataset.importance])
   importanceText.textContent = [
     MIGHT_MESSAGE,
     SHOULD_MESSAGE,
     IMPORTANT_MESSAGE,
   ][curImportance]
+}
+function handleTodoMenuClick(todoMenu) {
+  view.viewHelpers.triggerTodoMenu(todoMenu)
+}
+function handleTodoCheck() {
+  alert('hewy')
 }
 // This function will pass all subscribers to their publisher
 function init() {
@@ -144,6 +153,10 @@ function init() {
   view.addDisplayHandlers({
     handleDisplayProjectPlusBtn: handlePlusBtn.bind('', 'addTodoDisplay'),
     handleDisplayEnvPlusBtn: handlePlusBtn.bind('', 'addDisplay'),
+    handleTodoMenuClick,
+    handleTaskInfoClick,
+    handleDeleteTaskClick,
+    handleTodoCheck,
   })
   // Initializing the defaults
   // early return if the app is already initialized in that case we don't want to have defaults created again

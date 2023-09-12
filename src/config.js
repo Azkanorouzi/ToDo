@@ -73,6 +73,10 @@ const DANGER_COLOR_BG = 'bg-red-600'
 const IMPORTANT_MESSAGE = 'Important!'
 const SHOULD_MESSAGE = 'Relatively important'
 const MIGHT_MESSAGE = 'optional'
+
+const INITIAL_ENV_PROJECT_DETAILS =
+  'Projects and todos can be nested into environments :)'
+const INITIAL_ENV_PROJECT_NAME = 'TEST'
 export {
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
@@ -106,4 +110,6 @@ export {
   IMPORTANT_MESSAGE,
   SHOULD_MESSAGE,
   MIGHT_MESSAGE,
+  INITIAL_ENV_PROJECT_NAME,
+  INITIAL_ENV_PROJECT_DETAILS,
 }

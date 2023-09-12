@@ -105,32 +105,34 @@ class Project extends LimitedTimeTask {
     super(data, id)
     this.standAlone = standAlone
     this.parentId = standAlone ? null : state.currentPageId
+    this.progress = this._getProjectProgress()
   }
   children = []
-  progress = this._getProjectProgress()
   // Returns a how much of the project is done
   _getProjectProgress() {
+    if (this.children.length === 0) {
+      this.done = true
+      return '0%'
+    }
     const progress = `${
       (100 / this.children.length) * HELPERS.COUNT_DONE_TODOS(this.children) ||
-      100
+      0
     }%`
-    if (progress === '100%') this.done = true
     return progress
   }
   updateProjectProgress() {
-    this._progress = this._getProjectProgress()
-    if (this._progress === '100%') this.done = true
+    this.progress = this._getProjectProgress()
   }
 }
 class ToDo extends LimitedTimeTask {
   constructor(data = {}, id) {
     super(data, id)
     this.updateParentId()
+    this.done = data.done
   }
   updateParentId() {
     this.parentId = state.currentPageId
   }
-  done = false
   trigger() {
     this.done = this.done ? false : true
   }

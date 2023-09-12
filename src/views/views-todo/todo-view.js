@@ -9,7 +9,9 @@ class TodoView extends ChildView {
     this._parentEl = document.getElementById(`${this._assets.parentId}`)
   }
   _generateHTML() {
-    const markup = `<div
+    const markup = `
+    <div class="relative todo-container">
+    <div
     class="hover:bg-theme-${
       this._assets.curTheme
     }-fifth rounded-md p-4 todo bg-theme-${this._assets.curTheme}-${
@@ -18,7 +20,7 @@ class TodoView extends ChildView {
       this._assets.curTheme
     }-fifth shadow-md shadow-theme-${
       this._assets.curTheme
-    }-main cursor-pointer transition-colors fade-in-left child-task"
+    }-main cursor-pointer transition-colors fade-in-left child-task -z-50 "
     data-theme="true"
 data-id="${this._assets.id}"
 >
@@ -30,7 +32,7 @@ data-id="${this._assets.id}"
     >
       <!-- When user checks the todo list -->
       <i class="fa-solid fa-check text-theme-${this._assets.curTheme}-fifth ${
-      this._assets.done ? 'hidden' : ''
+      this._assets.done ? '' : 'hidden'
     }" data-theme="true"></i>
     </div>
     <!-- Todo title -->
@@ -45,7 +47,7 @@ data-id="${this._assets.id}"
       <i
         class="fa-solid fa-bars text-theme-${
           this._assets.curTheme
-        }-forth mr-2 cursor-pointer hover:scale-110 transition-transform"
+        }-forth mr-2 cursor-pointer hover:scale-110 transition-transform todo-menu"
         data-theme="true"
       ></i>
       <!-- Time clock -->
@@ -56,7 +58,7 @@ data-id="${this._assets.id}"
             : this._assets.daysLeft > 0
             ? SAFE_COLOR
             : DANGER_COLOR
-        } fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
+        } fa-solid fa-clock mr-2 transition-transform"
       ></i>
       <!-- Importance button -->
       <i
@@ -66,32 +68,34 @@ data-id="${this._assets.id}"
             : this._assets.importance == '0'
             ? SAFE_COLOR
             : DANGER_COLOR
-        } fa-solid fa-circle cursor-pointer hover:scale-110 transition-transform"
+        } fa-solid fa-circle transition-transform mr-2"
         data-theme="true"
-      ></i>
-    </div>
-    <!-- Todo icons more -->
-    <div
-      class="text-3xl absolute bg-theme-${
-        this._assets.curTheme
-      }-main z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all"
-      data-theme="true"
-    >
-      <i
-        class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
-      ></i>
-      <i
-        class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
-      ></i>
-      <i
-        class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer mr-2"
       ></i>
       <!-- Details button -->
       <i
         class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer"
       ></i>
     </div>
-  </div>`
+  </div>
+  <!-- Todo icons more -->
+  <div
+    class="text-3xl absolute bg-theme-${
+      this._assets.curTheme
+    }-main p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all z-10 hidden todo-menu-container opacity-0"
+    data-theme="true"
+  >
+    <i
+      class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
+    ></i>
+    <i
+      class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
+    ></i>
+    <i
+      class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer mr-2 todo-delete-btn"
+    ></i>
+  </div>
+  </div>
+  `
     this._parentEl = document.querySelector(`.items-container`)
     return markup
   }

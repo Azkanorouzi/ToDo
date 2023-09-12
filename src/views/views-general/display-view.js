@@ -12,6 +12,29 @@ function addDisplayHandlers(handlers) {
       handlers.handleDisplayEnvPlusBtn()
       return
     }
+    if (clicked.closest('.todo-menu')) {
+      handlers.handleTodoMenuClick(
+        clicked.closest('.todo-container').querySelector('.todo-menu-container')
+      )
+      return
+    }
+    if (clicked.closest('.todo-delete-btn')) {
+      handlers.handleDeleteTaskClick(
+        clicked.closest('.todo-container').querySelector('.todo').dataset.id
+      )
+    }
+    if (clicked.closest('.todo-check-button')) {
+      handlers.handleTodoCheck(clicked.closest('.todo').dataset.id)
+      return
+    }
+    if (clicked.classList.contains('fa-question') || clicked.closest('.todo')) {
+      console.log(clicked.closest('.todo').dataset.id)
+      handlers.handleTaskInfoClick(
+        clicked.closest('.todo').dataset.id,
+        'todo details'
+      )
+      return
+    }
   })
 }
 

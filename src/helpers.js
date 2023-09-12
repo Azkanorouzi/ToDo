@@ -41,7 +41,9 @@ const IS_ALL_DONE = (todos = []) => todos.every((todo) => todo.done)
  * @returns {number} number of todos
  */
 const COUNT_DONE_TODOS = (ToDos = []) => {
-  return +ToDos.filter((Todo) => Todo.done).length
+  return ToDos.filter((Todo) => {
+    return Todo.done
+  }).length
 }
 /**
  *  Returns constructor name
@@ -97,6 +99,7 @@ const GENERATE_TASK = (constructor, data, id) => {
       name: data.name,
       standAlone: data.standAlone,
       id,
+      done: data.done,
     },
     id
   )
@@ -236,11 +239,12 @@ const GENERATE_PROJECT_CONTAINER_VIEW = (
 const GENERATE_DEFAULT_TODOS = (con) => {
   const defaultTodos = CONFIG.DEFAULT_GET_FAMILIAR_TODOS
   const res = Object.keys(defaultTodos).map((defTodoTitle, i) => {
+    const done = i === 0 ? true : false
     return GENERATE_TASK(con, {
       name: defTodoTitle,
       details: defaultTodos[defTodoTitle],
       importance: CONFIG.DEFAULT_IMPORTANCE,
-      due: CONFIG.DEFAULT_PROJECT_DUE,
+      done,
     })
   })
   return res
@@ -253,7 +257,7 @@ const GENERATE_DEFAULT_TODOS_VIEW = (
   daysLeft
 ) => {
   const DEFAULT_TODO_VIEWS = defTodo.map((todo) => {
-    const projectView = new PView({
+    const view = new PView({
       ...todo.data,
       curTheme,
       taskType: 'todo',
@@ -262,7 +266,7 @@ const GENERATE_DEFAULT_TODOS_VIEW = (
       parentId: parentId,
       daysLeft: todo.getDaysLeft(),
     })
-    return projectView
+    return view
   })
   return DEFAULT_TODO_VIEWS
 }

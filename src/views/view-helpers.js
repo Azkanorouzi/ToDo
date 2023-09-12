@@ -58,8 +58,9 @@ export function addNavTaskHandlers(handlers) {
   })
 }
 export function generateModalInfo(task, view, modalType, curTheme) {
+  console.log(task.due)
   return new view({
-    name: task.name,
+    name: task?.name ?? task?.title,
     details: task.details,
     importance: task.importance,
     modalType: modalType,
@@ -101,8 +102,13 @@ export function openMoreChildTaskIcons(moreIconsContainer) {
     moreIconsContainer.classList.remove('hidden')
   })
 }
-export function removeTaskFromDom(taskId) {
-  const taskEl = document.querySelector(`[data-id="${taskId}"]`)
+export function removeTaskFromDom(taskId, taskType) {
+  const taskEl =
+    taskType === 'todo'
+      ? document
+          .querySelector(`[data-id="${taskId}"]`)
+          .closest('.todo-container')
+      : document.querySelector(`[data-id="${taskId}"]`)
   taskEl.classList.add('fade-out')
   LISTEN_TO(taskEl, 'animationend', () => {
     taskEl.remove()
@@ -123,4 +129,14 @@ export function removeImportanceColor(importanceButton) {
     WARNING_COLOR_BG,
     DANGER_COLOR_BG
   )
+}
+export function updateViewProgress(id, progress) {
+  const progressEl = document.querySelector(
+    `[data-id = ${id}] > .project-progress`
+  )
+  progressEl.style.width = progress
+}
+export function triggerTodoMenu(todoMenu) {
+  todoMenu.classList.toggle('fade-in')
+  todoMenu.classList.toggle('hidden')
 }
