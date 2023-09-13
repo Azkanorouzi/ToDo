@@ -22,6 +22,7 @@ class AddModalView extends ModalView {
       this._assets.curTheme
     }-forth bg-opacity-5 backdrop-blur-sm z-50 p-4 fade-in-left landscape:p-0 add-modal nav-add-modal modal"
     data-theme="true"
+    data-add-type=" ${this._assets.modalType}"
   >
     <div
       class="w-full min-h-full relative lg:flex lg:justify-center lg:items-center close-modal"
@@ -53,10 +54,18 @@ class AddModalView extends ModalView {
           <label for="radio-btn" class="mr-5">
           ${this._assets.modalType === 'adddisplay' ? 'Todo: ' : 'Env: '}
             <input type="radio" name="type" id="task-btn" value="${
-              this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
+              this._assets.modalType === 'adddisplay'
+                ? 'todo'
+                : this._assets.modalType === 'addtododisplay'
+                ? 'todo'
+                : 'env'
             }" class="radio-button" data-task-type="${
-      this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
-    }"/>
+      this._assets.modalType === 'adddisplay'
+        ? 'todo'
+        : this._assets.modalType === 'addtododisplay'
+        ? 'todo'
+        : 'env'
+    }" checked/>
           </label>
           <label for="radio-btn2" data-task-type="project">
             Project:
@@ -67,7 +76,7 @@ class AddModalView extends ModalView {
               value= "project"
               class="radio-button" data-radio-type="${
                 this._assets.modalType === 'adddisplay' ? 'todo' : 'env'
-              }" checked/>
+              }" />
           </label>
           </div>
         <!-- Title -->

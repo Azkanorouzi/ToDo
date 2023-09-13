@@ -154,7 +154,12 @@ function editTask(taskId, newData) {
  * @param {obj} options an object that contains viewConstructor viewContainerConstructor and taskConstructor
  * @returns {obj} and object containing task, it's view alongside with it's containerView
  */
-function createTask(options, taskType, standAlone) {
+function createTask(
+  options,
+  taskType,
+  standAlone,
+  generateContainerView = true
+) {
   const { viewConstructor, viewContainerConstructor, taskConstructor, data } =
     options
   taskType = taskType.toUpperCase()
@@ -172,19 +177,24 @@ function createTask(options, taskType, standAlone) {
     newTask.done,
     newTask.progress
   )
-  // generate container view
-  const newContainerView = HELPERS[`GENERATE_${taskType}_CONTAINER_VIEW`](
-    newTask,
-    model.state.currentTheme,
-    viewContainerConstructor,
-    newTask.name,
-    newTask.id
-  )
-
   // updates state
+  taskType = newTask instanceof model.ToDo ? 'TODO' : taskType
   updateTasksState(model.state, taskType, newTask)
   updateTasksState(model.state, 'view', newView)
-  updateTasksState(model.state, 'containerView', newContainerView)
+  let newContainerView = null
+  if (generateContainerView) {
+    // generate container view
+    newContainerView = newContainerView = HELPERS[
+      `GENERATE_${taskType}_CONTAINER_VIEW`
+    ](
+      newTask,
+      model.state.currentTheme,
+      viewContainerConstructor,
+      newTask.name,
+      newTask.id
+    )
+    updateTasksState(model.state, 'containerView', newContainerView)
+  }
   // returns the task and it's view
   return {
     task: newTask,
@@ -254,11 +264,21 @@ function changeCurrentPage(id) {
   model.state.currentPageId = id
   taskContainer.containerView.render(true, true, getChildrenViews(model.state))
 }
-function updateProgress(project) {
-  project.children.push(...getChildrenTodos(model.state))
+// Updates the progress bar
+function updateProgress(project, updateChildren = true) {
+  if (!project.updateProjectProgress) return
+  project.children = [...getChildrenTodos(model.state)]
+
   project.updateProjectProgress()
 
   view.viewHelpers.updateViewProgress(project.id, project.progress)
+}
+function checkTodo(todo) {
+  todo.task.done = todo.task.done ? false : true
+  todo.view._assets.done = todo.view._assets.done ? false : true
+}
+function checkTodoInDom(todoEl) {
+  view.viewHelpers.updateCheckedTodo(todoEl, model.state.currentTheme)
 }
 export {
   generateDefaultProjects,
@@ -273,4 +293,6 @@ export {
   changeCurrentPage,
   getChildrenTodos,
   updateProgress,
+  checkTodo,
+  checkTodoInDom,
 }

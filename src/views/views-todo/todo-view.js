@@ -10,7 +10,9 @@ class TodoView extends ChildView {
   }
   _generateHTML() {
     const markup = `
-    <div class="relative todo-container">
+    <div class="relative todo-container order-${
+      (this._assets.importance - 3) * -1
+    } "${this._assets.done ? 'style="order: 4;"' : ''}>
     <div
     class="hover:bg-theme-${
       this._assets.curTheme
@@ -36,7 +38,7 @@ data-id="${this._assets.id}"
     }" data-theme="true"></i>
     </div>
     <!-- Todo title -->
-    <span class="${this._assets.done ? 'line-through' : ''}"> ${
+    <span class="todo-text ${this._assets.done ? 'line-through' : ''}"> ${
       this._assets.name
     } </span>
     <!-- Todo icons container -->

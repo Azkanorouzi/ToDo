@@ -26,6 +26,7 @@ class ChildView extends View {
       taskType: data.taskType?.toLowerCase(),
       curTheme: data.curTheme,
       progress: data.progress,
+      importance: data.importance,
     }
     if (this._assets.taskType === 'Project')
       this._assets.progress = data.progress

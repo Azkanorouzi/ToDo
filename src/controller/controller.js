@@ -12,6 +12,9 @@ function handleThemeChange(selectedTheme) {
     (containerview) =>
       (containerview._assets.curTheme = model.state.currentTheme)
   )
+  model.state.views.map(
+    (view) => (view._assets.curTheme = model.state.currentTheme)
+  )
 }
 
 // Load event handler
@@ -73,15 +76,21 @@ function handleDeleteTaskClick(taskId) {
     handleWarningDeleteOk: handleWarningDeleteOk.bind(
       '',
       taskId,
-      task?.taskType?.toLowerCase() ?? 'todo'
+      task?.taskType?.toLowerCase() ?? 'todo',
+      task
     ),
   })
 }
 // HandleClose for modals
-function handleWarningDeleteOk(taskId, taskType) {
+function handleWarningDeleteOk(taskId, taskType, task) {
   taskController.deleteTask(taskId, taskType, model.state)
   view.viewHelpers.removeTaskFromDom(taskId, taskType)
   view.viewHelpers.closeModal()
+  const taskParent = taskController.findTaskById(
+    task.parentId,
+    model.state
+  ).task
+  taskController.updateProgress(taskParent)
   if (taskType === 'todo') return
   handleChildTaskClick(model.state.prePageId)
 }
@@ -97,7 +106,37 @@ function handlePlusBtn(type) {
     handleClose,
     handleNavRadioBtn,
     handleImportanceBtn,
+    handleDisplayAdd,
   })
+}
+// Handles Adding a new todo
+function handleDisplayAdd(data, displayAddType) {
+  const { selectedType } = data
+  console.log(displayAddType)
+  const newTask = taskController.createTask(
+    {
+      viewConstructor: view.TodoView,
+      taskConstructor: model.ToDo,
+      data: {
+        parentId: model.state.currentPageId,
+        name: data.title,
+        importance: data.importance,
+        due: data.due,
+        details: data.details,
+      },
+    },
+    'project',
+    false,
+    false
+  )
+  newTask.view._parentEl = document.querySelector('.items-container')
+  newTask.view.render(false, false)
+
+  const { task: parentTask } = taskController.findTaskById(
+    newTask.task.parentId,
+    model.state
+  )
+  taskController.updateProgress(parentTask)
 }
 // HandleClose for modals
 function handleClose() {
@@ -133,9 +172,17 @@ function handleImportanceBtn(
 function handleTodoMenuClick(todoMenu) {
   view.viewHelpers.triggerTodoMenu(todoMenu)
 }
-function handleTodoCheck() {
-  alert('hewy')
+function handleTodoCheck(id, todoEl) {
+  const todo = taskController.findTaskById(id, model.state)
+  taskController.checkTodo(todo)
+  taskController.checkTodoInDom(todoEl)
+  const parentTodo = taskController.findTaskById(
+    taskController.findTaskById(todoEl.dataset.id, model.state).task.parentId,
+    model.state
+  )
+  taskController.updateProgress(parentTodo.task)
 }
+
 // This function will pass all subscribers to their publisher
 function init() {
   view.addNavHandlers({

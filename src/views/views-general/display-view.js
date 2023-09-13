@@ -24,11 +24,13 @@ function addDisplayHandlers(handlers) {
       )
     }
     if (clicked.closest('.todo-check-button')) {
-      handlers.handleTodoCheck(clicked.closest('.todo').dataset.id)
+      handlers.handleTodoCheck(
+        clicked.closest('.todo').dataset.id,
+        clicked.closest('.todo')
+      )
       return
     }
     if (clicked.classList.contains('fa-question') || clicked.closest('.todo')) {
-      console.log(clicked.closest('.todo').dataset.id)
       handlers.handleTaskInfoClick(
         clicked.closest('.todo').dataset.id,
         'todo details'

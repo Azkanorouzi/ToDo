@@ -58,7 +58,6 @@ export function addNavTaskHandlers(handlers) {
   })
 }
 export function generateModalInfo(task, view, modalType, curTheme) {
-  console.log(task.due)
   return new view({
     name: task?.name ?? task?.title,
     details: task.details,
@@ -134,9 +133,28 @@ export function updateViewProgress(id, progress) {
   const progressEl = document.querySelector(
     `[data-id = ${id}] > .project-progress`
   )
+  if (!progressEl) return
   progressEl.style.width = progress
 }
 export function triggerTodoMenu(todoMenu) {
   todoMenu.classList.toggle('fade-in')
   todoMenu.classList.toggle('hidden')
+}
+export function updateCheckedTodo(el, curTheme) {
+  const todoCheckButton = el.querySelector('.fa-check')
+  const todoText = el.querySelector('.todo-text')
+  todoText.classList.toggle('line-through')
+  todoCheckButton.classList.toggle('hidden')
+  el.closest('.todo-container').style.order = el.closest('.todo-container')
+    .style.order
+    ? ''
+    : '4'
+  console.log(el.style.order)
+  if (el.classList.contains(`bg-theme-${curTheme}-third`)) {
+    el.classList.remove(`bg-theme-${curTheme}-third`)
+    el.classList.add(`bg-theme-${curTheme}-fifth`)
+    return
+  }
+  el.classList.remove(`bg-theme-${curTheme}-fifth`)
+  el.classList.add(`bg-theme-${curTheme}-third`)
 }

@@ -178,7 +178,6 @@ const GENERATE_PROJECT_VIEW = (
     standAlone
   )
 }
-
 /**
  * creates default projects view by calling the GENERATE_VIEW function
  * @param {array} defProjects an array of default projects
@@ -270,6 +269,7 @@ const GENERATE_DEFAULT_TODOS_VIEW = (
   })
   return DEFAULT_TODO_VIEWS
 }
+
 /**
  * Given an array of tasks returns an array containing their id
  * @param {array} tasks an array of tasks

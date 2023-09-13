@@ -35,11 +35,17 @@ class ModalView extends View {
         return
       }
       if (clickedEl.closest('.add-display-modal-button')) {
-        handlers.handleDisplayAdd(this._getInputsValue('display'))
+        handlers.handleDisplayAdd(
+          _getInputsValue('display'),
+          clickedEl.closest('.modal').dataset.addType
+        )
         return
       }
       if (clickedEl.closest('.add-nav-modal-button')) {
-        handlers.handleNav(this._getInputsValue())
+        handlers.handleDisplayAdd(
+          _getInputsValue(),
+          clickedEl.closest('.modal').dataset.addType
+        )
         return
       }
       if (clickedEl.closest('[type="radio"]')) {
@@ -55,20 +61,22 @@ class ModalView extends View {
       }
     })
   }
-  _getInputsValue() {
-    const modal = document.querySelector('.modal')
-    const selectedTitleInput = modal.querySelector('.title-input').value
-    const selectedDetailsInput = modal.querySelector('.details-input').value
-    const selectedDateInput = modal.querySelector('.date-input').value
-    const selectedImportanceInput =
-      modal.querySelector('.importance-input').dataset.importance
+}
+function _getInputsValue() {
+  const modal = document.querySelector('.modal')
+  const selectedTitleInput = modal.querySelector('.title-input').value
+  const selectedDetailsInput = modal.querySelector('.details-input').value
+  const selectedDateInput = modal.querySelector('.date-input').value
+  const selectedImportanceInput =
+    modal.querySelector('.importance-button').dataset.importance
+  const selectedType = modal.querySelector('[type="radio"]:checked').value
 
-    return {
-      selectedTitleInput,
-      selectedDetailsInput,
-      selectedDateInput,
-      selectedImportanceInput,
-    }
+  return {
+    title: selectedTitleInput,
+    details: selectedDetailsInput,
+    date: selectedDateInput,
+    importance: selectedImportanceInput,
+    selectedType,
   }
 }
 export { ModalView }
