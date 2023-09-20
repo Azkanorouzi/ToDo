@@ -3,6 +3,7 @@
 import * as CONFIG from '../config'
 import * as HELPERS from '../helpers'
 const state = {
+  star: false,
   isDefaultsInitialized: false,
   usedIds: [],
   containerviews: [],

@@ -15,25 +15,33 @@ class ChildEnvView extends ChildView {
   _generateHTML() {
     return `
     <div
-    class="hover:bg-theme-${this._assets.curTheme}-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer flex justify-between items-center environment"
+    class="hover:bg-theme-${
+      this._assets.curTheme
+    }-fifth rounded-md p-2 transition-all hover:scale-105 cursor-pointer flex justify-between items-center environment"
     data-id="${this._assets.id}"
     data-theme="true"
   >
     <div>
-      <i class="fa-solid fa-dragon text-theme-1-third"></i>
-      ${this._assets.name}
+      <i class="fa-solid fa-dragon text-theme-1-third" data-theme="true"></i>
+      ${this._assets.name || 'Untitled'}
     </div>
     <div class="flex justify-between text-1xl md:text-2xl gap-2">
       <i
-        class="fa-solid fa-edit text-theme-${this._assets.curTheme}-main hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-edit text-theme-${
+          this._assets.curTheme
+        }-main hover:scale-110 transition-transform cursor-pointer"
         data-theme="true"
       ></i>
       <i
-        class="fa-solid fa-times text-theme-${this._assets.curTheme}-main hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-times text-theme-${
+          this._assets.curTheme
+        }-main hover:scale-110 transition-transform cursor-pointer child-delete-btn"
         data-theme="true"
       ></i>
       <i
-        class="fa-solid fa-question text-theme-${this._assets.curTheme}-main hover:scale-110 transition-transform cursor-pointer"
+        class="fa-solid fa-question text-theme-${
+          this._assets.curTheme
+        }-main hover:scale-110 transition-transform cursor-pointer"
         data-theme="true"
       ></i>
     </div>

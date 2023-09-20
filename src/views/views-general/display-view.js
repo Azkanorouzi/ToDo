@@ -20,7 +20,10 @@ function addDisplayHandlers(handlers) {
     }
     if (clicked.closest('.todo-delete-btn')) {
       handlers.handleDeleteTaskClick(
-        clicked.closest('.todo-container').querySelector('.todo').dataset.id
+        clicked?.closest('.todo-container')?.querySelector('.todo')?.dataset
+          ?.id ??
+          clicked?.closest('.todo-container')?.querySelector('.child-project')
+            ?.dataset?.id
       )
     }
     if (clicked.closest('.todo-check-button')) {
@@ -32,10 +35,19 @@ function addDisplayHandlers(handlers) {
     }
     if (clicked.classList.contains('fa-question') || clicked.closest('.todo')) {
       handlers.handleTaskInfoClick(
-        clicked.closest('.todo').dataset.id,
-        'todo details'
+        clicked?.closest('.todo')?.dataset?.id ??
+          clicked?.closest('.child-project')?.dataset?.id,
+        clicked?.closest('.todo') ? 'Todo details' : 'Project details'
       )
       return
+    }
+    if (clicked.closest('.child-task')) {
+      handlers.handleChildTaskClick(clicked.closest('.child-task').dataset.id)
+      handlers.handleStandAloneProjectClick()
+      return
+    }
+    if (clicked.closest('.back-button')) {
+      handlers.handleBackButtonClick()
     }
   })
 }

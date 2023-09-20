@@ -39,7 +39,7 @@ data-id="${this._assets.id}"
     </div>
     <!-- Todo title -->
     <span class="todo-text ${this._assets.done ? 'line-through' : ''}"> ${
-      this._assets.name
+      this._assets.name || 'Untitled'
     } </span>
     <!-- Todo icons container -->
     <div
@@ -70,7 +70,7 @@ data-id="${this._assets.id}"
             : this._assets.importance == '0'
             ? SAFE_COLOR
             : DANGER_COLOR
-        } fa-solid fa-circle transition-transform mr-2"
+        } fa-solid fa-circle transition-transform mr-2 "
         data-theme="true"
       ></i>
       <!-- Details button -->
@@ -83,7 +83,7 @@ data-id="${this._assets.id}"
   <div
     class="text-3xl absolute bg-theme-${
       this._assets.curTheme
-    }-main p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all z-10 hidden todo-menu-container opacity-0"
+    }-main p-4 rounded-r-full rounded-bl-full -bottom-16 -right-0 transition-all z-10 hidden todo-menu-container opacity-0 "
     data-theme="true"
   >
     <i

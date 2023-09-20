@@ -1,5 +1,6 @@
 import { ChildView } from '../views-general/child-view'
 import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
+import { data } from 'autoprefixer'
 
 class ChildProjectView extends ChildView {
   constructor(data = null, standAlone = false) {
@@ -20,6 +21,7 @@ class ChildProjectView extends ChildView {
   _generateHTML() {
     return this._standAlone
       ? `
+      
       <div
       class="hover:border-theme-${
         this._assets.curTheme
@@ -45,7 +47,7 @@ class ChildProjectView extends ChildView {
         data-theme="true"
       ></i>
       <!-- Project name -->
-      <span class="z-10"> ${this._assets.name} </span>
+      <span class="z-10"> ${this._assets.name || 'Untitled'} </span>
       <!-- Project icons -->
       <div class="flex justify-between text-xl md:text-1xl 2xl:text-2xl z-10">
         <!-- Menu -->
@@ -105,12 +107,18 @@ class ChildProjectView extends ChildView {
     </div>
     `
       : `
+      <div class="relative todo-container order-${
+        (this._assets.importance - 3) * -1
+      } "${this._assets.done ? 'style="order: 4;"' : ''}>
     <div
-      class="hover:border-theme--forth rounded-md p-4 todo flex items-center justify-between lg:text-3xl relative shadow-md shadow-theme-${
+      class="hover:border-theme-${
         this._assets.curTheme
-      }-main border-x-4 border-y-4 border-theme-${
+      }-forth rounded-md p-4  flex items-center justify-between lg:text-3xl  shadow-md shadow-theme-${
           this._assets.curTheme
-        }-fifth cursor-pointer transition-colors project fade-in-left child-task"
+        }-main border-x-4 border-y-4 border-theme-${
+          this._assets.curTheme
+        }-fifth cursor-pointer transition-colors project fade-in-left child-task child-project project"
+        data-id="${this._assets.id}"
         data-theme="true"
     >
       <div
@@ -127,7 +135,7 @@ class ChildProjectView extends ChildView {
         data-theme="true"
       ></i>
       <!-- Project name -->
-      <span class="z-10"> Project name </span>
+      <span class="z-10"> ${this._assets.name || 'Untitled'} </span>
       <!-- Project icons -->
       <div
         class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl  z-10"
@@ -136,7 +144,7 @@ class ChildProjectView extends ChildView {
         <i
           class="fa-solid fa-bars text-theme-${
             this._assets.curTheme
-          }-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn"
+          }-forth mr-2 cursor-pointer hover:scale-110 transition-transform child-more-btn todo-menu"
           data-theme="true"
         ></i>
         <!-- Time clock -->
@@ -159,34 +167,29 @@ class ChildProjectView extends ChildView {
               : DANGER_COLOR
           } fa-solid fa-circle cursor-pointer hover:scale-110 transition-transform mr-2"
         ></i>
-      </div>
-      <!-- Project icons more -->
-      <div
-        class="text-3xl absolute bg-theme-${
-          this._assets.curTheme
-        }-forth z-10 p-4 rounded-r-full rounded-bl-full rotate-12 -bottom-16 -right-0 transition-all hidden more"
-        data-theme="true"
-      >
-        <i
-        class="fa-solid fa-bars text-theme-${
-          this._assets.curTheme
-        }-fifth mr-2 cursor-pointer hover:scale-110 transition-transform rotate-90 child-less-btn"
-        data-theme="true"
-        ></i>
-        <i
-          class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
-        ></i>
-        <i
-          class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
-        ></i>
-        <i
-          class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer child-delete-btn"
-        ></i>
         <!-- Details button -->
         <i
           class="fa-solid fa-question ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-info-btn"
         ></i>
       </div>
+      <!-- Project icons more -->
+      <div
+      class="text-3xl absolute bg-theme-${
+        this._assets.curTheme
+      }-main p-4 rounded-r-full rounded-bl-full transition-all z-10 hidden  opacity-0  todo-menu-container -bottom-16 -right-0"
+      data-theme="true"
+    >
+      <i
+        class="fa-solid fa-edit ${WARNING_COLOR} hover:scale-110 transition-transform cursor-pointer child-edit-btn"
+      ></i>
+      <i
+        class="fa-solid fa-share ${SAFE_COLOR} hover:scale-110 transition-transform cursor-pointer child-move-btn"
+      ></i>
+      <i
+        class="fa-solid fa-times ${DANGER_COLOR} hover:scale-110 transition-transform cursor-pointer mr-2 todo-delete-btn"
+      ></i>
+    </div>
+    </div>
     </div>`
   }
   updateParentEL() {

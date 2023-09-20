@@ -8,6 +8,13 @@ function addNavHandlers(handlers) {
       handlers.handleThemeChange(clicked.dataset.selectedTheme)
       return
     }
+    if (clicked.closest('.star-button')) {
+      handlers.handleStarButtonClick(
+        clicked.querySelector('.star') ?? clicked,
+        document.querySelectorAll('[data-star="true"]')
+      )
+      return
+    }
     if (clicked.closest('.nav-plus-btn')) {
       handlers.handleNavPlusBtn()
       return

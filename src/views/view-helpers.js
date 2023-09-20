@@ -1,4 +1,5 @@
 import { DANGER_COLOR_BG, SAFE_COLOR_BG, WARNING_COLOR_BG } from '../config'
+import { findTaskById } from '../controller/task-controller'
 import { GET_ALL_THEME_EL, LISTEN_TO } from '../helpers'
 // General functions
 /**
@@ -129,10 +130,13 @@ export function removeImportanceColor(importanceButton) {
     DANGER_COLOR_BG
   )
 }
-export function updateViewProgress(id, progress) {
+export function updateViewProgress(id, progress, state) {
   const progressEl = document.querySelector(
     `[data-id = ${id}] > .project-progress`
   )
+  console.log(progress)
+  findTaskById(id, state).view._assets.progress = progress
+  console.log(findTaskById(id, state).view)
   if (!progressEl) return
   progressEl.style.width = progress
 }
@@ -149,7 +153,6 @@ export function updateCheckedTodo(el, curTheme) {
     .style.order
     ? ''
     : '4'
-  console.log(el.style.order)
   if (el.classList.contains(`bg-theme-${curTheme}-third`)) {
     el.classList.remove(`bg-theme-${curTheme}-third`)
     el.classList.add(`bg-theme-${curTheme}-fifth`)
@@ -157,4 +160,23 @@ export function updateCheckedTodo(el, curTheme) {
   }
   el.classList.remove(`bg-theme-${curTheme}-fifth`)
   el.classList.add(`bg-theme-${curTheme}-third`)
+}
+export function showBackButton() {
+  document.querySelector('.back-button').classList.remove('lg:hidden')
+  document.querySelector('.empty-div').classList.add('hidden')
+}
+export function toggleStarIcon(icon) {
+  icon.classList.toggle('fa-regular')
+  icon.classList.toggle('fa-solid')
+}
+
+export function toggleStar(starsDisplay, curTheme) {
+  starsDisplay.forEach((starDis) => {
+    if (starDis.classList.contains(`bg-theme-${curTheme}-second`)) {
+      starDis.classList.toggle(`bg-theme-${curTheme}-second`)
+      return
+    }
+    starDis.classList.toggle(`lg:bg-theme-${curTheme}-second`)
+    starDis.classList.toggle(`bg-theme-${curTheme}-main`)
+  })
 }

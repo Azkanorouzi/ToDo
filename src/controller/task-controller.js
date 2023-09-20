@@ -95,10 +95,10 @@ function updateTasksState(state, taskType, ...tasks) {
  */
 function findTaskById(id, state) {
   const allTasks = state.projects.concat(state.envs).concat(state.todos)
-
   // making a copy of view
   const views = state.views.concat()
   const containerViews = state.containerviews.concat()
+  // New projects are being added to model.state.view not model.state.containerView
   return {
     task: allTasks.find((task) => task.id === id),
     view: views.find((view) => view._assets.id === id),
@@ -162,6 +162,7 @@ function createTask(
 ) {
   const { viewConstructor, viewContainerConstructor, taskConstructor, data } =
     options
+
   taskType = taskType.toUpperCase()
   // generate task
   const newTask = HELPERS.GENERATE_TASK(taskConstructor, data)
@@ -173,7 +174,7 @@ function createTask(
     taskType.toLowerCase(),
     standAlone,
     newTask.id,
-    newTask.getDaysLeft(),
+    newTask.getDaysLeft && newTask.getDaysLeft(),
     newTask.done,
     newTask.progress
   )
@@ -257,21 +258,26 @@ function getChildrenTodos(state) {
     return todo?.parentId === state.currentPageId
   })
 }
-function changeCurrentPage(id) {
+function changeCurrentPage(id, type) {
   if (id === model.state.currentPageId) return
   const taskContainer = findTaskById(id, model.state)
-  model.state.prePageId = model.state.currentPageId
+  model.state.prePageId = model.state.usedIds.includes(
+    model.state.currentPageId
+  )
+    ? model.state.currentPageId
+    : CONFIG.INITIAL_PAGE_ID
   model.state.currentPageId = id
+
   taskContainer.containerView.render(true, true, getChildrenViews(model.state))
 }
 // Updates the progress bar
 function updateProgress(project, updateChildren = true) {
-  if (!project.updateProjectProgress) return
+  if (!project?.updateProjectProgress) return
   project.children = [...getChildrenTodos(model.state)]
 
   project.updateProjectProgress()
 
-  view.viewHelpers.updateViewProgress(project.id, project.progress)
+  view.viewHelpers.updateViewProgress(project.id, project.progress, model.state)
 }
 function checkTodo(todo) {
   todo.task.done = todo.task.done ? false : true

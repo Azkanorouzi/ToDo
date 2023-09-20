@@ -16,7 +16,15 @@ function handleThemeChange(selectedTheme) {
     (view) => (view._assets.curTheme = model.state.currentTheme)
   )
 }
-
+// Handles star button
+function handleStarButtonClick(starIcon, starDisplays) {
+  view.viewHelpers.toggleStarIcon(starIcon)
+  view.viewHelpers.toggleStar(starDisplays, model.state.currentTheme)
+  model.state.star = model.state.star ? false : true
+  model.state.containerviews.map(
+    (containerview) => (containerview._assets.star = model.state.star)
+  )
+}
 // Load event handler
 function handleLoadEvent() {
   const initialProject = taskController.findTaskById(
@@ -35,8 +43,8 @@ function handleLoadEvent() {
   taskController.updateProgress(initialProject.task)
 }
 // Handles child task click
-function handleChildTaskClick(id) {
-  taskController.changeCurrentPage(id)
+function handleChildTaskClick(id, type) {
+  taskController.changeCurrentPage(id, type)
 }
 // Handles task info click
 function handleTaskInfoClick(id, modalInfoType) {
@@ -69,6 +77,7 @@ function handleDeleteTaskClick(taskId) {
     model.state.currentTheme
   )
   const task = taskController.findTaskById(taskId, model.state).task
+  if (!task) return
   warningModal.render(false, false)
 
   view.ModalView.addHandlers({
@@ -91,8 +100,8 @@ function handleWarningDeleteOk(taskId, taskType, task) {
     model.state
   ).task
   taskController.updateProgress(taskParent)
-  if (taskType === 'todo') return
-  handleChildTaskClick(model.state.prePageId)
+  if (taskType === 'todo' || task.standAlone) return
+  handleChildTaskClick(model.state.prePageId, 'delete')
 }
 // Handler for nav plus button
 function handlePlusBtn(type) {
@@ -112,30 +121,59 @@ function handlePlusBtn(type) {
 // Handles Adding a new todo
 function handleDisplayAdd(data, displayAddType) {
   const { selectedType } = data
-  console.log(displayAddType)
+  // env todo project
   const newTask = taskController.createTask(
     {
-      viewConstructor: view.TodoView,
-      taskConstructor: model.ToDo,
+      viewConstructor:
+        selectedType === 'todo'
+          ? view.TodoView
+          : selectedType === 'env'
+          ? view.ChildEnvView
+          : view.ChildProjectView,
+      taskConstructor:
+        selectedType === 'todo'
+          ? model.ToDo
+          : selectedType === 'env'
+          ? model.Environment
+          : model.Project,
+      viewContainerConstructor:
+        selectedType === 'todo'
+          ? null
+          : selectedType === 'env'
+          ? view.EnvironmentView
+          : view.ProjectView,
       data: {
-        parentId: model.state.currentPageId,
+        parentId:
+          displayAddType.trim('') === 'addnav'
+            ? null
+            : model.state.currentPageId,
         name: data.title,
         importance: data.importance,
         due: data.due,
         details: data.details,
+        standAlone: displayAddType.trim('') === 'addnav' ? true : false,
       },
     },
     'project',
-    false,
-    false
+    displayAddType.trim('') === 'addnav' ? true : false,
+    selectedType === 'todo' ? false : selectedType === 'env' ? true : true
   )
-  newTask.view._parentEl = document.querySelector('.items-container')
+  newTask.view._parentEl = document.querySelector(
+    `${
+      selectedType === 'env'
+        ? '.environment-container'
+        : displayAddType.trim('') === 'addnav'
+        ? '.stand-alone-projects-container'
+        : '.items-container'
+    }`
+  )
   newTask.view.render(false, false)
 
   const { task: parentTask } = taskController.findTaskById(
     newTask.task.parentId,
     model.state
   )
+  if (selectedType !== 'todo') return
   taskController.updateProgress(parentTask)
 }
 // HandleClose for modals
@@ -182,11 +220,17 @@ function handleTodoCheck(id, todoEl) {
   )
   taskController.updateProgress(parentTodo.task)
 }
-
+function handleStandAloneProjectClick() {
+  view.viewHelpers.showBackButton()
+}
+function handleBackButtonClick() {
+  taskController.changeCurrentPage(model.state.prePageId)
+}
 // This function will pass all subscribers to their publisher
 function init() {
   view.addNavHandlers({
     handleThemeChange,
+    handleStarButtonClick,
     handleNavPlusBtn: handlePlusBtn.bind('', 'addNav'),
   })
   view.viewHelpers.addLoadHandler(handleLoadEvent)
@@ -204,6 +248,10 @@ function init() {
     handleTaskInfoClick,
     handleDeleteTaskClick,
     handleTodoCheck,
+    handleChildMoreClick,
+    handleChildTaskClick,
+    handleStandAloneProjectClick,
+    handleBackButtonClick,
   })
   // Initializing the defaults
   // early return if the app is already initialized in that case we don't want to have defaults created again

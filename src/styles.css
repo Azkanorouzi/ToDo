@@ -11,6 +11,9 @@
 main {
   background: url('./assets/stars.webp');
 }
+.bg-opacity-0 {
+  --tw-bg-opacity: 0;
+}
 /* Handles very large devices for fitting todo items in better forms */
 @media screen and (min-width: 1536px) {
   .items-container {

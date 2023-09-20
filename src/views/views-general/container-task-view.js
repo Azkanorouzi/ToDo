@@ -13,6 +13,7 @@ class ContainerTaskView extends View {
       id: data.id,
       curTheme: data.curTheme,
       icon: data.icon,
+      star: data?.star ?? false,
     }
   }
   addEventListeners(handlers) {
