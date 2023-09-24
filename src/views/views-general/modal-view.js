@@ -9,6 +9,7 @@ class ModalView extends View {
     this._parentEl = document.querySelector('.modal-container')
   }
   _generateAssets(data) {
+    console.log(data.daysLeft, 'asfasdf')
     this._assets.name = data.name
     this._assets.details = data.details
     this._assets.importance = data.importance
@@ -17,6 +18,7 @@ class ModalView extends View {
     this._assets.curTheme = data.curTheme
     this._assets.due = data.due
     this._assets.daysLeft = data.daysLeft
+    this._assets.message = data?.message ?? false
   }
   static addHandlers(handlers) {
     LISTEN_TO(document.querySelector('.modal'), 'click', (e) => {
@@ -40,6 +42,9 @@ class ModalView extends View {
           clickedEl.closest('.modal').dataset.addType
         )
         return
+      }
+      if (clickedEl.closest('.edit-display-modal-button')) {
+        handlers.handleEditOk(_getInputsValue('display'))
       }
       if (clickedEl.closest('.add-nav-modal-button')) {
         handlers.handleDisplayAdd(

@@ -1,4 +1,5 @@
 import { DANGER_COLOR_BG, SAFE_COLOR_BG, WARNING_COLOR_BG } from '../config'
+import { DANGER_COLOR, SAFE_COLOR, WARNING_COLOR } from '../config'
 import { findTaskById } from '../controller/task-controller'
 import { GET_ALL_THEME_EL, LISTEN_TO } from '../helpers'
 // General functions
@@ -49,6 +50,12 @@ export function addNavTaskHandlers(handlers) {
           clicked.closest('.environment')?.dataset.id
       )
     }
+    if (clicked.closest('.fa-edit')) {
+      handlers.handleChildEditClick(
+        clicked.closest('.child-task')?.dataset.id ||
+          clicked.closest('.environment')?.dataset.id
+      )
+    }
     if (clicked.closest('.child-task')) {
       handlers.handleChildTaskClick(clicked.closest('.child-task').dataset.id)
       return
@@ -66,15 +73,14 @@ export function generateModalInfo(task, view, modalType, curTheme) {
     modalType: modalType,
     curTheme: curTheme,
     due: task.due,
-    ...(() => {
-      if (task?.getDaysLeft) return [task.getDaysLeft()]
-    })(),
+    daysLeft: task?.daysLeft,
   })
 }
-export function generateModal(view, modalType, curTheme) {
+export function generateModal(view, modalType, curTheme, message = false) {
   return new view({
     modalType,
     curTheme,
+    message,
   })
 }
 export function closeModal() {
@@ -134,9 +140,8 @@ export function updateViewProgress(id, progress, state) {
   const progressEl = document.querySelector(
     `[data-id = ${id}] > .project-progress`
   )
-  console.log(progress)
+
   findTaskById(id, state).view._assets.progress = progress
-  console.log(findTaskById(id, state).view)
   if (!progressEl) return
   progressEl.style.width = progress
 }
@@ -179,4 +184,57 @@ export function toggleStar(starsDisplay, curTheme) {
     starDis.classList.toggle(`lg:bg-theme-${curTheme}-second`)
     starDis.classList.toggle(`bg-theme-${curTheme}-main`)
   })
+}
+export function fillModalEdit(task) {
+  const { data } = task
+  document.querySelector('.details-input').value = data?.details ?? ''
+  document.querySelector('.date-input').value = new Date(data?.due ?? null)
+    .toISOString()
+    .split('T')[0]
+  document.querySelector('.title-input').value = data?.name ?? ''
+}
+export function updateEditedTask({ view, task }) {
+  view._assets.daysLeft = task.getDaysLeft()
+  console.log(
+    view._assets.daysLeft,
+    `${
+      view._assets.daysLeft >= '7'
+        ? 'SAFE_COLOR'
+        : view._assets.daysLeft >= '1'
+        ? 'WARNING_COLOR'
+        : 'DANGER_COLOR'
+    }`
+  )
+  document.querySelector('.container-title').childNodes[2].textContent =
+    ' ' + view._assets.name
+  const taskEl = document.querySelector(`div[data-id=${task.id}]`)
+  taskEl.querySelector('.tsk-name').textContent = view._assets.name
+  taskEl
+    .querySelector('.fa-circle')
+    .classList.remove(WARNING_COLOR, SAFE_COLOR, DANGER_COLOR)
+  taskEl
+    .querySelector('.fa-circle')
+    .classList.add(
+      `${
+        view._assets.importance === '1'
+          ? WARNING_COLOR
+          : view._assets.importance === '0'
+          ? SAFE_COLOR
+          : DANGER_COLOR
+      }`
+    )
+  taskEl
+    .querySelector('.fa-clock')
+    .classList.remove(WARNING_COLOR, SAFE_COLOR, DANGER_COLOR)
+  taskEl
+    .querySelector('.fa-clock')
+    .classList.add(
+      `${
+        view._assets.daysLeft >= '7'
+          ? SAFE_COLOR
+          : view._assets.daysLeft >= '0'
+          ? WARNING_COLOR
+          : DANGER_COLOR
+      }`
+    )
 }

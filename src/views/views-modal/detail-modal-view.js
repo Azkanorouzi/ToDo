@@ -64,10 +64,10 @@ class DetailModalView extends ModalView {
         ? ``
         : `          <!-- State -->
         <p class="text-theme-${this._assets.curTheme}-main" data-theme="true">${
-            this._assets.daysLeft == 0
-              ? this.todayMessage
-              : this._assets.daysLeft > 0
+            this._assets.daysLeft >= '7'
               ? this.futureMessage
+              : this._assets.daysLeft >= '0'
+              ? this.todayMessage
               : this.lateMessage
           }</p>
       </div>

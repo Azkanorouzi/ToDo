@@ -33,7 +33,7 @@ class ProjectView extends ContainerTaskView {
       <!-- Name of the project -->
       <h1 class="text-2xl font-second text-theme-${
         this._assets.curTheme
-      }-fifth lg:text-3xl" data-theme="true">
+      }-fifth lg:text-3xl container-title" data-theme="true">
         <i class="fa-solid ${this._assets.icon} text-theme-${
       this._assets.curTheme
     }-third" data-theme="true"></i>

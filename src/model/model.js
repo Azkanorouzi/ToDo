@@ -1,5 +1,6 @@
 // State, Http library, Business logic: state is the data that needs to be stored in the front end it's for example the current page user is visiting in the case of todo list the todos that user creates before saving in backend or local storage it should be here in state and then when user gets back we should grab that data and put it back to state give it to controller so that then controller can order view to display those data, http library is fetch requests and interactons we have with the web if we're using an online api for example, business logic is the logic related to the core functionality fo our program in the case of todo list the objects and how they're implemented the todos functionalities and so on ...
 
+import { parseISOWithOptions } from 'date-fns/fp'
 import * as CONFIG from '../config'
 import * as HELPERS from '../helpers'
 const state = {
@@ -29,6 +30,9 @@ class Task {
         ? 'Task'
         : HELPERS.GET_CONSTRUCTOR_NAME(this)
   }
+  updateTask() {
+    this._getData()
+  }
   /**
    *  this function will generate a unique id consisting of letters and numbers and calls itself if the generated id is already used
    * @returns {number} a unique id
@@ -57,7 +61,7 @@ class Environment extends Task {
   children = []
   _getData() {
     this.details = this.data.details || CONFIG.DEFAULT_TASK_DETAILS
-    this.name = this.data.name || CONFIG.DEFAULT_TASK_NAME
+    this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME
   }
 }
 class LimitedTimeTask extends Task {
@@ -73,6 +77,7 @@ class LimitedTimeTask extends Task {
     this.due = this.data?.due || HELPERS.GET_TIME_TOMORROW()
     this.details = this.data?.details || CONFIG.DEFAULT_TASK_DETAILS
     this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME
+    this.daysLeft = this.getDaysLeft()
   }
   /**
    * this function returns how many days are left
@@ -80,7 +85,7 @@ class LimitedTimeTask extends Task {
    */
   getDaysLeft() {
     // Creation date is the starting point the ending point is due
-    return HELPERS.GET_DATE_RANGE(this._creationDate, this._due)
+    return HELPERS.GET_DATE_RANGE(this._creationDate, this.due)
   }
   /**
    * determines the task's parent wether it's a project or environment if it's a standalone project or an environment (which means it doesn't have any parent) returns null

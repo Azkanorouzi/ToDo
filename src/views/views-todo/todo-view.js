@@ -9,6 +9,7 @@ class TodoView extends ChildView {
     this._parentEl = document.getElementById(`${this._assets.parentId}`)
   }
   _generateHTML() {
+    console.log(this._assets.daysLeft)
     const markup = `
     <div class="relative todo-container order-${
       (this._assets.importance - 3) * -1
@@ -38,9 +39,9 @@ data-id="${this._assets.id}"
     }" data-theme="true"></i>
     </div>
     <!-- Todo title -->
-    <span class="todo-text ${this._assets.done ? 'line-through' : ''}"> ${
-      this._assets.name || 'Untitled'
-    } </span>
+    <span class="todo-text ${
+      this._assets.done ? 'line-through' : ''
+    } tsk-name"> ${this._assets.name || 'Untitled'} </span>
     <!-- Todo icons container -->
     <div
       class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl"
@@ -55,10 +56,10 @@ data-id="${this._assets.id}"
       <!-- Time clock -->
       <i
         class="${
-          this._assets.daysLeft == 0
-            ? WARNING_COLOR
-            : this._assets.daysLeft > 0
+          this._assets.daysLeft >= '7'
             ? SAFE_COLOR
+            : this._assets.daysLeft >= '0'
+            ? WARNING_COLOR
             : DANGER_COLOR
         } fa-solid fa-clock mr-2 transition-transform"
       ></i>

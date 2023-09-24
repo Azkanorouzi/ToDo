@@ -19,6 +19,7 @@ class ChildProjectView extends ChildView {
     return document.querySelector(`.project[data-id="${this._assets.id}"]`)
   }
   _generateHTML() {
+    console.log(this._assets.daysLeft)
     return this._standAlone
       ? `
       
@@ -47,7 +48,7 @@ class ChildProjectView extends ChildView {
         data-theme="true"
       ></i>
       <!-- Project name -->
-      <span class="z-10"> ${this._assets.name || 'Untitled'} </span>
+      <span class="z-10 tsk-name"> ${this._assets.name || 'Untitled'} </span>
       <!-- Project icons -->
       <div class="flex justify-between text-xl md:text-1xl 2xl:text-2xl z-10">
         <!-- Menu -->
@@ -60,10 +61,10 @@ class ChildProjectView extends ChildView {
         <!-- Time clock -->
         <i
           class="${
-            this._assets.daysLeft == 0
-              ? WARNING_COLOR
-              : this._assets.daysLeft > 0
+            this._assets.daysLeft >= '7'
               ? SAFE_COLOR
+              : this._assets.daysLeft >= '0'
+              ? WARNING_COLOR
               : DANGER_COLOR
           } fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform "
         ></i>
@@ -135,7 +136,7 @@ class ChildProjectView extends ChildView {
         data-theme="true"
       ></i>
       <!-- Project name -->
-      <span class="z-10"> ${this._assets.name || 'Untitled'} </span>
+      <span class="z-10 tsk-name"> ${this._assets.name || 'Untitled'} </span>
       <!-- Project icons -->
       <div
         class="flex justify-between text-2xl md:text-3xl 2xl:text-4xl  z-10"
@@ -150,10 +151,10 @@ class ChildProjectView extends ChildView {
         <!-- Time clock -->
         <i
           class="${
-            this._assets.daysLeft == 0
-              ? WARNING_COLOR
-              : this._assets.daysLeft > 0
+            this._assets.daysLeft >= '7'
               ? SAFE_COLOR
+              : this._assets.daysLeft >= '0'
+              ? WARNING_COLOR
               : DANGER_COLOR
           } fa-solid fa-clock mr-2 cursor-pointer hover:scale-110 transition-transform"
         ></i>

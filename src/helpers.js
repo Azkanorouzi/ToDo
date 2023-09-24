@@ -72,9 +72,14 @@ const GET_TIME_TOMORROW = () => {
  * @returns {string} returns a string representing days left until something
  */
 const GET_DATE_RANGE = (startDate, endDate) => {
-  const start = addDays(new Date(), 0)
-  const end = addDays(new Date(), 0)
-  return String(end - start)
+  const start = addDays(new Date(startDate), 0)
+  const end = addDays(new Date(endDate), 0)
+  const res = String(end - start)
+  // console.log(
+  //   res.length === 9 ? res[0] : res.length > 9 ? res.slice(0, 2) : 0,
+  //   res
+  // )
+  return res.length === 9 ? +res[0] : res.length > 9 ? +res.slice(0, 2) : 0
 }
 /**
  * this function will simply return all the elements that contain data-theme=true attribute which is an indication of them being themable

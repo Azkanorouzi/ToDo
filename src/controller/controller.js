@@ -2,7 +2,7 @@ import { IMPORTANT_MESSAGE, MIGHT_MESSAGE, SHOULD_MESSAGE } from '../config'
 import * as model from '../model/model'
 import * as view from '../views/view'
 import * as taskController from './task-controller'
-
+import { format } from 'date-fns'
 // Theme change handler
 function handleThemeChange(selectedTheme) {
   view.viewHelpers.changeTheme(selectedTheme, model.state.currentTheme)
@@ -104,11 +104,12 @@ function handleWarningDeleteOk(taskId, taskType, task) {
   handleChildTaskClick(model.state.prePageId, 'delete')
 }
 // Handler for nav plus button
-function handlePlusBtn(type) {
+function handlePlusBtn(type, message = false) {
   const addModal = view.viewHelpers.generateModal(
     view.AddModalView,
     type,
-    model.state.currentTheme
+    model.state.currentTheme,
+    message
   )
   addModal.render(false, false)
   view.ModalView.addHandlers({
@@ -116,6 +117,7 @@ function handlePlusBtn(type) {
     handleNavRadioBtn,
     handleImportanceBtn,
     handleDisplayAdd,
+    handleEditOk,
   })
 }
 // Handles Adding a new todo
@@ -180,6 +182,17 @@ function handleDisplayAdd(data, displayAddType) {
 function handleClose() {
   view.viewHelpers.closeModal()
 }
+function handleEditOk(data) {
+  taskController.editTask(model.state.currentPageId, {
+    ...data,
+    due: format(new Date(data.date), 'MM/dd/yyyy', 'en'),
+    name: data.title,
+  })
+  view.viewHelpers.updateEditedTask(
+    taskController.findTaskById(model.state.currentPageId, model.state)
+  )
+  handleClose()
+}
 // handle radio buttons
 function handleNavRadioBtn(selectedRadio, limitedTaskInputs) {
   // Hiding limited task inputs because env is not a limited task and therefore importance and date should be removed from the form
@@ -226,6 +239,13 @@ function handleStandAloneProjectClick() {
 function handleBackButtonClick() {
   taskController.changeCurrentPage(model.state.prePageId)
 }
+// Edit
+function handleChildEditClick(id) {
+  handlePlusBtn('addTodoDisplay', 'Edit')
+  view.viewHelpers.fillModalEdit(
+    taskController.findTaskById(id, model.state).task
+  )
+}
 // This function will pass all subscribers to their publisher
 function init() {
   view.addNavHandlers({
@@ -240,6 +260,7 @@ function init() {
     handleChildMoreClick,
     handleChildLessClick,
     handleDeleteTaskClick,
+    handleChildEditClick,
   })
   view.addDisplayHandlers({
     handleDisplayProjectPlusBtn: handlePlusBtn.bind('', 'addTodoDisplay'),

@@ -23,7 +23,7 @@ class ChildEnvView extends ChildView {
   >
     <div>
       <i class="fa-solid fa-dragon text-theme-1-third" data-theme="true"></i>
-      ${this._assets.name || 'Untitled'}
+      <span class="tsk-name">${this._assets.name || 'Untitled'}</span>
     </div>
     <div class="flex justify-between text-1xl md:text-2xl gap-2">
       <i

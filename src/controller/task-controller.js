@@ -145,8 +145,16 @@ function deleteTask(taskId, taskType, state) {
  * @param {*} newData edited data
  */
 function editTask(taskId, newData) {
-  const { task } = findTaskById(taskId)
+  const { task, view, containerView } = findTaskById(taskId, model.state)
   task.data = newData
+  task.due = newData.due
+  task.importance = newData.importance
+  task.details = newData.details
+  view._assets.name = newData.name
+  view._assets.importance = newData.importance
+  view._assets.daysLeft = task.getDaysLeft()
+  task.daysLeft = task.getDaysLeft()
+  containerView._assets.name = newData.name
   return task
 }
 /**

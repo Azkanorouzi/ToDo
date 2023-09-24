@@ -40,12 +40,16 @@ class AddModalView extends ModalView {
         <i
           class="fa-solid fa-times text-5xl ${DANGER_COLOR} ml-auto cursor-pointer close-modal"
         ></i>
-        <h2 class="absolute text-4xl">Add a new ${
-          this._assets.modalType === 'adddisplay'
-            ? 'Todo/Project'
-            : this._assets.modalType === 'addtododisplay'
-            ? 'Todo'
-            : 'Env/Project'
+        <h2 class="absolute text-4xl">${
+          this._assets.message
+            ? this._assets.message
+            : `Add a new ${
+                this._assets.modalType === 'adddisplay'
+                  ? 'Todo/Project'
+                  : this._assets.modalType === 'addtododisplay'
+                  ? 'Todo'
+                  : 'Env/Project'
+              }`
         }</h2>
         <div class="flex gap-3 flex-col ">
         <div class="flex ${
@@ -148,6 +152,8 @@ class AddModalView extends ModalView {
     }-forth focus:border-b-0 transition-all hover:opacity-100 opacity-70 add-modal-button ${
       this._assets.modalType === 'adddisplay'
         ? 'add-nav-modal-button'
+        : this._assets.message
+        ? 'edit-display-modal-button'
         : 'add-display-modal-button'
     }"
     data-theme="true"

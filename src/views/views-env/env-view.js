@@ -35,7 +35,7 @@ class EnvironmentView extends ContainerTaskView {
       <!-- Name of the Area -->
       <h1 class="text-2xl font-second text-theme-${
         this._assets.curTheme
-      }-fifth lg:text-3xl" data-theme="true">
+      }-fifth lg:text-3xl container-title" data-theme="true">
         <i class="fa-solid fa-dragon text-theme-${
           this._assets.curTheme
         }-third" data-theme="true"></i>
