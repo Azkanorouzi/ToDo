@@ -2,10 +2,11 @@ import { SAFE_COLOR, DANGER_COLOR, WARNING_COLOR } from '../../config'
 import { ContainerTaskView } from '../views-general/container-task-view'
 class EnvironmentView extends ContainerTaskView {
   _assets = {}
-  constructor(data = null) {
+  constructor(data = null, children) {
     super(data)
     super._generateAssets(data)
-    this.children = this._assets.children
+    this.children = this._assets.children ?? children
+    this.__class__ = 'EnvironmentView'
   }
   _generateHTML() {
     return `

@@ -5,7 +5,6 @@ import { data } from 'autoprefixer'
 class ChildProjectView extends ChildView {
   constructor(data = null, standAlone = false) {
     super()
-    if (!data) throw new Error('data is required')
     super._generateAssets(data)
     // child project have slightly different markup if it's standAlone
     this._standAlone = standAlone
@@ -14,12 +13,12 @@ class ChildProjectView extends ChildView {
       this._standAlone ? `stand-alone-projects-container` : `items-container`
     )[0]
     this.children = this._assets.children
+    this.__class__ = 'ChildProjectView'
   }
   getEl = function () {
     return document.querySelector(`.project[data-id="${this._assets.id}"]`)
   }
   _generateHTML() {
-    console.log(this._assets.daysLeft)
     return this._standAlone
       ? `
       
@@ -31,7 +30,7 @@ class ChildProjectView extends ChildView {
         }-main border-x-4 border-y-4 border-theme-${
           this._assets.curTheme
         }-fifth cursor-pointer transition-colors project fade-in-left child-task"
-        data-id = "${this._assets.id}"
+        data-id="${this._assets.id}"
         data-theme="true"
     >
       <div
@@ -193,8 +192,10 @@ class ChildProjectView extends ChildView {
     </div>
     </div>`
   }
-  updateParentEL() {
-    this._parentEl = document.querySelector('.items-container')
+  updateParentEl() {
+    this._parentEl = document.getElementsByClassName(
+      this._standAlone ? `stand-alone-projects-container` : `items-container`
+    )[0]
   }
 }
 export { ChildProjectView }

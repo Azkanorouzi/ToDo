@@ -17,6 +17,7 @@ class ChildView extends View {
       })
   }
   _generateAssets(data) {
+    if (!data) return
     this._assets = {
       name: data.name,
       // Todo childTodos name probably should be fixed

@@ -8,6 +8,7 @@ class ChildEnvView extends ChildView {
     this._el = document.querySelector(
       `.environment[data-id="${this._assets.id}"]`
     )
+    this.__class__ = 'ChildEnvView'
   }
   get el() {
     return `.environment[data-id="${this._assets.id}"]`
@@ -46,6 +47,12 @@ class ChildEnvView extends ChildView {
       ></i>
     </div>
   </div>`
+  }
+  updateParentEl() {
+    this._parentEl = document.querySelector(`environment-container`)
+    this._el = document.querySelector(
+      `.environment[data-id="${this._assets.id}"]`
+    )
   }
 }
 export { ChildEnvView }

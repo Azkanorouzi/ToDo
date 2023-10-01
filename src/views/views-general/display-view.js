@@ -26,6 +26,12 @@ function addDisplayHandlers(handlers) {
             ?.dataset?.id
       )
     }
+    if (clicked.closest('.fa-edit')) {
+      handlers.handleChildEditClick(
+        clicked.closest('.todo-container')?.querySelector('.todo')?.dataset
+          ?.id ?? clicked?.closest('.child-task')?.dataset?.id
+      )
+    }
     if (clicked.closest('.todo-check-button')) {
       handlers.handleTodoCheck(
         clicked.closest('.todo').dataset.id,

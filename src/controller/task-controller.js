@@ -74,7 +74,7 @@ function generateDefaultEnvProject() {
     'project',
     false
   )
-  initialEnvProject.view.updateParentEL()
+  initialEnvProject.view.updateParentEl()
 }
 /**
  * This function's responsibility is to update a certain task it can also update the views
@@ -154,6 +154,7 @@ function editTask(taskId, newData) {
   view._assets.importance = newData.importance
   view._assets.daysLeft = task.getDaysLeft()
   task.daysLeft = task.getDaysLeft()
+  if (task.taskType === 'ToDo') return task
   containerView._assets.name = newData.name
   return task
 }
@@ -216,6 +217,7 @@ function initializeDefaults() {
   const { defaultProjects, defaultProjectsView, defaultProjectsContainerView } =
     generateDefaultProjects(model.state)
   // Updating the tasks state for the default projects
+  if (model.state.isDefaultsInitialized) return
   updateTasksState(model.state, 'project', ...defaultProjects)
   updateTasksState(model.state, 'view', ...defaultProjectsView)
   updateTasksState(
@@ -236,6 +238,7 @@ function initializeDefaults() {
     this.details = this.data?.details || CONFIG.DEFAULT_TASK_DETAILS
     this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME */
   // Creating intiail project
+
   const initialProject = createTask(
     {
       taskConstructor: model.Project,
@@ -268,7 +271,9 @@ function getChildrenTodos(state) {
 }
 function changeCurrentPage(id, type) {
   if (id === model.state.currentPageId) return
+
   const taskContainer = findTaskById(id, model.state)
+  console.log(taskContainer)
   model.state.prePageId = model.state.usedIds.includes(
     model.state.currentPageId
   )

@@ -1,8 +1,14 @@
-import { IMPORTANT_MESSAGE, MIGHT_MESSAGE, SHOULD_MESSAGE } from '../config'
+import {
+  IMPORTANT_MESSAGE,
+  MIGHT_MESSAGE,
+  SHOULD_MESSAGE,
+  STATE_KEY,
+} from '../config'
 import * as model from '../model/model'
 import * as view from '../views/view'
 import * as taskController from './task-controller'
 import { format } from 'date-fns'
+import { SAVE_TO_LOCAL_STORAGE, INITIALIZE_LOCAL_STORAGE } from '../helpers'
 // Theme change handler
 function handleThemeChange(selectedTheme) {
   view.viewHelpers.changeTheme(selectedTheme, model.state.currentTheme)
@@ -27,10 +33,29 @@ function handleStarButtonClick(starIcon, starDisplays) {
 }
 // Load event handler
 function handleLoadEvent() {
+  localStorage.removeItem(STATE_KEY)
+  INITIALIZE_LOCAL_STORAGE(model.state, STATE_KEY, {
+    Project: model.Project,
+    ToDo: model.ToDo,
+    Environment: model.Environment,
+    ProjectView: view.ProjectView,
+    ChildProjectView: view.ChildProjectView,
+    EnvironmentView: view.EnvironmentView,
+    ChildEnvView: view.ChildEnvView,
+    TodoView: view.TodoView,
+  })
   const initialProject = taskController.findTaskById(
     model.state.currentPageId,
     model.state
   )
+  if (model.state.isDefaultsInitialized) {
+    initialProject.containerView.render(
+      true,
+      true,
+      taskController.getChildrenViews(model.state)
+    )
+    return
+  }
   const { defaultTodos, defaultTodosView } =
     taskController.generateDefaultToDos()
   taskController.updateTasksState(model.state, 'todo', ...defaultTodos)
@@ -41,6 +66,7 @@ function handleLoadEvent() {
     taskController.getChildrenViews(model.state)
   )
   taskController.updateProgress(initialProject.task)
+  model.state.isDefaultsInitialized = true
 }
 // Handles child task click
 function handleChildTaskClick(id, type) {
@@ -183,13 +209,13 @@ function handleClose() {
   view.viewHelpers.closeModal()
 }
 function handleEditOk(data) {
-  taskController.editTask(model.state.currentPageId, {
+  taskController.editTask(model.state.curEditTarget, {
     ...data,
     due: format(new Date(data.date), 'MM/dd/yyyy', 'en'),
     name: data.title,
   })
   view.viewHelpers.updateEditedTask(
-    taskController.findTaskById(model.state.currentPageId, model.state)
+    taskController.findTaskById(model.state.curEditTarget, model.state)
   )
   handleClose()
 }
@@ -241,10 +267,14 @@ function handleBackButtonClick() {
 }
 // Edit
 function handleChildEditClick(id) {
+  model.state.curEditTarget = id
   handlePlusBtn('addTodoDisplay', 'Edit')
   view.viewHelpers.fillModalEdit(
     taskController.findTaskById(id, model.state).task
   )
+}
+function handleUnload() {
+  SAVE_TO_LOCAL_STORAGE(model.state, STATE_KEY)
 }
 // This function will pass all subscribers to their publisher
 function init() {
@@ -254,6 +284,7 @@ function init() {
     handleNavPlusBtn: handlePlusBtn.bind('', 'addNav'),
   })
   view.viewHelpers.addLoadHandler(handleLoadEvent)
+  view.viewHelpers.addUnloadHandler(handleUnload)
   view.viewHelpers.addNavTaskHandlers({
     handleChildTaskClick,
     handleTaskInfoClick,
@@ -273,12 +304,11 @@ function init() {
     handleChildTaskClick,
     handleStandAloneProjectClick,
     handleBackButtonClick,
+    handleChildEditClick,
   })
   // Initializing the defaults
   // early return if the app is already initialized in that case we don't want to have defaults created again
   if (model.state.isDefaultsInitialized) return
   taskController.initializeDefaults()
-  // marking the application as initialized so that initializeDefaults don't get called again
-  model.state.isDefaultsInitialized = true
 }
 init()

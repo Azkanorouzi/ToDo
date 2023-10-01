@@ -175,6 +175,10 @@ export function toggleStarIcon(icon) {
   icon.classList.toggle('fa-solid')
 }
 
+export function addUnloadHandler(handler) {
+  window.addEventListener('beforeunload', handler)
+}
+
 export function toggleStar(starsDisplay, curTheme) {
   starsDisplay.forEach((starDis) => {
     if (starDis.classList.contains(`bg-theme-${curTheme}-second`)) {
@@ -188,26 +192,21 @@ export function toggleStar(starsDisplay, curTheme) {
 export function fillModalEdit(task) {
   const { data } = task
   document.querySelector('.details-input').value = data?.details ?? ''
-  document.querySelector('.date-input').value = new Date(data?.due ?? null)
+  document.querySelector('.date-input').value = new Date(
+    data?.due ?? task?.due ?? null
+  )
     .toISOString()
     .split('T')[0]
   document.querySelector('.title-input').value = data?.name ?? ''
 }
 export function updateEditedTask({ view, task }) {
   view._assets.daysLeft = task.getDaysLeft()
-  console.log(
-    view._assets.daysLeft,
-    `${
-      view._assets.daysLeft >= '7'
-        ? 'SAFE_COLOR'
-        : view._assets.daysLeft >= '1'
-        ? 'WARNING_COLOR'
-        : 'DANGER_COLOR'
-    }`
-  )
-  document.querySelector('.container-title').childNodes[2].textContent =
-    ' ' + view._assets.name
+  if (task.taskType === 'Project') {
+    document.querySelector('.container-title').childNodes[2].textContent =
+      ' ' + view._assets.name
+  }
   const taskEl = document.querySelector(`div[data-id=${task.id}]`)
+  if (!taskEl) return
   taskEl.querySelector('.tsk-name').textContent = view._assets.name
   taskEl
     .querySelector('.fa-circle')

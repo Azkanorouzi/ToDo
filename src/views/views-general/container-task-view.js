@@ -7,6 +7,7 @@ class ContainerTaskView extends View {
   }
 
   _generateAssets(data) {
+    if (!data) return
     this._assets = {
       name: data.name,
       // Todo childTodos name probably should be fixed
@@ -23,6 +24,9 @@ class ContainerTaskView extends View {
       if (clickedEl.closest('.display-project-plus-btn'))
         handlers.handleDisplayProjectPlus()
     })
+  }
+  updateParentEl() {
+    this._parentEl = document.querySelector('.display-container')
   }
 }
 export { ContainerTaskView }

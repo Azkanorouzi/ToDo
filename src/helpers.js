@@ -75,10 +75,6 @@ const GET_DATE_RANGE = (startDate, endDate) => {
   const start = addDays(new Date(startDate), 0)
   const end = addDays(new Date(endDate), 0)
   const res = String(end - start)
-  // console.log(
-  //   res.length === 9 ? res[0] : res.length > 9 ? res.slice(0, 2) : 0,
-  //   res
-  // )
   return res.length === 9 ? +res[0] : res.length > 9 ? +res.slice(0, 2) : 0
 }
 /**
@@ -310,6 +306,54 @@ const LISTEN_TO = (element, eventName, handler) => {
 //     }
 //   })
 // }
+
+// Serialize the state and store it in local storage
+function SAVE_TO_LOCAL_STORAGE(item, key) {
+  const serializedItem = JSON.stringify(item)
+  localStorage.setItem(key, serializedItem)
+}
+function INITIALIZE_LOCAL_STORAGE(state, key, constructors) {
+  const serializedState = localStorage.getItem(key)
+  if (serializedState) {
+    const parsedState = JSON.parse(serializedState, (key, value) => {
+      // Check if value is an object and has a specific property (e.g., '__class__')
+
+      if (typeof value === 'object' && value !== null && value['__class__']) {
+        // Based on the '__class__' property, recreate the object with its prototype
+        switch (value['__class__']) {
+          case 'ProjectView':
+            return Object.assign(
+              new constructors.ProjectView(null, serializedState.todos),
+              value
+            )
+          case 'ChildProjectView':
+            return Object.assign(new constructors.ChildProjectView(), value)
+          case 'Project':
+            return Object.assign(new constructors.Project(), value)
+          case 'TodoView':
+            return Object.assign(new constructors.TodoView(), value)
+          case 'ToDo':
+            return Object.assign(new constructors.ToDo(), value)
+          case 'Environment':
+            return Object.assign(
+              new constructors.Environment(null, value.children),
+              value
+            )
+          case 'EnvironmentView':
+            return Object.assign(new constructors.EnvironmentView(), value)
+          case 'ChildEnvView':
+            return Object.assign(new constructors.ChildEnvView(), value)
+          // Add cases for other custom classes as needed
+          default:
+            return value
+        }
+      }
+      return value
+    })
+    // Update your state object with the deserialized data
+    Object.assign(state, parsedState)
+  }
+}
 export {
   GENERATE_RANDOM_NUMBER,
   GENERATE_RANDOM_ALPHABET,
@@ -332,4 +376,6 @@ export {
   LISTEN_TO,
   GENERATE_DEFAULT_ENV,
   GENERATE_DEFAULT_ENV_VIEW,
+  SAVE_TO_LOCAL_STORAGE,
+  INITIALIZE_LOCAL_STORAGE,
 }

@@ -77,6 +77,7 @@ const MIGHT_MESSAGE = 'optional'
 const INITIAL_ENV_PROJECT_DETAILS =
   'Projects and todos can be nested into environments :)'
 const INITIAL_ENV_PROJECT_NAME = 'TEST'
+const STATE_KEY = 'appState'
 export {
   ID_NUMBERS_LENGTH,
   ID_LETTERS_LENGTH,
@@ -112,4 +113,5 @@ export {
   MIGHT_MESSAGE,
   INITIAL_ENV_PROJECT_NAME,
   INITIAL_ENV_PROJECT_DETAILS,
+  STATE_KEY,
 }

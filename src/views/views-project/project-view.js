@@ -1,10 +1,10 @@
 import { ContainerTaskView } from '../views-general/container-task-view'
 class ProjectView extends ContainerTaskView {
-  constructor(data = null) {
+  constructor(data = null, children) {
     super()
-    if (!data) throw new Error('data is required')
     super._generateAssets(data)
-    this.children = this._assets.children
+    this.children = this._assets.children ?? children
+    this.__class__ = 'ProjectView'
   }
   _generateHTML() {
     return `

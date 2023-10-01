@@ -1,5 +1,3 @@
-// State, Http library, Business logic: state is the data that needs to be stored in the front end it's for example the current page user is visiting in the case of todo list the todos that user creates before saving in backend or local storage it should be here in state and then when user gets back we should grab that data and put it back to state give it to controller so that then controller can order view to display those data, http library is fetch requests and interactons we have with the web if we're using an online api for example, business logic is the logic related to the core functionality fo our program in the case of todo list the objects and how they're implemented the todos functionalities and so on ...
-
 import { parseISOWithOptions } from 'date-fns/fp'
 import * as CONFIG from '../config'
 import * as HELPERS from '../helpers'
@@ -15,6 +13,7 @@ const state = {
   currentTheme: CONFIG.INITIAL_PAGE_THEME,
   currentPageId: CONFIG.INITIAL_PAGE_ID,
   prePageId: CONFIG.INITIAL_PAGE_ID,
+  curEditTarget: '',
 }
 // We have seven default env inbox today upcoming anytime someday we must create six default ids
 // Task is class parent for both project, environment and todo
@@ -60,8 +59,10 @@ class Task {
 class Environment extends Task {
   children = []
   _getData() {
+    if (!this.data) return
     this.details = this.data.details || CONFIG.DEFAULT_TASK_DETAILS
     this.name = this.data?.name || CONFIG.DEFAULT_TASK_NAME
+    this.__class__ = 'Environment'
   }
 }
 class LimitedTimeTask extends Task {
@@ -73,6 +74,7 @@ class LimitedTimeTask extends Task {
     this._creationDate = HELPERS.GET_TIME_TODAY()
   }
   _getData() {
+    if (!this.data) return
     this.importance = this.data?.importance || CONFIG.DEFAULT_IMPORTANCE
     this.due = this.data?.due || HELPERS.GET_TIME_TOMORROW()
     this.details = this.data?.details || CONFIG.DEFAULT_TASK_DETAILS
@@ -87,24 +89,6 @@ class LimitedTimeTask extends Task {
     // Creation date is the starting point the ending point is due
     return HELPERS.GET_DATE_RANGE(this._creationDate, this.due)
   }
-  /**
-   * determines the task's parent wether it's a project or environment if it's a standalone project or an environment (which means it doesn't have any parent) returns null
-   * @param {string} id id of the item we want to retrieve the parent
-   * @param {array} envs an array consisting a list of all of our environments
-   * @param {array} projects an array consisting a list of all projects in our application
-   * @returns {null | obj} null if it doesn't have a parent a task obj if we were able to find the parent
-   */
-  // _getParent(id, envs, projects) {
-  //   return (
-  //     envs.find((env) =>
-  //       env._childProjects.map((project) => project.id).includes(id)
-  //     ) ||
-  //     projects.find((project) =>
-  //       project._childToDos.map((todo) => todo.id).includes(id)
-  //     ) ||
-  //     null
-  //   )
-  // }
 }
 class Project extends LimitedTimeTask {
   constructor(data = {}, id, standAlone = true) {
@@ -112,6 +96,7 @@ class Project extends LimitedTimeTask {
     this.standAlone = standAlone
     this.parentId = standAlone ? null : state.currentPageId
     this.progress = this._getProjectProgress()
+    this.__class__ = 'Project'
   }
   children = []
   // Returns a how much of the project is done
@@ -135,6 +120,7 @@ class ToDo extends LimitedTimeTask {
     super(data, id)
     this.updateParentId()
     this.done = data.done
+    this.__class__ = 'ToDo'
   }
   updateParentId() {
     this.parentId = state.currentPageId

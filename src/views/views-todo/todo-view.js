@@ -7,9 +7,9 @@ class TodoView extends ChildView {
     super(data)
     this._generateAssets(data)
     this._parentEl = document.getElementById(`${this._assets.parentId}`)
+    this.__class__ = 'TodoView'
   }
   _generateHTML() {
-    console.log(this._assets.daysLeft)
     const markup = `
     <div class="relative todo-container order-${
       (this._assets.importance - 3) * -1
@@ -101,6 +101,9 @@ data-id="${this._assets.id}"
   `
     this._parentEl = document.querySelector(`.items-container`)
     return markup
+  }
+  updateParentEl() {
+    this._parentEl = document.querySelector(`.items-container`)
   }
 }
 export { TodoView }

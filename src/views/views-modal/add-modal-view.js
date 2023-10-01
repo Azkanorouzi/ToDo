@@ -159,7 +159,7 @@ class AddModalView extends ModalView {
     data-theme="true"
             type="button"
           >
-            Add
+          ${this._assets.message ? this._assets.message : 'Add'}
           </button>
           <button
             class="bg-theme-${

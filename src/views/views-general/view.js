@@ -11,6 +11,7 @@ class View {
   render(clear = true, showLoading = true, children = false) {
     if (clear) this.#clear()
     if (showLoading) this.renderSpinner()
+    this.updateParentEl()
     this._parentEl.innerHTML += this._generateHTML()
     if (children) this.renderChildren(children)
   }
