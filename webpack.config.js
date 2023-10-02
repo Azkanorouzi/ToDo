@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/script.js',
   output: {
     path: path.resolve(__dirname, 'dist'),

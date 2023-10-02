@@ -20,7 +20,7 @@ class ProjectView extends ContainerTaskView {
     <nav
       class="bg-theme-${
         this._assets.curTheme
-      }-main p-4 flex justify-between fixed top-0 left-0 right-0 bg-opacity-50 backdrop-blur-xl z-40 lg:sticky"
+      }-main p-4 flex justify-between fixed top-0 left-0 right-0 bg-opacity-50 backdrop-blur-xl z-30 lg:sticky"
       data-theme="true"
     >
       <!-- back button -->

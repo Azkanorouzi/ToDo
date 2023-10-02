@@ -17,9 +17,9 @@ class TodoView extends ChildView {
     <div
     class="hover:bg-theme-${
       this._assets.curTheme
-    }-fifth rounded-md p-4 todo bg-theme-${this._assets.curTheme}-${
+    }-fifth rounded-md p-2 lg:p-3 todo bg-theme-${this._assets.curTheme}-${
       this._assets.done ? 'fifth' : 'third'
-    } flex items-center justify-between text-3xl relative border-l-4 border-l-theme-${
+    } flex items-center justify-between text-sm lg:text-3xl relative border-l-4 border-l-theme-${
       this._assets.curTheme
     }-fifth shadow-md shadow-theme-${
       this._assets.curTheme
