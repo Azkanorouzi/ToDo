@@ -10,7 +10,7 @@ and this is DOIT a very elegant looking vanilla JS mvc to do app which allows yo
 
 technologies i used:
 
-![img.icons8.png](DoIt%20881fe0db518b46e892525a4303474432/img.icons8.png)
+![img.icons8.png](DoIt%20881fe0db518b46e892525a4303474432/img.icons8%201.png)
 
 ![img.icons8.png](DoIt%20881fe0db518b46e892525a4303474432/img.icons8%201.png)
 
