@@ -12,6 +12,8 @@ technologies things i used:
 
  tailwind, vanilla js, html, css
 
+![Screenshot 2023-10-01 at 11.32.52 AM.png](DoIt%20881fe0db518b46e892525a4303474432/Screenshot_2023-10-01_at_11.32.52_AM.png)
+
 ✏️ How to use it:
 
 - click on the navbar plus button and enter the info to add a new project/environment to the navbar
